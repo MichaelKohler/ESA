@@ -6,7 +6,7 @@ package com.example.bewegungsmeldermain;
  * 
  * Author: Ralf Wittich <ralf.wittich@gmx.ch>
  * Contributors:
- * 	- your name <your@mail.com> */
+ * 	- Ralf Wittich <bullit@gmx.ch> */
 
 import android.os.Bundle;
 import android.app.Activity;
