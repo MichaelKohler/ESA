@@ -7,8 +7,9 @@ package com.example.bewegungsmeldermain;
  * Author: Ralf Wittich <bullit@gmx.ch>
  * Contributors:
  * 	- Ralf Wittich <bullit@gmx.ch> 
- * 
- * - Mario Aloise; aloise.mario@gmail.com*/
+ *  - Mario Aloise <aloise.mario@gmail.com> 
+ *  
+ *  */
 
 import android.os.Bundle;
 import android.app.Activity;
