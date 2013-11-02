@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Bewegungsmelder</string>
+    <string name="action_settings">Settings</string>
+    <string name="pref_intervall_timer_day">Intervall Timer Tag (in Minuten)</string>
+    <string name="pref_intervall_timer_night">Intervall Timer Nacht (in Minuten)</string>
+    <string name="pref_direktruf_aktion">Direktruf Aktion</string>
+    <string name="pref_server_address">Server Adresse</string>
+    <string name="pref_server_port">Server Port</string>
+    <string name="pref_server_ping_intervall">Intervall Keep-Alive Server (in Minuten)</string>
+
+</resources>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="pref_direktruf_aktion_entries">
+        <item name="1">Kontakt anrufen</item>
+        <item name="2">Notruf-SMS senden</item>
+    </string-array>
+    <string-array name="pref_direktruf_aktion_entries_values">
+        <item name="1">1</item>
+        <item name="2">2</item>
+    </string-array>
+</resources>

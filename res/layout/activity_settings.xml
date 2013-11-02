@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <EditTextPreference
+        android:key="pref_intervall_timer_day"
+        android:title="@string/pref_intervall_timer_day"
+        android:defaultValue="2"
+        android:inputType="numberDecimal" />
+    <EditTextPreference
+        android:key="pref_intervall_timer_night"
+        android:title="@string/pref_intervall_timer_night"
+        android:defaultValue="10"
+        android:inputType="numberDecimal" />
+    <ListPreference
+        android:key="pref_direktruf_aktion"
+        android:title="@string/pref_direktruf_aktion"
+        android:dialogTitle="@string/pref_direktruf_aktion"
+        android:entries="@array/pref_direktruf_aktion_entries"
+        android:entryValues="@array/pref_direktruf_aktion_entries_values" />
+    <EditTextPreference
+        android:key="pref_server_address"
+        android:title="@string/pref_server_address"
+        android:defaultValue="---" />
+    <EditTextPreference
+        android:key="pref_server_port"
+        android:title="@string/pref_server_port"
+        android:defaultValue="3000"
+        android:inputType="numberDecimal" />
+    <EditTextPreference
+        android:key="pref_server_ping_intervall"
+        android:title="@string/pref_server_ping_intervall"
+        android:defaultValue="1"
+        android:inputType="numberDecimal" />
+</PreferenceScreen>
