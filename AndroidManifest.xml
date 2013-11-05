@@ -26,6 +26,23 @@
             android:name="com.example.bewegungsmeldermain.UserSettingActivity"
             android:label="@string/app_name" >
         </activity>
+        
+        <service 
+            android:enabled="true" 
+            android:name="LocationService" 
+            android:process = ":ServiceProcess">
+        </service>
+        <service 
+            android:enabled="true" 
+            android:name="MotionDetectionService" 
+            android:process = ":ServiceProcess">
+        </service>
+       	<service 
+            android:enabled="true" 
+            android:name="ServerService" 
+            android:process = ":ServiceProcess">
+       	</service>
+       	
     </application>
 
 </manifest>
