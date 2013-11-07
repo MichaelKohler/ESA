@@ -7,6 +7,8 @@ package com.example.bewegungsmeldermain;
  * Author: Ralf Wittich <bullit@gmx.ch>
  * Contributors:
  * 	- Ralf Wittich <bullit@gmx.ch> 
+ * 
+ *  Kommuniziert mit dem Ueberwachungsserver
  */
 
 import android.app.Service;

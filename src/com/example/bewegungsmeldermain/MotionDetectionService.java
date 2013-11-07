@@ -7,6 +7,8 @@ package com.example.bewegungsmeldermain;
  * Author: Ralf Wittich <bullit@gmx.ch>
  * Contributors:
  * 	- Ralf Wittich <bullit@gmx.ch> 
+ * 
+ * Wertet den Bewegungssensor aus und ermitteld ob der Timer abgelaufen ist.
  */
 
 import android.app.Service;
