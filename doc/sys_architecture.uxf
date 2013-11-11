@@ -4,12 +4,12 @@
   <element>
     <type>com.umlet.element.custom.Database</type>
     <coordinates>
-      <x>420</x>
-      <y>370</y>
+      <x>500</x>
+      <y>280</y>
       <w>110</w>
       <h>60</h>
     </coordinates>
-    <panel_attributes>Database
+    <panel_attributes>SQLite
 --
 --
 contactHashes</panel_attributes>
@@ -18,8 +18,8 @@ contactHashes</panel_attributes>
   <element>
     <type>com.umlet.element.custom.Node</type>
     <coordinates>
-      <x>760</x>
-      <y>150</y>
+      <x>700</x>
+      <y>140</y>
       <w>110</w>
       <h>50</h>
     </coordinates>
@@ -30,10 +30,10 @@ contactHashes</panel_attributes>
   <element>
     <type>com.umlet.element.custom.Node</type>
     <coordinates>
-      <x>270</x>
-      <y>40</y>
-      <w>440</w>
-      <h>420</h>
+      <x>290</x>
+      <y>60</y>
+      <w>400</w>
+      <h>310</h>
     </coordinates>
     <panel_attributes>center:&lt;&lt;device&gt;&gt;
 center:Android</panel_attributes>
@@ -42,8 +42,8 @@ center:Android</panel_attributes>
   <element>
     <type>com.umlet.element.custom.SimpleComponent</type>
     <coordinates>
-      <x>370</x>
-      <y>140</y>
+      <x>390</x>
+      <y>130</y>
       <w>160</w>
       <h>70</h>
     </coordinates>
@@ -53,8 +53,8 @@ center:Android</panel_attributes>
   <element>
     <type>com.umlet.element.custom.SimpleComponent</type>
     <coordinates>
-      <x>290</x>
-      <y>280</y>
+      <x>310</x>
+      <y>270</y>
       <w>130</w>
       <h>70</h>
     </coordinates>
@@ -64,8 +64,8 @@ center:Android</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>320</x>
-      <y>180</y>
+      <x>340</x>
+      <y>170</y>
       <w>120</w>
       <h>120</h>
     </coordinates>
@@ -76,25 +76,25 @@ _Link_</panel_attributes>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>420</x>
-      <y>180</y>
-      <w>90</w>
-      <h>210</h>
+      <x>430</x>
+      <y>170</y>
+      <w>174</w>
+      <h>130</h>
     </coordinates>
     <panel_attributes>lt=-
-_Link_</panel_attributes>
-    <additional_attributes>50;190;50;30</additional_attributes>
+_DB_Connection_</panel_attributes>
+    <additional_attributes>120;110;60;30</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>500</x>
-      <y>130</y>
-      <w>280</w>
+      <x>520</x>
+      <y>120</y>
+      <w>200</w>
       <h>70</h>
     </coordinates>
     <panel_attributes>lt=-
 _http_</panel_attributes>
-    <additional_attributes>30;50;260;50</additional_attributes>
+    <additional_attributes>30;50;180;50</additional_attributes>
   </element>
 </diagram>
