@@ -8,7 +8,7 @@ package com.example.bewegungsmeldermain;
  * Contributors:
  * 	- Ralf Wittich <bullit@gmx.ch> 
  *  - Mario Aloise <aloise.mario@gmail.com> 
- *  
+ *  - Michael Kohler <mkohler@picobudget.com>
  *  */
 
 import android.os.Bundle;
@@ -47,5 +47,41 @@ public class MainActivity extends Activity {
  
         return true;
     }
+	
+	public void onContactButtonClick() {
+		
+	}
+	
+	public void onModeButtonClick() {
+		
+	}
+	
+	public void onSupervisionButtonClick() {
+		
+	}
+	
+	private void enableSupervision() {
+		
+	}
+	
+	private void disableSupervision() {
+		
+	}
+	
+	private void enableMode(int mode) {
+		
+	}
+	
+	private void recalculateTicker() {
+		
+	}
+	
+	private void setProgressBar(int progressValue) {
+		
+	}
+	
+	private void recalculateGPSPosition() {
+		
+	}
 
 }

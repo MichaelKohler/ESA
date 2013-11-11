@@ -14,7 +14,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
-        android:src="@drawable/ic_action_overflow" />
+        android:src="@drawable/ic_action_overflow"
+        android:onClick="onContactButtonClick" />
 
     <ImageButton
         android:id="@+id/imageButton2"
@@ -22,7 +23,8 @@
         android:layout_height="wrap_content"
         android:layout_alignTop="@+id/imageButton1"
         android:layout_toLeftOf="@+id/imageButton1"
-        android:src="@drawable/ic_action_user" />
+        android:src="@drawable/ic_action_user"
+        android:onClick="onModeButtonClick" />
 
     <TextView
         android:id="@+id/textView1"
@@ -71,7 +73,8 @@
         android:layout_alignRight="@+id/progressBar1"
         android:layout_alignTop="@+id/quickContactBadge1"
         android:layout_toRightOf="@+id/quickContactBadge1"
-        android:text="Primary contact" />
+        android:text="Primary contact"
+        android:onClick="onSupervisionButtonClicked" />
 
     <Button
         android:id="@+id/button2"
