@@ -29,6 +29,7 @@ public class ServerService extends Service {
 	@Override
 	public void onCreate() {
 		// TODO Auto-generated method stub
+		// Baut die Verbindung auf und meldet Resultat
 		super.onCreate();
 	}
 
@@ -38,6 +39,7 @@ public class ServerService extends Service {
 	@Override
 	public void onDestroy() {
 		// TODO Auto-generated method stub
+		// Baut die Verbindung ab und meldet Resultat
 		super.onDestroy();
 	}
 
@@ -47,6 +49,7 @@ public class ServerService extends Service {
 	@Override
 	public void onStart(Intent intent, int startId) {
 		// TODO Auto-generated method stub
+		// Wird nach onCreate ausgeführt
 		super.onStart(intent, startId);
 	}
 
