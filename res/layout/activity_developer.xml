@@ -1,0 +1,57 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".DeveloperActivity" >
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/title_activity_developer" />
+
+    <Button
+        android:id="@+id/ButtonGetPosition"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="132dp"
+        android:layout_toRightOf="@+id/ButtonLocationService"
+        android:text="GetPosition" />
+
+    <Button
+        android:id="@+id/ButtonLocationService"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/ButtonGetPosition"
+        android:layout_alignBottom="@+id/ButtonGetPosition"
+        android:layout_alignLeft="@+id/buttonServerService"
+        android:text="LocationService" />
+
+    <Button
+        android:id="@+id/buttonServerService"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/ButtonLocationService"
+        android:layout_alignLeft="@+id/buttonMotionDetectionService"
+        android:layout_marginBottom="44dp"
+        android:text="ServerService" />
+
+    <Button
+        android:id="@+id/buttonMotionDetectionService"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView1"
+        android:layout_below="@+id/textView1"
+        android:layout_marginTop="42dp"
+        android:text="MotionDetectionService" />
+
+</RelativeLayout>

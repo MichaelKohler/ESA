@@ -26,23 +26,27 @@
             android:name="com.example.bewegungsmeldermain.UserSettingActivity"
             android:label="@string/app_name" >
         </activity>
-        
-        <service 
-            android:enabled="true" 
-            android:name="LocationService" 
-            android:process = ":ServiceProcess">
+
+        <service
+            android:name="com.example.bewegungsmeldermain.LocationService"
+            android:enabled="true"
+            android:process=":ServiceProcess" >
         </service>
-        <service 
-            android:enabled="true" 
-            android:name="MotionDetectionService" 
-            android:process = ":ServiceProcess">
+        <service
+            android:name="com.example.bewegungsmeldermain.MotionDetectionService"
+            android:enabled="true"
+            android:process=":ServiceProcess" >
         </service>
-       	<service 
-            android:enabled="true" 
-            android:name="ServerService" 
-            android:process = ":ServiceProcess">
-       	</service>
-       	
+        <service
+            android:name="com.example.bewegungsmeldermain.ServerService"
+            android:enabled="true"
+            android:process=":ServiceProcess" >
+        </service>
+
+        <activity
+            android:name="com.example.bewegungsmeldermain.DeveloperActivity"
+            android:label="@string/title_activity_developer" >
+        </activity>
     </application>
 
 </manifest>

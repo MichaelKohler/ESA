@@ -16,6 +16,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 public class MainActivity extends Activity {
 	
@@ -82,6 +83,12 @@ public class MainActivity extends Activity {
 	
 	private void recalculateGPSPosition() {
 		
+	}
+	
+	//Developer Debugging Activity call / 2013-11-13 i3ullit
+	public void onDeveloperButtonClicked(View view){
+		Intent i = new Intent(this, DeveloperActivity.class);
+		startActivity(i);
 	}
 
 }
