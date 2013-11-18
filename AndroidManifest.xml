@@ -47,6 +47,14 @@
             android:name="com.example.bewegungsmeldermain.DeveloperActivity"
             android:label="@string/title_activity_developer" >
         </activity>
+        <activity
+            android:name="com.example.bewegungsmeldermain.Kontakt"
+            android:label="@string/title_activity_kontakt" >
+        </activity>
+        <activity
+            android:name="com.example.bewegungsmeldermain.KontaktMain"
+            android:label="@string/title_activity_kontakt_main" >
+        </activity>
     </application>
 
 </manifest>

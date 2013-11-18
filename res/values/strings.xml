@@ -11,5 +11,7 @@
     <string name="pref_server_ping_intervall">Intervall Keep-Alive Server (in Minuten)</string>
     <string name="title_activity_developer">DeveloperActivity</string>
     <string name="hello_world">Hello world!</string>
+    <string name="title_activity_kontakt">Kontakt</string>
+    <string name="title_activity_kontakt_main">KontaktMain</string>
 
 </resources>
