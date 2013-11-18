@@ -277,4 +277,19 @@ com.example.bewegungsmeldermain::KontaktMain
     <panel_attributes>lt=&lt;.</panel_attributes>
     <additional_attributes>70;60;30;30</additional_attributes>
   </element>
+  <element>
+    <type>com.umlet.element.Note</type>
+    <coordinates>
+      <x>880</x>
+      <y>410</y>
+      <w>180</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>DeveloperActivity ist eine 
+Testklasse um die Services 
+einzeln zu starten. 
+Wird versteckt gestartet.
+bg=blue</panel_attributes>
+    <additional_attributes/>
+  </element>
 </diagram>
