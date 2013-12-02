@@ -8,19 +8,19 @@ MainActivity: (Action Bar usw...), Buttons werden nach Bedarf eingepflegt
 Testcases: Sollen noch destruktiver ausgefuehrt werden
 
 Mario:
-	KontakteMain
-	Kontakte importieren (Kontaktreferenz in DB)
-	Kontakte editieren
-	Kontakte loeschen
+	[ ] KontakteMain
+	[ ] Kontakte importieren (Kontaktreferenz in DB)
+	[ ] Kontakte editieren
+	[ ] Kontakte loeschen
 
 Michi:
-	SMS versenden
-	SMS quittieren (leere SMS)
-	Einstellungen
+	[ ] SMS versenden
+	[ ] SMS quittieren (leere SMS)
+	[ ] Einstellungen
 
 Ralf:
-	MotionService
-	PositionService 
+	[ ] MotionService
+	[ ] PositionService 
 	
 	
 Nächstes Meeting: 2013-12-09 Montag 20:00 Uhr
