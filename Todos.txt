@@ -23,4 +23,4 @@ Ralf:
 	[ ] PositionService 
 	
 	
-Nächstes Meeting: 2013-12-09 Montag 20:00 Uhr
+Nächstes Meeting: 2013-12-12 Montag 20:00 Uhr
