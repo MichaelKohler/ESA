@@ -45,13 +45,24 @@
         android:text="ServerService" />
 
     <Button
-        android:id="@+id/buttonMotionDetectionService"
+        android:id="@+id/buttonStartMotionDetectionService"
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/textView1"
         android:layout_below="@+id/textView1"
         android:layout_marginTop="42dp"
-        android:text="MotionDetectionService" />
+        android:text="StartMotionDetectionService"
+        android:onClick="buttonStartMotionDetectionService" />
+
+    <Button
+        android:id="@+id/buttonStopMotionDetectionService"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/buttonStartMotionDetectionService"
+        android:layout_below="@+id/buttonStartMotionDetectionService"
+        android:onClick="buttonStopMotionDetectionService"
+        android:text="StopMotionDetectionService" />
 
 </RelativeLayout>

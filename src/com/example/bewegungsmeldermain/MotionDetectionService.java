@@ -14,9 +14,17 @@ package com.example.bewegungsmeldermain;
 
 import android.app.Service;
 import android.content.Intent;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.os.IBinder;
+import android.widget.Toast;
 
-public class MotionDetectionService extends Service {
+public class MotionDetectionService extends Service implements SensorEventListener{
+	
+	 private SensorManager mSensorManager;
+     private Sensor mAccelerometer;
 
 	@Override
 	public IBinder onBind(Intent intent) {
@@ -24,31 +32,45 @@ public class MotionDetectionService extends Service {
 		return null;
 	}
 
-	/* (non-Javadoc)
-	 * @see android.app.Service#onCreate()
-	 */
+	
 	@Override
 	public void onCreate() {
-		// TODO Auto-generated method stub
+
+		Toast.makeText(this, "MotionDetection Service created", Toast.LENGTH_LONG).show();
+		
+		// System Service zuweisen
+		 mSensorManager = (SensorManager)getSystemService(SENSOR_SERVICE);
+         mAccelerometer = mSensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE);
 		super.onCreate();
 	}
 
-	/* (non-Javadoc)
-	 * @see android.app.Service#onDestroy()
-	 */
+	
 	@Override
 	public void onDestroy() {
-		// TODO Auto-generated method stub
+
+		Toast.makeText(this, "MotionDetection: onDestroy", Toast.LENGTH_LONG).show();
 		super.onDestroy();
 	}
 
-	/* (non-Javadoc)
+	/* 
 	 * @see android.app.Service#onStart(android.content.Intent, int)
 	 */
 	@Override
 	public void onStart(Intent intent, int startId) {
 		// TODO Auto-generated method stub
 		super.onStart(intent, startId);
+	}
+
+	@Override
+	public void onAccuracyChanged(Sensor sensor, int accuracy) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onSensorChanged(SensorEvent event) {
+		Toast.makeText(this, "Sensor changed", Toast.LENGTH_SHORT).show();
+		
 	}
 
 	

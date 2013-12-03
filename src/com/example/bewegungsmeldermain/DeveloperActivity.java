@@ -13,10 +13,12 @@ package com.example.bewegungsmeldermain;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.Intent;
 import android.view.Menu;
+import android.view.View;
 
 public class DeveloperActivity extends Activity {
-
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -28,6 +30,16 @@ public class DeveloperActivity extends Activity {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.developer, menu);
 		return true;
+	}
+	
+	// Startet den Service
+	public void buttonStartMotionDetectionService(View view){
+		startService(new Intent(this, MotionDetectionService.class));
+	}
+	
+	// Stoppt den Service
+	public void buttonStopMotionDetectionService(View view){
+		stopService(new Intent(this, MotionDetectionService.class));
 	}
 
 }
