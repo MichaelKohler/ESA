@@ -19,13 +19,15 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.IBinder;
+import android.util.Log;
 import android.widget.Toast;
 
 public class MotionDetectionService extends Service implements SensorEventListener{
-	
+	private static final String TAG = MotionDetectionService.class.getSimpleName();
 	 private SensorManager mSensorManager;
      private Sensor mAccelerometer;
 
+     // Wird fuer IPC benoetigt (inter-process communication")
 	@Override
 	public IBinder onBind(Intent intent) {
 		// TODO Auto-generated method stub
@@ -36,8 +38,7 @@ public class MotionDetectionService extends Service implements SensorEventListen
 	@Override
 	public void onCreate() {
 
-		Toast.makeText(this, "MotionDetection Service created", Toast.LENGTH_LONG).show();
-		
+		Log.d(TAG, "created");
 		// System Service zuweisen
 		 mSensorManager = (SensorManager)getSystemService(SENSOR_SERVICE);
          mAccelerometer = mSensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE);
@@ -48,7 +49,7 @@ public class MotionDetectionService extends Service implements SensorEventListen
 	@Override
 	public void onDestroy() {
 
-		Toast.makeText(this, "MotionDetection: onDestroy", Toast.LENGTH_LONG).show();
+		Log.d(TAG, "destroyed");
 		super.onDestroy();
 	}
 
@@ -69,7 +70,8 @@ public class MotionDetectionService extends Service implements SensorEventListen
 
 	@Override
 	public void onSensorChanged(SensorEvent event) {
-		Toast.makeText(this, "Sensor changed", Toast.LENGTH_SHORT).show();
+		Log.d(TAG, "Sensor changed");
+		//mSensorManager.getOrientation(R., values)
 		
 	}
 
