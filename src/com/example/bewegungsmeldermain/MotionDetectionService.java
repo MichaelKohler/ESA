@@ -37,20 +37,19 @@ public class MotionDetectionService extends Service implements SensorEventListen
 	
 	@Override
 	public void onCreate() {
-
+		super.onCreate();
 		Log.d(TAG, "created");
-		// System Service zuweisen
 		 mSensorManager = (SensorManager)getSystemService(SENSOR_SERVICE);
          mAccelerometer = mSensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE);
-		super.onCreate();
+		mSensorManager.registerListener(this, mAccelerometer, SensorManager.SENSOR_DELAY_NORMAL);
 	}
 
 	
 	@Override
 	public void onDestroy() {
-
-		Log.d(TAG, "destroyed");
 		super.onDestroy();
+		mSensorManager.unregisterListener(this);
+		Log.d(TAG, "destroyed");	
 	}
 
 	/* 
@@ -70,10 +69,20 @@ public class MotionDetectionService extends Service implements SensorEventListen
 
 	@Override
 	public void onSensorChanged(SensorEvent event) {
-		Log.d(TAG, "Sensor changed");
-		//mSensorManager.getOrientation(R., values)
+		float thres = 0.5f; // Event values groesser thres werden als Bewegung gewertet.
 		
+		float axisX = event.values[0];
+		float axisY = event.values[1];
+		float axisZ = event.values[2];
+		
+		if(axisX > thres){
+			Log.d(TAG, "Sensor changed: X = " + axisX );
+		};
+		if(axisY > thres){
+			Log.d(TAG, "Sensor changed: Y = " + axisY );
+		};
+		if(axisZ > thres){
+			Log.d(TAG, "Sensor changed: Z = " + axisZ );
+		};
 	}
-
-	
 }
