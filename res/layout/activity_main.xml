@@ -85,6 +85,16 @@
         android:layout_below="@+id/quickContactBadge1"
         android:layout_marginTop="34dp"
         android:text="Start Supervision" />
+    
+    <Button
+        android:id="@+id/buttonNotruf"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/quickContactBadge1"
+        android:layout_alignRight="@+id/button1"
+        android:layout_below="@+id/button2"
+        android:layout_marginTop="34dp"
+        android:text="Notruf!" />
 
     <Button
         android:id="@+id/buttonDeveloper"
