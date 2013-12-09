@@ -9,6 +9,9 @@
     <string name="pref_server_address">Server Adresse</string>
     <string name="pref_server_port">Server Port</string>
     <string name="pref_server_ping_intervall">Intervall Keep-Alive Server (in Minuten)</string>
+    <string name="pref_category_intervall">Intervall</string>
+    <string name="pref_category_direktruf">Direktruf</string>
+    <string name="pref_category_ueberwachung">Überwachung</string>
     <string name="title_activity_developer">DeveloperActivity</string>
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_kontakt">Kontakt</string>
