@@ -94,7 +94,8 @@
         android:layout_alignRight="@+id/button1"
         android:layout_below="@+id/button2"
         android:layout_marginTop="34dp"
-        android:text="Notruf!" />
+        android:text="Notruf!"
+        android:onClick="onNotrufButtonClicked" />
 
     <Button
         android:id="@+id/buttonDeveloper"

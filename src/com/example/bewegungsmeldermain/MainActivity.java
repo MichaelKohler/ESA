@@ -14,6 +14,7 @@ package com.example.bewegungsmeldermain;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
+import android.telephony.SmsManager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -83,6 +84,17 @@ public class MainActivity extends Activity {
 	
 	private void recalculateGPSPosition() {
 		
+	}
+	
+	public void onEmergencyButtonClicked() {
+		// TODO: get primary contact's number
+		String phoneNumber = "000";
+		// TODO: get current location
+		int currentLocationLat = 0;
+		int currentLocationLong = 0;
+		String message = "Notruf! Koordinaten, Lat: " + currentLocationLat.toString() + ", Long: " + currentLocationLong.toString() + ".. Bitte mit leerer SMS bestätigen.";
+		SmsManager smsManager = SmsManager.getDefault();
+		smsManager.sendTextMessage(phoneNumber, null, message, null, null);
 	}
 	
 	//Developer Debugging Activity call / 2013-11-13 i3ullit
