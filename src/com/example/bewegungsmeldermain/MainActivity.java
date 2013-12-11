@@ -90,9 +90,9 @@ public class MainActivity extends Activity {
 		// TODO: get primary contact's number
 		String phoneNumber = "000";
 		// TODO: get current location
-		int currentLocationLat = 0;
-		int currentLocationLong = 0;
-		String message = "Notruf! Koordinaten, Lat: " + currentLocationLat.toString() + ", Long: " + currentLocationLong.toString() + ".. Bitte mit leerer SMS bestätigen.";
+		float currentLocationLat = 0;
+		float currentLocationLong = 0;
+		String message = "Notruf! Koordinaten, Lat: " + Float.toString(currentLocationLat) + ", Long: " + Float.toString(currentLocationLong) + ".. Bitte mit leerer SMS bestätigen.";
 		SmsManager smsManager = SmsManager.getDefault();
 		smsManager.sendTextMessage(phoneNumber, null, message, null, null);
 	}
