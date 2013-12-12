@@ -9,6 +9,9 @@ package com.example.bewegungsmeldermain;
  *  - Michael Kohler <mkohler@picobudget.com>
  *  */
 
+import android.app.Activity;
+import android.content.Intent;
+import android.net.Uri;
 import android.telephony.SmsManager;
 
 public class Helper {
@@ -29,8 +32,11 @@ public class Helper {
      *
      * @author Michael Kohler
      * @param String aPhoneNumber phone number to call
+     * @param Activity aActivity activity needed for startActivity()
      */
-    public static void call(String aPhoneNumber) {
-
+    public static void call(String aPhoneNumber, Activity aActivity) {
+        Intent callIntent = new Intent(Intent.ACTION_CALL);
+        callIntent.setData(Uri.parse("tel:" + aPhoneNumber));
+        aActivity.startActivity(callIntent);
     }
 }

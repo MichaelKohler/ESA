@@ -103,7 +103,7 @@ public class MainActivity extends Activity {
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         String emergencyHandlingPref = sharedPref.getString("pref_direktruf_aktion", "SMS");
         if (emergencyHandlingPref.equals("CALL")) {
-            Helper.call(phoneNumber);
+            Helper.call(phoneNumber, MainActivity.this);
         }
         else {
             handleEmergencySMS(phoneNumber);
