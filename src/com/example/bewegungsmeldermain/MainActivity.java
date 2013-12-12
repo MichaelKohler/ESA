@@ -85,17 +85,34 @@ public class MainActivity extends Activity {
 	private void recalculateGPSPosition() {
 		
 	}
-	
-	public void onEmergencyButtonClicked() {
-		// TODO: get primary contact's number
-		String phoneNumber = "000";
+
+    /**
+     * facilitates the emergency button click
+     * TODO: add check for Setting (call or SMS)
+     * @author: Michael Kohler
+     * @param View view the View from which this function is called
+     */
+	public void onEmergencyButtonClicked(View view) {
 		// TODO: get current location
 		float currentLocationLat = 0;
 		float currentLocationLong = 0;
 		String message = "Notruf! Koordinaten, Lat: " + Float.toString(currentLocationLat) + ", Long: " + Float.toString(currentLocationLong) + ".. Bitte mit leerer SMS bestätigen.";
-		SmsManager smsManager = SmsManager.getDefault();
-		smsManager.sendTextMessage(phoneNumber, null, message, null, null);
+        // TODO: get primary contact's number
+        String phoneNumber = "5556";
+        sendEmergencySMS(phoneNumber, message);
 	}
+
+    /**
+     * Sends the emergency SMS
+     * TODO: add this to a Helper class?
+     * @author Michael Kohler
+     * @param String aPhoneNumber phone number of recipient
+     * @param String aMessage message to send
+     */
+    private void sendEmergencySMS(String aPhoneNumber, String aMessage) {
+        SmsManager smsManager = SmsManager.getDefault();
+        smsManager.sendTextMessage(aPhoneNumber, null, aMessage, null, null);
+    }
 	
 	//Developer Debugging Activity call / 2013-11-13 i3ullit
 	public void onDeveloperButtonClicked(View view){
