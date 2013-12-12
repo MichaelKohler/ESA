@@ -12,12 +12,15 @@ package com.example.bewegungsmeldermain;
  *  */
 
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.telephony.SmsManager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 public class MainActivity extends Activity {
 	
@@ -112,6 +115,10 @@ public class MainActivity extends Activity {
     private void sendEmergencySMS(String aPhoneNumber, String aMessage) {
         SmsManager smsManager = SmsManager.getDefault();
         smsManager.sendTextMessage(aPhoneNumber, null, aMessage, null, null);
+        Context context = getApplicationContext();
+        Toast.makeText(context, "Message sent!", Toast.LENGTH_LONG).show();
+        Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+        vibrator.vibrate(500);
     }
 	
 	//Developer Debugging Activity call / 2013-11-13 i3ullit
