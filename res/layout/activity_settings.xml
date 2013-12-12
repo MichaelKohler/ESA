@@ -23,6 +23,7 @@
             android:key="pref_direktruf_aktion"
             android:title="@string/pref_direktruf_aktion"
             android:dialogTitle="@string/pref_direktruf_aktion"
+            android:defaultValue = "SMS"
             android:entries="@array/pref_direktruf_aktion_entries"
             android:entryValues="@array/pref_direktruf_aktion_entries_values" />
     </PreferenceCategory>

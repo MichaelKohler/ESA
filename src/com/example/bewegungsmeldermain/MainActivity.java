@@ -16,6 +16,8 @@ import android.os.Vibrator;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -91,22 +93,40 @@ public class MainActivity extends Activity {
     /**
      * facilitates the emergency button click
      * TODO: add check for Setting (call or SMS)
-     * @author: Michael Kohler
+     * @author Michael Kohler
      * @param View view the View from which this function is called
      */
 	public void onEmergencyButtonClicked(View view) {
-		// TODO: get current location
-		float currentLocationLat = 0;
-		float currentLocationLong = 0;
-		String message = "Notruf! Koordinaten, Lat: " + Float.toString(currentLocationLat) + ", Long: " + Float.toString(currentLocationLong) + ".. Bitte mit leerer SMS bestätigen.";
         // TODO: get primary contact's number
         String phoneNumber = "5556";
-        Helper.sendEmergencySMS(phoneNumber, message);
+
+        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+        String emergencyHandlingPref = sharedPref.getString("pref_direktruf_aktion", "SMS");
+        if (emergencyHandlingPref.equals("CALL")) {
+            Helper.call(phoneNumber);
+        }
+        else {
+            handleEmergencySMS(phoneNumber);
+        }
+	}
+
+    /**
+     * handles the emergency SMS case
+     *
+     * @author Michael Kohler
+     * @param String aPhoneNumber phone number of the recipient
+     */
+    private void handleEmergencySMS(String aPhoneNumber) {
+        // TODO: get current location
+        float currentLocationLat = 0;
+        float currentLocationLong = 0;
+        String message = "Notruf! Koordinaten, Lat: " + Float.toString(currentLocationLat) + ", Long: " + Float.toString(currentLocationLong) + ".. Bitte mit leerer SMS bestätigen.";
+        Helper.sendEmergencySMS(aPhoneNumber, message);
         Context context = getApplicationContext();
         Toast.makeText(context, "Message sent!", Toast.LENGTH_LONG).show();
         Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         vibrator.vibrate(500);
-	}
+    }
 	
 	//Developer Debugging Activity call / 2013-11-13 i3ullit
 	public void onDeveloperButtonClicked(View view){

@@ -23,4 +23,14 @@ public class Helper {
         SmsManager smsManager = SmsManager.getDefault();
         smsManager.sendTextMessage(aPhoneNumber, null, aMessage, null, null);
     }
+
+    /**
+     * Calls a phone number
+     *
+     * @author Michael Kohler
+     * @param String aPhoneNumber phone number to call
+     */
+    public static void call(String aPhoneNumber) {
+
+    }
 }
