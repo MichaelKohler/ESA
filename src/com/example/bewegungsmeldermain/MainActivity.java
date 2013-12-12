@@ -16,7 +16,6 @@ import android.os.Vibrator;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.telephony.SmsManager;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -102,24 +101,12 @@ public class MainActivity extends Activity {
 		String message = "Notruf! Koordinaten, Lat: " + Float.toString(currentLocationLat) + ", Long: " + Float.toString(currentLocationLong) + ".. Bitte mit leerer SMS bestätigen.";
         // TODO: get primary contact's number
         String phoneNumber = "5556";
-        sendEmergencySMS(phoneNumber, message);
-	}
-
-    /**
-     * Sends the emergency SMS
-     * TODO: add this to a Helper class?
-     * @author Michael Kohler
-     * @param String aPhoneNumber phone number of recipient
-     * @param String aMessage message to send
-     */
-    private void sendEmergencySMS(String aPhoneNumber, String aMessage) {
-        SmsManager smsManager = SmsManager.getDefault();
-        smsManager.sendTextMessage(aPhoneNumber, null, aMessage, null, null);
+        Helper.sendEmergencySMS(phoneNumber, message);
         Context context = getApplicationContext();
         Toast.makeText(context, "Message sent!", Toast.LENGTH_LONG).show();
         Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         vibrator.vibrate(500);
-    }
+	}
 	
 	//Developer Debugging Activity call / 2013-11-13 i3ullit
 	public void onDeveloperButtonClicked(View view){
