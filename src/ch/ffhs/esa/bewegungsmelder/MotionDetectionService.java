@@ -1,4 +1,4 @@
-package com.example.bewegungsmeldermain;
+package ch.ffhs.esa.bewegungsmelder;
 
 /* This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
@@ -20,7 +20,6 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.IBinder;
 import android.util.Log;
-import android.widget.Toast;
 
 public class MotionDetectionService extends Service implements SensorEventListener{
 	private static final String TAG = MotionDetectionService.class.getSimpleName();

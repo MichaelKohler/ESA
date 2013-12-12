@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.bewegungsmeldermain"
+    package="ch.ffhs.esa.bewegungsmelder"
     android:versionCode="1"
     android:versionName="1.0" >
 
@@ -18,7 +18,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.example.bewegungsmeldermain.MainActivity"
+            android:name="ch.ffhs.esa.bewegungsmelder.MainActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -27,36 +27,36 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.example.bewegungsmeldermain.UserSettingActivity"
+            android:name="ch.ffhs.esa.bewegungsmelder.UserSettingActivity"
             android:label="@string/app_name" >
         </activity>
 
         <service
-            android:name="com.example.bewegungsmeldermain.LocationService"
+            android:name="ch.ffhs.esa.bewegungsmelder.LocationService"
             android:enabled="true"
             android:process=":ServiceProcess" >
         </service>
         <service
-            android:name="com.example.bewegungsmeldermain.MotionDetectionService"
+            android:name="ch.ffhs.esa.bewegungsmelder.MotionDetectionService"
             android:enabled="true"
             android:process=":ServiceProcess" >
         </service>
         <service
-            android:name="com.example.bewegungsmeldermain.ServerService"
+            android:name="ch.ffhs.esa.bewegungsmelder.ServerService"
             android:enabled="true"
             android:process=":ServiceProcess" >
         </service>
 
         <activity
-            android:name="com.example.bewegungsmeldermain.DeveloperActivity"
+            android:name="ch.ffhs.esa.bewegungsmelder.DeveloperActivity"
             android:label="@string/title_activity_developer" >
         </activity>
         <activity
-            android:name="com.example.bewegungsmeldermain.Kontakt"
+            android:name="ch.ffhs.esa.bewegungsmelder.Kontakt"
             android:label="@string/title_activity_kontakt" >
         </activity>
         <activity
-            android:name="com.example.bewegungsmeldermain.KontaktMain"
+            android:name="ch.ffhs.esa.bewegungsmelder.KontaktMain"
             android:label="@string/title_activity_kontakt_main" >
         </activity>
     </application>

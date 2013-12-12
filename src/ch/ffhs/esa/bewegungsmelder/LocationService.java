@@ -1,4 +1,4 @@
-package com.example.bewegungsmeldermain;
+package ch.ffhs.esa.bewegungsmelder;
 
 /* This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
@@ -8,28 +8,27 @@ package com.example.bewegungsmeldermain;
  * Contributors:
  * 	- Ralf Wittich <bullit@gmx.ch> 
  * 
- *  Kommuniziert mit dem Ueberwachungsserver
+ * Ermittelt den aktuellen Standort mit Genauigkeitsangabe
  */
 
 import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
 
-public class ServerService extends Service {
+public class LocationService extends Service {
 
 	@Override
-	public IBinder onBind(Intent intent) {
+	public IBinder onBind(Intent arg0) {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
+	
 	/* (non-Javadoc)
 	 * @see android.app.Service#onCreate()
 	 */
 	@Override
 	public void onCreate() {
 		// TODO Auto-generated method stub
-		// Baut die Verbindung auf und meldet Resultat
 		super.onCreate();
 	}
 
@@ -39,7 +38,6 @@ public class ServerService extends Service {
 	@Override
 	public void onDestroy() {
 		// TODO Auto-generated method stub
-		// Baut die Verbindung ab und meldet Resultat
 		super.onDestroy();
 	}
 
@@ -49,7 +47,6 @@ public class ServerService extends Service {
 	@Override
 	public void onStart(Intent intent, int startId) {
 		// TODO Auto-generated method stub
-		// Wird nach onCreate ausgeführt
 		super.onStart(intent, startId);
 	}
 
