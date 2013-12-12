@@ -5,8 +5,8 @@ Nächstes Meeting: 2013-12-12 Montag 20:00 Uhr
 [ ] Testcases: Sollen noch destruktiver ausgefuehrt werden
 
 MainActivity:
-    [ ] (Action Bar usw...), Buttons werden nach Bedarf eingepflegt
-	[ ] Alarm Quittieren (Gleicher Button wie Start button, resetiert auch Timer)
+                      [ ] (Action Bar usw...), Buttons werden nach Bedarf eingepflegt
+                      [ ] Alarm Quittieren (Gleicher Button wie Start button, resetiert auch Timer)
 
 Mario:
 	[ ] KontakteMain
@@ -15,12 +15,12 @@ Mario:
 	[ ] Kontakte loeschen
 
 Michi:
-	[ ] SMS versenden
-	    [ ] benötigt Methode bei Contacts, um Nummer des "Primary Contact" auszulesen
-	    [ ] benötigt Methode bei Contacts, um Nummer der nächsten Person auszulesen
-	    [ ] benötigt Methode bei LocationService, um aktuelle Position zu erhalten (ggf. mit recalculateGPSPosition() in MainActivity)
+	[x] SMS versenden
+	                      [ ] benötigt Methode bei Contacts, um Nummer des "Primary Contact" auszulesen
+	                      [ ] benötigt Methode bei Contacts, um Nummer der nächsten Person auszulesen
+	                      [ ] benötigt Methode bei LocationService, um aktuelle Position zu erhalten (ggf. mit recalculateGPSPosition() in MainActivity)
 	[ ] SMS quittieren (leere SMS)
-	    [ ] Wie soll das verknüpft werden? Listener ist einfach, aber wo entscheiden wir, dass das nächste SMS geschickt werden soll?
+	                      [ ] Wie soll das verknüpft werden? Listener ist einfach, aber wo entscheiden wir, dass das nächste SMS geschickt werden soll?
 	[x] Einstellungen
 
 Ralf:
