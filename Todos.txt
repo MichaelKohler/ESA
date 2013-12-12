@@ -15,9 +15,11 @@ Mario:
 
 Michi:
 	[ ] SMS versenden
-	    [ ] benˆtigt Methode bei Contacts, um Nummer des "Primary Contact" auszulesen
-	    [ ] benˆtigt Methode bei Contacts, um Nummer der n‰chsten Person auszulesen
+	    [ ] ben√∂tigt Methode bei Contacts, um Nummer des "Primary Contact" auszulesen
+	    [ ] ben√∂tigt Methode bei Contacts, um Nummer der n√§chsten Person auszulesen
+	    [ ] ben√∂tigt Methode bei LocationService, um aktuelle Position zu erhalten (ggf. mit recalculateGPSPosition() in MainActivity)
 	[ ] SMS quittieren (leere SMS)
+	    [ ] Wie soll das verkn√ºpft werden? Listener ist einfach, aber wo entscheiden wir, dass das n√§chste SMS geschickt werden soll?
 	[x] Einstellungen
 
 Ralf:
@@ -25,4 +27,4 @@ Ralf:
 	[ ] PositionService 
 	
 	
-N‰chstes Meeting: 2013-12-12 Montag 20:00 Uhr
+NÔøΩchstes Meeting: 2013-12-12 Montag 20:00 Uhr
