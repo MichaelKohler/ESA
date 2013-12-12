@@ -1,11 +1,12 @@
-Next Steps (Skype Meeting 2013-12-02):
-
 Abgabetermin der Beta Version: 2013-12-23 Montag
+===================================
+Nächstes Meeting: 2013-12-12 Montag 20:00 Uhr
 
-MainActivity: (Action Bar usw...), Buttons werden nach Bedarf eingepflegt
-	Alarm Quittieren (Gleicher Button wie Start button, resetiert auch Timer)
+[ ] Testcases: Sollen noch destruktiver ausgefuehrt werden
 
-Testcases: Sollen noch destruktiver ausgefuehrt werden
+MainActivity:
+    [ ] (Action Bar usw...), Buttons werden nach Bedarf eingepflegt
+	[ ] Alarm Quittieren (Gleicher Button wie Start button, resetiert auch Timer)
 
 Mario:
 	[ ] KontakteMain
@@ -24,7 +25,4 @@ Michi:
 
 Ralf:
 	[ ] MotionService
-	[ ] PositionService 
-	
-	
-N�chstes Meeting: 2013-12-12 Montag 20:00 Uhr
+	[ ] PositionService
