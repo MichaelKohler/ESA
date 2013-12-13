@@ -38,11 +38,12 @@ public class MotionDetectionService extends Service implements SensorEventListen
      
 	// Inner Class: Definition des Broadcasters
 	private class BroadcastMotionDetectionStatus extends TimerTask{
+		
 		int counter = 0;
-		boolean timerRunning = false;
+		boolean timerRunning;
 		@Override
 		public void run() {	
-			Intent intent = new Intent(MOTION_DETECTION_ACTION);		
+		//	Intent intent = new Intent(MOTION_DETECTION_ACTION);		
 			int timer = delayTime - counter * refreshTime;
 			
 			Log.d(TAG, "Broadcasting! timer: " + timer + "ms to go"  );
@@ -56,8 +57,8 @@ public class MotionDetectionService extends Service implements SensorEventListen
 				timerRunning= false;
 			};
 			// TODO Rest des Timer Broadcasters
-			intent.putExtra("TIMER_RUNNING", timerRunning);
-			sendBroadcast(intent);
+			//intent.putExtra("TIMER_RUNNING", timerRunning);
+			//sendBroadcast(intent);
 		}
 		
 	}
@@ -120,10 +121,12 @@ public class MotionDetectionService extends Service implements SensorEventListen
 			Log.d(TAG, "Sensor changed: Z = " + axisZ );
 		};
 		if(axisX > thres || axisY > thres || axisZ > thres){
+			Log.d(TAG, "Sensor changed, restarting timer" );
 			motionTimer.cancel();	// Cancel Tasks
 			motionTimer.purge();	// Remove Tasks
 			sendStatus = new BroadcastMotionDetectionStatus();
+			Log.d(TAG, "BroadcastMotionDetectionStatus created");
 			motionTimer.scheduleAtFixedRate(sendStatus, 0, refreshTime);
-		}	
+		}
 	};
 }
