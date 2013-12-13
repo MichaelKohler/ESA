@@ -12,6 +12,8 @@ package ch.ffhs.esa.bewegungsmelder;
  * 
  */
 
+import java.util.Timer;
+
 import android.app.Service;
 import android.content.Intent;
 import android.hardware.Sensor;
@@ -25,6 +27,7 @@ public class MotionDetectionService extends Service implements SensorEventListen
 	private static final String TAG = MotionDetectionService.class.getSimpleName();
 	 private SensorManager mSensorManager;
      private Sensor mAccelerometer;
+     private Timer CountDownTimer;
 
      // Wird fuer IPC benoetigt (inter-process communication")
 	@Override
