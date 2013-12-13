@@ -20,6 +20,7 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.os.CountDownTimer;
 import android.os.IBinder;
 import android.util.Log;
 
@@ -27,7 +28,7 @@ public class MotionDetectionService extends Service implements SensorEventListen
 	private static final String TAG = MotionDetectionService.class.getSimpleName();
 	 private SensorManager mSensorManager;
      private Sensor mAccelerometer;
-     private Timer CountDownTimer;
+     private CountDownTimer Timer;
 
      // Wird fuer IPC benoetigt (inter-process communication")
 	@Override
@@ -61,6 +62,20 @@ public class MotionDetectionService extends Service implements SensorEventListen
 	public void onStart(Intent intent, int startId) {
 		// TODO Auto-generated method stub
 		super.onStart(intent, startId);
+		Timer = new CountDownTimer(30000, 1000) {
+			
+			@Override
+			public void onTick(long millisUntilFinished) {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void onFinish() {
+				// TODO Auto-generated method stub
+				
+			}
+		};
 	}
 
 	@Override
