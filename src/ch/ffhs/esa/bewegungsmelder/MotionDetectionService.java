@@ -13,6 +13,7 @@ package ch.ffhs.esa.bewegungsmelder;
  */
 
 import java.util.Timer;
+import java.util.TimerTask;
 
 import android.app.Service;
 import android.content.Intent;
@@ -20,24 +21,54 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
-import android.os.CountDownTimer;
 import android.os.IBinder;
 import android.util.Log;
 
 public class MotionDetectionService extends Service implements SensorEventListener{
+	public static final String MOTION_DETECTION_ACTION = "ACTIVITY_HIER_EINTRAGEN";	// TODO: Activity eintragen
 	private static final String TAG = MotionDetectionService.class.getSimpleName();
+	
 	 private SensorManager mSensorManager;
      private Sensor mAccelerometer;
-     private CountDownTimer Timer;
-
-     // Wird fuer IPC benoetigt (inter-process communication")
-	@Override
-	public IBinder onBind(Intent intent) {
-		// TODO Auto-generated method stub
-		return null;
+     private Timer motionTimer = null;
+     private BroadcastMotionDetectionStatus sendStatus = null;
+     private int delayTime = 300000; //in ms (300000 == 5 min)	//TODO: delayTime auslesen
+     private int refreshTime = 5000; // in ms
+     
+     
+	// Inner Class: Definition des Broadcasters
+	private class BroadcastMotionDetectionStatus extends TimerTask{
+		int counter = 0;
+		boolean timerRunning = false;
+		@Override
+		public void run() {	
+			Intent intent = new Intent(MOTION_DETECTION_ACTION);		
+			int timer = delayTime - counter * refreshTime;
+			
+			Log.d(TAG, "Broadcasting! timer: " + timer + "ms to go"  );
+			
+			// stop if timer == 0;
+			if(timer != 0){
+				timerRunning = true;
+			}
+			else
+			{
+				timerRunning= false;
+			};
+			// TODO Rest des Timer Broadcasters
+			intent.putExtra("TIMER_RUNNING", timerRunning);
+			sendBroadcast(intent);
+		}
+		
 	}
-
 	
+	 // Wird fuer IPC benoetigt (inter-process communication")
+		@Override
+		public IBinder onBind(Intent intent) {
+			// TODO Auto-generated method stub
+			return null;
+		}
+		
 	@Override
 	public void onCreate() {
 		super.onCreate();
@@ -62,20 +93,7 @@ public class MotionDetectionService extends Service implements SensorEventListen
 	public void onStart(Intent intent, int startId) {
 		// TODO Auto-generated method stub
 		super.onStart(intent, startId);
-		Timer = new CountDownTimer(30000, 1000) {
-			
-			@Override
-			public void onTick(long millisUntilFinished) {
-				// TODO Auto-generated method stub
-				Log.d(TAG, "Timer Tick");
-			}
-			
-			@Override
-			public void onFinish() {
-				// TODO Auto-generated method stub
-				Log.d(TAG, "Timer Finished");
-			}
-		}.start();
+		motionTimer = new Timer(true);	// Create Timer as deamon
 	}
 
 	@Override
@@ -101,5 +119,11 @@ public class MotionDetectionService extends Service implements SensorEventListen
 		if(axisZ > thres){
 			Log.d(TAG, "Sensor changed: Z = " + axisZ );
 		};
-	}
+		if(axisX > thres || axisY > thres || axisZ > thres){
+			motionTimer.cancel();	// Cancel Tasks
+			motionTimer.purge();	// Remove Tasks
+			sendStatus = new BroadcastMotionDetectionStatus();
+			motionTimer.scheduleAtFixedRate(sendStatus, 0, refreshTime);
+		}	
+	};
 }
