@@ -67,13 +67,13 @@ public class MotionDetectionService extends Service implements SensorEventListen
 			@Override
 			public void onTick(long millisUntilFinished) {
 				// TODO Auto-generated method stub
-				
+				Log.d(TAG, "Timer Tick");
 			}
 			
 			@Override
 			public void onFinish() {
 				// TODO Auto-generated method stub
-				
+				Log.d(TAG, "Timer Finished");
 			}
 		};
 	}
