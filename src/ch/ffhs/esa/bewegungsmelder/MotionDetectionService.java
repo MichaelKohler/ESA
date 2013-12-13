@@ -75,7 +75,7 @@ public class MotionDetectionService extends Service implements SensorEventListen
 				// TODO Auto-generated method stub
 				Log.d(TAG, "Timer Finished");
 			}
-		};
+		}.start();
 	}
 
 	@Override
