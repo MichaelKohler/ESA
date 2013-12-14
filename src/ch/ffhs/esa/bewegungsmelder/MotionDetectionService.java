@@ -112,6 +112,7 @@ public class MotionDetectionService extends Service implements SensorEventListen
 	public void onStart(Intent intent, int startId) {
 		super.onStart(intent, startId);
 		motionTimer = new Timer(true);	// Create Timer as deamon
+		
 	}
 
 	// AccuracyChanged not interesting 
@@ -129,8 +130,12 @@ public class MotionDetectionService extends Service implements SensorEventListen
 		if(axisX > thres || axisY > thres || axisZ > thres){
 			
 			Log.d(TAG, "Sensor changed, restarting timer" );
+			
+		//------------------------ TODO: neue Methode erstellen? ----------------------------
 			motionTimer.cancel();			// Cancel Tasks
 			motionTimer.purge();			// Remove Tasks
+			
+		//------------------------ TODO: neue Methode erstellen, wird bei onStart benötigt ----------------------------
 			motionTimer = new Timer(true);	// Create new Timer as deamon
 			sendStatus = new BroadcastMotionDetectionStatus();
 			Log.d(TAG, "BroadcastMotionDetectionStatus created");
