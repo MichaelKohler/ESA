@@ -27,17 +27,17 @@ import android.util.Log;
 public class MotionDetectionService extends Service implements SensorEventListener{
 	public static final String MOTION_DETECTION_ACTION = "ch.ffhs.esa.bewegungsmelder.MOTION_DETECTION_ACTION";
 	private static final String TAG = MotionDetectionService.class.getSimpleName();
-	
-	 private SensorManager mSensorManager;
-     private Sensor mAccelerometer;
-     private Timer motionTimer = null;
-     private BroadcastMotionDetectionStatus sendStatus = null;
-     private int delayTime = 10000; //in ms (300000 == 5 min)	//TODO: delayTime auslesen
-     private int refreshTime = 1000; // in ms
-     
+
+	private SensorManager mSensorManager;
+	private Sensor mAccelerometer;
+	private Timer motionTimer = null;
+	private BroadcastMotionDetectionStatus sendStatus = null;
+	private int delayTime = 10000; //in ms (300000 == 5 min)	//TODO: delayTime auslesen
+	private int refreshTime = 1000; // in ms
+
 	// Inner Class: Definition des Broadcasters
 	private class BroadcastMotionDetectionStatus extends TimerTask{
-		
+
 		int counter = 0;
 		boolean timerRunning = false;
 		@Override
@@ -45,11 +45,11 @@ public class MotionDetectionService extends Service implements SensorEventListen
 			Intent i = new Intent(MOTION_DETECTION_ACTION);				
 			int timer = delayTime - counter * refreshTime;		// timer calculation
 			counter++;
-		
-		//	Log.d(TAG, "Broadcasting! timer: " + timer + "ms to go" + " counter: " +counter + " refreshTime: " +refreshTime  );
-			
+
+			//	Log.d(TAG, "Broadcasting! timer: " + timer + "ms to go" + " counter: " +counter + " refreshTime: " +refreshTime  );
+
 			String toastMsg;
-			
+
 			if(timer > 0){
 				timerRunning = true;
 				toastMsg = "running";
@@ -58,27 +58,27 @@ public class MotionDetectionService extends Service implements SensorEventListen
 				timerRunning= false;
 				toastMsg = "stopped";
 			};
-			
+
 			i.putExtra("TIME_LEFT", Integer.toString(timer/1000)+" seconds"); // Timer in seconds
 			i.putExtra("TIMER_RUNNING_BOOL", timerRunning); // Boolean
 			i.putExtra("TIMER_RUNNING_STR", toastMsg);
 			sendBroadcast(i);	 
-			
+
 			Log.d(TAG, "Broadcast! Timer: " + timer /1000 + "s until alarm. Timer Status: " + toastMsg);
-			
+
 			if(!timerRunning){
-			this.cancel();
-			Log.d(TAG, "timer stopped");
+				this.cancel();
+				Log.d(TAG, "timer stopped");
 			};
 		}			
 	}
-	
+
 	@Override
 	public void onCreate() {
 		super.onCreate();
 		Log.d(TAG, "created");
-		 mSensorManager = (SensorManager)getSystemService(SENSOR_SERVICE);
-         mAccelerometer = mSensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE);
+		mSensorManager = (SensorManager)getSystemService(SENSOR_SERVICE);
+		mAccelerometer = mSensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE);
 		mSensorManager.registerListener(this, mAccelerometer, SensorManager.SENSOR_DELAY_NORMAL);
 	}
 
@@ -106,21 +106,21 @@ public class MotionDetectionService extends Service implements SensorEventListen
 		float axisX = event.values[0];
 		float axisY = event.values[1];
 		float axisZ = event.values[2];
-		
+
 		if(axisX > thres || axisY > thres || axisZ > thres){
 			stopTimer();	
 			startTimer();
 			Log.d(TAG, "Sensor changed, restarting timer" );
 		}
 	};
-	
+
 	private void startTimer(){
 		motionTimer = new Timer(true);	// Create new Timer as deamon
 		sendStatus = new BroadcastMotionDetectionStatus();
 		Log.d(TAG, "BroadcastMotionDetectionStatus created");
 		motionTimer.scheduleAtFixedRate(sendStatus, 0, refreshTime);
 	}
-	
+
 	/**
 	 * Stops the timer, cancel and purge of all tasks.
 	 */
@@ -128,13 +128,13 @@ public class MotionDetectionService extends Service implements SensorEventListen
 		motionTimer.cancel();			// Cancel Tasks
 		motionTimer.purge();			// Remove Tasks	
 	}
-	
-	 // Wird fuer IPC benoetigt (inter-process communication")
+
+	// Wird fuer IPC benoetigt (inter-process communication")
 	@Override
 	public IBinder onBind(Intent intent) {
 		return null;
 	}
-	
+
 	@Override
 	public void onAccuracyChanged(Sensor sensor, int accuracy) {}
 }

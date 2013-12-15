@@ -25,7 +25,7 @@ Michi:
 
 Ralf:
 	[ ] MotionService
-		[x] Grunfunktion (starten, stoppen, zuruecksetzen, verbleibende Zeit broadcasten, abgelaufen broadcasten)
+		[x] Grundfunktion (starten, stoppen, zuruecksetzen, verbleibende Zeit broadcasten, abgelaufen broadcasten)
 		[ ] Settings fuer die Empfindlichkeit und Timer muessen noch von den Setting gelesen werden
 		[ ] Broadcast an MainActivity übergeben? 
 		[ ] Service start Button auf MainActivity implementieren

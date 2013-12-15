@@ -28,7 +28,7 @@ import android.widget.TextView;
 public class DeveloperActivity extends Activity {
 	private static final String TAG = DeveloperActivity.class.getSimpleName();
 	private boolean motionServiceRunning = false;
-	
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -41,10 +41,10 @@ public class DeveloperActivity extends Activity {
 		getMenuInflater().inflate(R.menu.developer, menu);
 		return true;
 	}
-	
+
 	// Controls the service
 	public void buttonStartMotionDetectionService(View view){
-		
+
 		/* Test if service running */
 		ActivityManager manager = (ActivityManager) getSystemService(ACTIVITY_SERVICE);
 		for(RunningServiceInfo service : manager.getRunningServices(Integer.MAX_VALUE)){
@@ -59,28 +59,28 @@ public class DeveloperActivity extends Activity {
 		}
 		// Start if not running
 		else{
-		MotionDetectionStatusReceiver br = new MotionDetectionStatusReceiver();
-		registerReceiver(br, new IntentFilter(MotionDetectionService.MOTION_DETECTION_ACTION));
-		startService(new Intent(this, MotionDetectionService.class));
+			MotionDetectionStatusReceiver br = new MotionDetectionStatusReceiver();
+			registerReceiver(br, new IntentFilter(MotionDetectionService.MOTION_DETECTION_ACTION));
+			startService(new Intent(this, MotionDetectionService.class));
 		}
 	}
-	
+
 	// TODO: Brodcast receiver in Main GUI einfügen. 
 	public class MotionDetectionStatusReceiver extends BroadcastReceiver{
 
 		@Override
 		public void onReceive(Context context, Intent intent) {
-			
+
 			if (intent.getAction().equals(MotionDetectionService.MOTION_DETECTION_ACTION)){
 				Log.d(TAG, "MotionDetection Broadcast received!!!");
 				Bundle bundle = intent.getExtras();
 				if (bundle != null){
 					String textMsg = "Status: " + (String) bundle.get("TIMER_RUNNING_STR") + " Time left: " + (String) bundle.get("TIME_LEFT");
-					
+
 					TextView timeLeftTextView = (TextView) findViewById(R.id.timeLeftTextView); 
 					timeLeftTextView.setText(textMsg);
 					Log.d(TAG, textMsg);
-					
+
 					// stop service, unregister Broadcast receiver
 					if(!(Boolean)bundle.get("TIMER_RUNNING_BOOL")){
 						context.stopService(new Intent(context, MotionDetectionService.class));
@@ -89,9 +89,9 @@ public class DeveloperActivity extends Activity {
 					}
 				}
 			}
-			
+
 		}
-		
+
 	}
 
 }
