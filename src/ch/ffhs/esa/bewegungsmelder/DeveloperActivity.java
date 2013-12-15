@@ -13,11 +13,18 @@ package ch.ffhs.esa.bewegungsmelder;
 
 import android.os.Bundle;
 import android.app.Activity;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
+import android.widget.TextView;
 
 public class DeveloperActivity extends Activity {
+	private static final String TAG = DeveloperActivity.class.getSimpleName();
+	
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -34,12 +41,39 @@ public class DeveloperActivity extends Activity {
 	
 	// Startet den Service
 	public void buttonStartMotionDetectionService(View view){
+		
+		MotionDetectionStatusReceiver br = new MotionDetectionStatusReceiver();
+		registerReceiver(br, new IntentFilter(MotionDetectionService.MOTION_DETECTION_ACTION));
 		startService(new Intent(this, MotionDetectionService.class));
 	}
 	
 	// Stoppt den Service
 	public void buttonStopMotionDetectionService(View view){
 		stopService(new Intent(this, MotionDetectionService.class));
+	}
+	
+	// TODO: Brodcast receiver in Main GUI einfügen.
+	public class MotionDetectionStatusReceiver extends BroadcastReceiver{
+
+		@Override
+		public void onReceive(Context context, Intent intent) {
+			String textMsg;
+			
+			if (intent.getAction().equals(MotionDetectionService.MOTION_DETECTION_ACTION)){
+				Log.d(TAG, "MotionDetection Broadcast received!!!");
+				Bundle bundle = intent.getExtras();
+				if (bundle != null){
+					Object i = bundle.get("TIME_LEFT");
+					textMsg = "Status: " + (String) bundle.get("TIMER_RUNNING_STR") + " Time left: " + i.toString();
+					
+					TextView timeLeftTextView = (TextView) findViewById(R.id.timeLeftTextView); 
+					timeLeftTextView.setText(textMsg);
+					Log.d(TAG, (String) bundle.get("TIMER_RUNNING_STR"));
+				}
+			}
+			
+		}
+		
 	}
 
 }

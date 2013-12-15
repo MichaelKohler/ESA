@@ -44,14 +44,12 @@ public class MotionDetectionService extends Service implements SensorEventListen
 		boolean timerRunning = false;
 		@Override
 		public void run() {	
-			Intent i = new Intent(MOTION_DETECTION_ACTION);
-					
-			int timer = delayTime - counter * refreshTime;
+			Intent i = new Intent(MOTION_DETECTION_ACTION);				
+			int timer = delayTime - counter * refreshTime;		// timer calculation
 			counter++;
 		
-			Log.d(TAG, "Broadcasting! timer: " + timer + "ms to go" + " counter: " +counter + " refreshTime: " +refreshTime  );
+		//	Log.d(TAG, "Broadcasting! timer: " + timer + "ms to go" + " counter: " +counter + " refreshTime: " +refreshTime  );
 			
-			// stop if timer == 0;
 			String toastMsg;
 			
 			if(timer > 0){
@@ -62,10 +60,13 @@ public class MotionDetectionService extends Service implements SensorEventListen
 				timerRunning= false;
 				toastMsg = "stopped";
 			};
-			// TODO Rest des Timer Broadcasters
-			i.putExtra("TIMER_RUNNING", timerRunning);
-			Log.d(TAG, "Broadcast! Timer: " + timer /1000 + "s until alarm. Timer Status: " + toastMsg);
+
+			i.putExtra("TIME_LEFT", timer);
+			i.putExtra("TIMER_RUNNING_BOOL", timerRunning); // Boolean
+			i.putExtra("TIMER_RUNNING_STR", toastMsg);
 			sendBroadcast(i);	 
+			
+			Log.d(TAG, "Broadcast! Timer: " + timer /1000 + "s until alarm. Timer Status: " + toastMsg);
 			
 			if(!timerRunning){
 			this.cancel();

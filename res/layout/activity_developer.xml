@@ -65,4 +65,15 @@
         android:onClick="buttonStopMotionDetectionService"
         android:text="StopMotionDetectionService" />
 
+    <TextView
+        android:id="@+id/timeLeftTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/buttonStopMotionDetectionService"
+        android:layout_alignRight="@+id/ButtonGetPosition"
+        android:layout_below="@+id/ButtonLocationService"
+        android:layout_marginTop="42dp"
+        android:text="Time Left"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
 </RelativeLayout>
