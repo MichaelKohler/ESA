@@ -60,8 +60,8 @@ public class MotionDetectionService extends Service implements SensorEventListen
 				timerRunning= false;
 				toastMsg = "stopped";
 			};
-
-			i.putExtra("TIME_LEFT", timer);
+			
+			i.putExtra("TIME_LEFT", Integer.toString(timer));
 			i.putExtra("TIMER_RUNNING_BOOL", timerRunning); // Boolean
 			i.putExtra("TIMER_RUNNING_STR", toastMsg);
 			sendBroadcast(i);	 

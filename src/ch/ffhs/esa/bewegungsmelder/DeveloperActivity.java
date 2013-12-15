@@ -63,12 +63,18 @@ public class DeveloperActivity extends Activity {
 				Log.d(TAG, "MotionDetection Broadcast received!!!");
 				Bundle bundle = intent.getExtras();
 				if (bundle != null){
-					Object i = bundle.get("TIME_LEFT");
-					textMsg = "Status: " + (String) bundle.get("TIMER_RUNNING_STR") + " Time left: " + i.toString();
+					textMsg = "Status: " + (String) bundle.get("TIMER_RUNNING_STR") + " Time left: " + (String) bundle.get("TIME_LEFT");
 					
 					TextView timeLeftTextView = (TextView) findViewById(R.id.timeLeftTextView); 
 					timeLeftTextView.setText(textMsg);
-					Log.d(TAG, (String) bundle.get("TIMER_RUNNING_STR"));
+					Log.d(TAG, textMsg);
+					
+					// stop service, unregister Broadcast receiver
+					if(!(Boolean)bundle.get("TIMER_RUNNING_BOOL")){
+						context.stopService(new Intent(context, MotionDetectionService.class));
+						context.unregisterReceiver(MotionDetectionStatusReceiver.this);
+						Log.d(TAG, "Broadcast receiver unregistered, service stopped!");
+					}
 				}
 			}
 			
