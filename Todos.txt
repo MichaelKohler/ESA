@@ -25,5 +25,11 @@ Michi:
 
 Ralf:
 	[ ] MotionService
-					
+		[x] Grunfunktion (starten, stoppen, zuruecksetzen, verbleibende Zeit broadcasten, abgelaufen broadcasten)
+		[ ] Settings fuer die Empfindlichkeit und Timer muessen noch von den Setting gelesen werden
+		[ ] Broadcast an MainActivity übergeben? 
+		[ ] Service start Button auf MainActivity implementieren
 	[ ] PositionService
+		[ ] Broadcast receiver für den Position service erstellen
+		[ ] Position bestimmen implementieren
+		[ ] Broadcast sender für die aktuelle Position erstellen. Ziel: SMS?
