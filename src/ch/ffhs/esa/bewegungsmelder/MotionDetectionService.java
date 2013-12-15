@@ -8,7 +8,7 @@ package ch.ffhs.esa.bewegungsmelder;
  * Contributors:
  * 	- Ralf Wittich <bullit@gmx.ch> 
  * 
- * Retourniert ein Event wenn eine Bewegung festgestellt wurde.
+ * Sends a broadcast with the remaining time and if the timer is expired.
  * 
  */
 
@@ -23,7 +23,6 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.IBinder;
 import android.util.Log;
-import android.widget.Toast;
 
 public class MotionDetectionService extends Service implements SensorEventListener{
 	public static final String MOTION_DETECTION_ACTION = "ch.ffhs.esa.bewegungsmelder.MOTION_DETECTION_ACTION";
@@ -35,7 +34,6 @@ public class MotionDetectionService extends Service implements SensorEventListen
      private BroadcastMotionDetectionStatus sendStatus = null;
      private int delayTime = 10000; //in ms (300000 == 5 min)	//TODO: delayTime auslesen
      private int refreshTime = 1000; // in ms
-     
      
 	// Inner Class: Definition des Broadcasters
 	private class BroadcastMotionDetectionStatus extends TimerTask{
@@ -61,7 +59,7 @@ public class MotionDetectionService extends Service implements SensorEventListen
 				toastMsg = "stopped";
 			};
 			
-			i.putExtra("TIME_LEFT", Integer.toString(timer));
+			i.putExtra("TIME_LEFT", Integer.toString(timer/1000)+" seconds"); // Timer in seconds
 			i.putExtra("TIMER_RUNNING_BOOL", timerRunning); // Boolean
 			i.putExtra("TIMER_RUNNING_STR", toastMsg);
 			sendBroadcast(i);	 
@@ -72,19 +70,9 @@ public class MotionDetectionService extends Service implements SensorEventListen
 			this.cancel();
 			Log.d(TAG, "timer stopped");
 			};
-		}	
-		public boolean isRunning(){
-			return timerRunning;
-		}
+		}			
 	}
 	
-	 // Wird fuer IPC benoetigt (inter-process communication")
-		@Override
-		public IBinder onBind(Intent intent) {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
 	@Override
 	public void onCreate() {
 		super.onCreate();
@@ -94,15 +82,12 @@ public class MotionDetectionService extends Service implements SensorEventListen
 		mSensorManager.registerListener(this, mAccelerometer, SensorManager.SENSOR_DELAY_NORMAL);
 	}
 
-	
 	@Override
 	public void onDestroy() {
 		super.onDestroy();
-		mSensorManager.unregisterListener(this);
-		
+		mSensorManager.unregisterListener(this);	
 		sendStatus.cancel();
-		motionTimer.cancel();
-		motionTimer.purge();
+		stopTimer();
 		Log.d(TAG, "destroyed");	
 	}
 
@@ -112,36 +97,44 @@ public class MotionDetectionService extends Service implements SensorEventListen
 	@Override
 	public void onStart(Intent intent, int startId) {
 		super.onStart(intent, startId);
-		motionTimer = new Timer(true);	// Create Timer as deamon
-		
+		startTimer();
 	}
-
-	// AccuracyChanged not interesting 
-	@Override
-	public void onAccuracyChanged(Sensor sensor, int accuracy) {}
 
 	@Override
 	public void onSensorChanged(SensorEvent event) {
-		float thres = 0.5f; // Event values groesser thres werden als Bewegung gewertet. TODO: Thres aus Settings lesen
-		
+		float thres = 0.5f; // Event values groesser thres werden als Bewegung gewertet. TODO: Thres aus Settings lesen	
 		float axisX = event.values[0];
 		float axisY = event.values[1];
 		float axisZ = event.values[2];
 		
 		if(axisX > thres || axisY > thres || axisZ > thres){
-			
+			stopTimer();	
+			startTimer();
 			Log.d(TAG, "Sensor changed, restarting timer" );
-			
-		//------------------------ TODO: neue Methode erstellen? ----------------------------
-			motionTimer.cancel();			// Cancel Tasks
-			motionTimer.purge();			// Remove Tasks
-			
-		//------------------------ TODO: neue Methode erstellen, wird bei onStart benötigt ----------------------------
-			motionTimer = new Timer(true);	// Create new Timer as deamon
-			sendStatus = new BroadcastMotionDetectionStatus();
-			Log.d(TAG, "BroadcastMotionDetectionStatus created");
-			motionTimer.scheduleAtFixedRate(sendStatus, 0, refreshTime);
-			
 		}
 	};
+	
+	private void startTimer(){
+		motionTimer = new Timer(true);	// Create new Timer as deamon
+		sendStatus = new BroadcastMotionDetectionStatus();
+		Log.d(TAG, "BroadcastMotionDetectionStatus created");
+		motionTimer.scheduleAtFixedRate(sendStatus, 0, refreshTime);
+	}
+	
+	/**
+	 * Stops the timer, cancel and purge of all tasks.
+	 */
+	private void stopTimer(){
+		motionTimer.cancel();			// Cancel Tasks
+		motionTimer.purge();			// Remove Tasks	
+	}
+	
+	 // Wird fuer IPC benoetigt (inter-process communication")
+	@Override
+	public IBinder onBind(Intent intent) {
+		return null;
+	}
+	
+	@Override
+	public void onAccuracyChanged(Sensor sensor, int accuracy) {}
 }

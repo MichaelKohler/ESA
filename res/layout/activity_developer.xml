@@ -52,24 +52,13 @@
         android:layout_alignLeft="@+id/textView1"
         android:layout_below="@+id/textView1"
         android:layout_marginTop="42dp"
-        android:text="StartMotionDetectionService"
+        android:text="Start/Stop MotionDetectionService"
         android:onClick="buttonStartMotionDetectionService" />
-
-    <Button
-        android:id="@+id/buttonStopMotionDetectionService"
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignRight="@+id/buttonStartMotionDetectionService"
-        android:layout_below="@+id/buttonStartMotionDetectionService"
-        android:onClick="buttonStopMotionDetectionService"
-        android:text="StopMotionDetectionService" />
 
     <TextView
         android:id="@+id/timeLeftTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/buttonStopMotionDetectionService"
         android:layout_alignRight="@+id/ButtonGetPosition"
         android:layout_below="@+id/ButtonLocationService"
         android:layout_marginTop="42dp"
