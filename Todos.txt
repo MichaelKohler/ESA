@@ -1,6 +1,6 @@
 Abgabetermin der Beta Version: 2013-12-23 Montag
 ===================================
-Nächstes Meeting: 2013-12-12 Montag 20:00 Uhr
+Nächstes Meeting: 2013-12-16 Montag 20:00 Uhr
 
 [ ] Testcases: Sollen noch destruktiver ausgefuehrt werden
 
@@ -25,4 +25,5 @@ Michi:
 
 Ralf:
 	[ ] MotionService
+					
 	[ ] PositionService
