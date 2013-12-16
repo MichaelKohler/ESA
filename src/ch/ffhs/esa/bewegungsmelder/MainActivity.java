@@ -11,20 +11,27 @@ package ch.ffhs.esa.bewegungsmelder;
  *  - Michael Kohler <mkohler@picobudget.com>
  *  */
 
+import ch.ffhs.esa.bewegungsmelder.DeveloperActivity.MotionDetectionStatusReceiver;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.app.Activity;
+import android.app.ActivityManager;
+import android.app.ActivityManager.RunningServiceInfo;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends Activity {
-	
+	private static final String TAG = MainActivity.class.getSimpleName();
 	private static final int RESULT_SETTINGS = 1;
 
 	@Override
@@ -61,17 +68,60 @@ public class MainActivity extends Activity {
 	}
 	
 	public void onModeButtonClick() {
-		
+			
+	}
+	
+/* ----------------------- Start of Timer Service / WiR 2013-12-16 ------------ */
+	
+	public void onSupervisionButtonClick(View view) {		
+		boolean motionServiceRunning = false;
+		/* Test if service running */
+		ActivityManager manager = (ActivityManager) getSystemService(ACTIVITY_SERVICE);
+		for(RunningServiceInfo service : manager.getRunningServices(Integer.MAX_VALUE)){
+			if(MotionDetectionService.class.getName().equals(service.service.getClassName())){
+				motionServiceRunning = true;
+			}
+		}
+		// Stop if running
+		if(motionServiceRunning){
+			stopService(new Intent(this, MotionDetectionService.class));
+			motionServiceRunning = false;
+		}
+		// Start if not running
+		else{
+			MotionDetectionStatusReceiver br = new MotionDetectionStatusReceiver();
+			registerReceiver(br, new IntentFilter(MotionDetectionService.MOTION_DETECTION_ACTION));
+			startService(new Intent(this, MotionDetectionService.class));
+		}
+	}
+	// Receiver des MotionDetection Services
+	public class MotionDetectionStatusReceiver extends BroadcastReceiver{
+		@Override
+		public void onReceive(Context context, Intent intent) {
 
-		
-		
-		
+			if (intent.getAction().equals(MotionDetectionService.MOTION_DETECTION_ACTION)){
+				Log.d(TAG, "MotionDetection Broadcast received!!!");
+				Bundle bundle = intent.getExtras();
+				if (bundle != null){
+					String textMsg = "Status: " + (String) bundle.get("TIMER_RUNNING_STR") + " Time left: " + (String) bundle.get("TIME_LEFT");
+
+					TextView textViewTimeLeft = (TextView) findViewById(R.id.timeLeftTextView); 
+					textViewTimeLeft.setText(textMsg);
+					Log.d(TAG, textMsg);
+
+					// stop service, unregister Broadcast receiver
+					if(!(Boolean)bundle.get("TIMER_RUNNING_BOOL")){
+						context.stopService(new Intent(context, MotionDetectionService.class));
+						context.unregisterReceiver(MotionDetectionStatusReceiver.this);
+						Log.d(TAG, "Broadcast receiver unregistered, service stopped!");
+					}
+				}
+			}
+		}
 	}
 	
-	public void onSupervisionButtonClick() {
-		
-	}
-	
+	/* ----------------------- End of Timer Service / WiR 2013-12-16 ------------ */
+
 	private void enableSupervision() {
 		
 	}
