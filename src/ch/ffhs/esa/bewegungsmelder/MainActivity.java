@@ -32,6 +32,7 @@ import android.widget.Toast;
 
 public class MainActivity extends Activity {
 	private static final String TAG = MainActivity.class.getSimpleName();
+	boolean motionServiceRunning = false;
 	private static final int RESULT_SETTINGS = 1;
 
 	@Override
@@ -73,8 +74,8 @@ public class MainActivity extends Activity {
 	
 /* ----------------------- Start of Timer Service / WiR 2013-12-16 ------------ */
 	
-	public void onSupervisionButtonClick(View view) {		
-		boolean motionServiceRunning = false;
+	public void onSupervisionButtonClicked(View view) {		
+
 		/* Test if service running */
 		ActivityManager manager = (ActivityManager) getSystemService(ACTIVITY_SERVICE);
 		for(RunningServiceInfo service : manager.getRunningServices(Integer.MAX_VALUE)){
@@ -84,11 +85,15 @@ public class MainActivity extends Activity {
 		}
 		// Stop if running
 		if(motionServiceRunning){
+			Log.d(TAG, "Stopping service!");
 			stopService(new Intent(this, MotionDetectionService.class));
 			motionServiceRunning = false;
+			TextView textViewTimeLeft = (TextView) findViewById(R.id.textViewTimeLeft); 
+			textViewTimeLeft.setText("not running"); // TODO: Sauber implementieren
 		}
 		// Start if not running
 		else{
+			Log.d(TAG, "Starting service!");
 			MotionDetectionStatusReceiver br = new MotionDetectionStatusReceiver();
 			registerReceiver(br, new IntentFilter(MotionDetectionService.MOTION_DETECTION_ACTION));
 			startService(new Intent(this, MotionDetectionService.class));
@@ -98,14 +103,15 @@ public class MainActivity extends Activity {
 	public class MotionDetectionStatusReceiver extends BroadcastReceiver{
 		@Override
 		public void onReceive(Context context, Intent intent) {
-
 			if (intent.getAction().equals(MotionDetectionService.MOTION_DETECTION_ACTION)){
 				Log.d(TAG, "MotionDetection Broadcast received!!!");
 				Bundle bundle = intent.getExtras();
+				Log.d(TAG, "Extras read!!!");
 				if (bundle != null){
+					Log.d(TAG, "bundle != null");
 					String textMsg = "Status: " + (String) bundle.get("TIMER_RUNNING_STR") + " Time left: " + (String) bundle.get("TIME_LEFT");
 
-					TextView textViewTimeLeft = (TextView) findViewById(R.id.timeLeftTextView); 
+					TextView textViewTimeLeft = (TextView) findViewById(R.id.textViewTimeLeft); 
 					textViewTimeLeft.setText(textMsg);
 					Log.d(TAG, textMsg);
 
