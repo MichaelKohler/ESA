@@ -59,6 +59,21 @@
             android:name="ch.ffhs.esa.bewegungsmelder.KontaktMain"
             android:label="@string/title_activity_kontakt_main" >
         </activity>
+        
+        
+         <activity
+            android:name="com.example.bewegungsmeldermain.AddContact"
+            android:label="@string/title_activity_add_contact" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.bewegungsmeldermain.MainActivity" />
+        </activity>
+        <activity
+            android:name="com.example.bewegungsmeldermain.ZeigeKontaktliste"
+            android:label="@string/title_activity_zeige_kontaktliste" >
+        </activity>
+        
+        
     </application>
 
 </manifest>
