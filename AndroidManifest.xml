@@ -62,14 +62,14 @@
         
         
          <activity
-            android:name="com.example.bewegungsmeldermain.AddContact"
+            android:name="ch.ffhs.esa.bewegungsmelder.AddContact"
             android:label="@string/title_activity_add_contact" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.bewegungsmeldermain.MainActivity" />
+                android:value="ch.ffhs.esa.bewegungsmelder.MainActivity" />
         </activity>
         <activity
-            android:name="com.example.bewegungsmeldermain.ZeigeKontaktliste"
+            android:name="ch.ffhs.esa.bewegungsmelder.ZeigeKontaktliste"
             android:label="@string/title_activity_zeige_kontaktliste" >
         </activity>
         
