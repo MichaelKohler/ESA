@@ -8,4 +8,9 @@
         <item name="CALL">CALL</item>
         <item name="SMS">SMS</item>
     </string-array>
+        <string-array name="kontakt_wahlmoeglichkeiten_array">
+            <item name="AusTelBuch">Aus Telefonbuch</item>
+        <item name="Manuell">Manuell hinzufuegen</item>
+        
+    </string-array>
 </resources>
