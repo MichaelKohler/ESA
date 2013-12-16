@@ -11,7 +11,6 @@ package ch.ffhs.esa.bewegungsmelder;
  *  - Michael Kohler <mkohler@picobudget.com>
  *  */
 
-import ch.ffhs.esa.bewegungsmelder.DeveloperActivity.MotionDetectionStatusReceiver;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.app.Activity;
@@ -77,26 +76,14 @@ public class MainActivity extends Activity {
 	public void onSupervisionButtonClicked(View view) {		
 
 		/* Test if service running */
-		ActivityManager manager = (ActivityManager) getSystemService(ACTIVITY_SERVICE);
-		for(RunningServiceInfo service : manager.getRunningServices(Integer.MAX_VALUE)){
-			if(MotionDetectionService.class.getName().equals(service.service.getClassName())){
-				motionServiceRunning = true;
-			}
-		}
+		motionServiceRunning = isServiceRunning();
 		// Stop if running
 		if(motionServiceRunning){
-			Log.d(TAG, "Stopping service!");
-			stopService(new Intent(this, MotionDetectionService.class));
-			motionServiceRunning = false;
-			TextView textViewTimeLeft = (TextView) findViewById(R.id.textViewTimeLeft); 
-			textViewTimeLeft.setText("not running"); // TODO: Sauber implementieren
+			enableSupervision();
 		}
 		// Start if not running
 		else{
-			Log.d(TAG, "Starting service!");
-			MotionDetectionStatusReceiver br = new MotionDetectionStatusReceiver();
-			registerReceiver(br, new IntentFilter(MotionDetectionService.MOTION_DETECTION_ACTION));
-			startService(new Intent(this, MotionDetectionService.class));
+			disableSupervision();
 		}
 	}
 	// Receiver des MotionDetection Services
@@ -106,7 +93,6 @@ public class MainActivity extends Activity {
 			if (intent.getAction().equals(MotionDetectionService.MOTION_DETECTION_ACTION)){
 				Log.d(TAG, "MotionDetection Broadcast received!!!");
 				Bundle bundle = intent.getExtras();
-				Log.d(TAG, "Extras read!!!");
 				if (bundle != null){
 					Log.d(TAG, "bundle != null");
 					String textMsg = "Status: " + (String) bundle.get("TIMER_RUNNING_STR") + " Time left: " + (String) bundle.get("TIME_LEFT");
@@ -120,21 +106,38 @@ public class MainActivity extends Activity {
 						context.stopService(new Intent(context, MotionDetectionService.class));
 						context.unregisterReceiver(MotionDetectionStatusReceiver.this);
 						Log.d(TAG, "Broadcast receiver unregistered, service stopped!");
+						getGPSPosition();
 					}
 				}
 			}
 		}
 	}
+	private boolean isServiceRunning(){
+		boolean rs = false;
+		ActivityManager manager = (ActivityManager) getSystemService(ACTIVITY_SERVICE);
+		for(RunningServiceInfo service : manager.getRunningServices(Integer.MAX_VALUE)){
+			if(MotionDetectionService.class.getName().equals(service.service.getClassName())){
+				rs = true;
+			}
+		}
+		return rs;
+	}
 	
-	/* ----------------------- End of Timer Service / WiR 2013-12-16 ------------ */
-
 	private void enableSupervision() {
-		
+		Log.d(TAG, "Stopping service!");
+		stopService(new Intent(this, MotionDetectionService.class));
+		motionServiceRunning = false;
+		TextView textViewTimeLeft = (TextView) findViewById(R.id.textViewTimeLeft); 
+		textViewTimeLeft.setText("not running"); // TODO: Sauber implementieren
 	}
 	
 	private void disableSupervision() {
-		
+		Log.d(TAG, "Starting service!");
+		MotionDetectionStatusReceiver br = new MotionDetectionStatusReceiver();
+		registerReceiver(br, new IntentFilter(MotionDetectionService.MOTION_DETECTION_ACTION));
+		startService(new Intent(this, MotionDetectionService.class));
 	}
+	/* ----------------------- End of Timer Service / WiR 2013-12-16 ------------ */
 	
 	private void enableMode(int mode) {
 		
@@ -148,9 +151,12 @@ public class MainActivity extends Activity {
 		
 	}
 	
-	private void recalculateGPSPosition() {
-		
+	private void getGPSPosition() {
+	//	TODO: Implement Method
+		Log.d(TAG, "Getting Position...");
 	}
+	
+	
 
     /**
      * facilitates the emergency button click
@@ -179,7 +185,7 @@ public class MainActivity extends Activity {
      * @param String aPhoneNumber phone number of the recipient
      */
     private void handleEmergencySMS(String aPhoneNumber) {
-        // TODO: get current location
+    	getGPSPosition(); 		// TODO: get current location
         float currentLocationLat = 0;
         float currentLocationLong = 0;
         String message = "Notruf! Koordinaten, Lat: " + Float.toString(currentLocationLat) + ", Long: " + Float.toString(currentLocationLong) + ".. Bitte mit leerer SMS bestätigen.";

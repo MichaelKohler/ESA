@@ -53,19 +53,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/textView1"
-        android:layout_alignRight="@+id/textView2"
+        android:layout_alignRight="@+id/textViewTimeLeft"
         android:layout_below="@+id/textView1"
         android:layout_marginTop="31dp"
         android:max="100"
         android:progress="42" />
-
-    <QuickContactBadge
-        android:id="@+id/quickContactBadge1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/progressBar1"
-        android:layout_below="@+id/progressBar1"
-        android:layout_marginTop="45dp" />
 
     <Button
         android:id="@+id/button1"
@@ -75,30 +67,19 @@
         android:layout_alignRight="@+id/progressBar1"
         android:layout_alignTop="@+id/quickContactBadge1"
         android:layout_toRightOf="@+id/quickContactBadge1"
-        android:text="Primary contact"
-        android:onClick="onSupervisionButtonClicked" />
-
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/quickContactBadge1"
-        android:layout_alignRight="@+id/button1"
-        android:layout_below="@+id/quickContactBadge1"
-        android:layout_marginTop="34dp"
-        android:text="Start Supervision" />
+        android:text="Primary contact" />
     
     <Button
         android:id="@+id/buttonNotruf"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/quickContactBadge1"
-        android:layout_alignRight="@+id/button1"
+        android:layout_alignRight="@+id/button2"
         android:layout_below="@+id/button2"
         android:layout_marginTop="34dp"
-        android:text="Notruf!"
         android:background="@drawable/selector"
-        android:onClick="onEmergencyButtonClicked" />
+        android:onClick="onEmergencyButtonClicked"
+        android:text="Notruf!" />
 
     <Button
         android:id="@+id/buttonDeveloper"
@@ -110,5 +91,22 @@
         android:layout_marginBottom="40dp"
         android:text="DevActivity"
         android:onClick="onDeveloperButtonClicked" />
+
+    <QuickContactBadge
+        android:id="@+id/quickContactBadge1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/progressBar1"
+        android:layout_below="@+id/progressBar1"
+        android:layout_marginTop="20dp" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@+id/imageButton2"
+        android:onClick="onSupervisionButtonClicked"
+        android:text="Start Supervision" />
 
 </RelativeLayout>
