@@ -56,6 +56,9 @@ public class MainActivity extends Activity {
 	
 	public void onContactButtonClick() {
 		
+		Intent intent = new Intent(this, AddContact.class);
+		startActivity(intent);
+		
 	}
 	
 	public void onModeButtonClick() {
