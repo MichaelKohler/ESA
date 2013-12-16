@@ -54,14 +54,17 @@ public class MainActivity extends Activity {
         return true;
     }
 	
-	public void onContactButtonClick() {
-		
+	public void onContactButtonClick(View view) {
 		Intent intent = new Intent(this, AddContact.class);
 		startActivity(intent);
-		
+	
 	}
 	
 	public void onModeButtonClick() {
+		
+
+		
+		
 		
 	}
 	

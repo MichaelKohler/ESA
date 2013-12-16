@@ -15,7 +15,8 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
         android:src="@drawable/ic_action_overflow"
-        android:onClick="onContactButtonClick" />
+          android:onClick="onModeButtonClick"
+         />
 
     <ImageButton
         android:id="@+id/imageButton2"
@@ -24,7 +25,8 @@
         android:layout_alignTop="@+id/imageButton1"
         android:layout_toLeftOf="@+id/imageButton1"
         android:src="@drawable/ic_action_user"
-        android:onClick="onModeButtonClick" />
+                android:onClick="onContactButtonClick"
+         />
 
     <TextView
         android:id="@+id/textView1"
