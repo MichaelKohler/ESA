@@ -95,10 +95,11 @@ public class MainActivity extends Activity {
 				Bundle bundle = intent.getExtras();
 				if (bundle != null){
 					Log.d(TAG, "bundle != null");
-					String textMsg = "Status: " + (String) bundle.get("TIMER_RUNNING_STR") + " Time left: " + (String) bundle.get("TIME_LEFT");
-
+					String timeLeft = (String) bundle.get("TIME_LEFT");
+					String textMsg = "Status: " + (String) bundle.get("TIMER_RUNNING_STR") + " Time left: " + timeLeft;
+					
 					TextView textViewTimeLeft = (TextView) findViewById(R.id.textViewTimeLeft); 
-					textViewTimeLeft.setText(textMsg);
+					textViewTimeLeft.setText(timeLeft);
 					Log.d(TAG, textMsg);
 
 					// stop service, unregister Broadcast receiver

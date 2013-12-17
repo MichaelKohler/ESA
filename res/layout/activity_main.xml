@@ -45,7 +45,7 @@
         android:layout_alignBaseline="@+id/textView1"
         android:layout_alignBottom="@+id/textView1"
         android:layout_alignRight="@+id/imageButton1"
-        android:text="02:00" />
+        android:text="00:00" />
 
     <ProgressBar
         android:id="@+id/progressBar1"
@@ -68,18 +68,6 @@
         android:layout_alignTop="@+id/quickContactBadge1"
         android:layout_toRightOf="@+id/quickContactBadge1"
         android:text="Primary contact" />
-    
-    <Button
-        android:id="@+id/buttonNotruf"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/quickContactBadge1"
-        android:layout_alignRight="@+id/button2"
-        android:layout_below="@+id/button2"
-        android:layout_marginTop="34dp"
-        android:background="@drawable/selector"
-        android:onClick="onEmergencyButtonClicked"
-        android:text="Notruf!" />
 
     <Button
         android:id="@+id/buttonDeveloper"
@@ -101,12 +89,24 @@
         android:layout_marginTop="20dp" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/buttonToggleSupervision"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_toLeftOf="@+id/imageButton2"
         android:onClick="onSupervisionButtonClicked"
-        android:text="Start Supervision" />
+        android:text="Start / Stop Supervision" />
+
+    <Button
+        android:id="@+id/buttonNotruf"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/buttonDeveloper"
+        android:layout_alignLeft="@+id/buttonToggleSupervision"
+        android:layout_marginBottom="40dp"
+        android:layout_toLeftOf="@+id/imageButton2"
+        android:background="@drawable/selector"
+        android:onClick="onEmergencyButtonClicked"
+        android:text="Notruf!" />
 
 </RelativeLayout>

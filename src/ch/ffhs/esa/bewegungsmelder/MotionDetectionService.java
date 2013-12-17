@@ -51,23 +51,26 @@ public class MotionDetectionService extends Service implements SensorEventListen
 
 			//	Log.d(TAG, "Broadcasting! timer: " + timer + "ms to go" + " counter: " +counter + " refreshTime: " +refreshTime  );
 
-			String toastMsg;
+			String timerRunningStr;
 
 			if(timer > 0){
 				timerRunning = true;
-				toastMsg = "running";
+				timerRunningStr = "running";
 			}
 			else {
 				timerRunning= false;
-				toastMsg = "stopped";
+				timerRunningStr = "stopped";
 			};
-
-			i.putExtra("TIME_LEFT", Integer.toString(timer/1000)+" seconds"); // Timer in seconds
+			int seconds = timer / 1000;
+			int minutesLeft = seconds / 60;
+			int secondsLeft = seconds % 60;
+			
+			i.putExtra("TIME_LEFT", Integer.toString(minutesLeft) + ":" + Integer.toString(secondsLeft)); // Timestring [mm:ss]
 			i.putExtra("TIMER_RUNNING_BOOL", timerRunning); // Boolean
-			i.putExtra("TIMER_RUNNING_STR", toastMsg);
+			i.putExtra("TIMER_RUNNING_STR", timerRunningStr);
 			sendBroadcast(i);	 
 
-			Log.d(TAG, "Broadcast! Timer: " + timer /1000 + "s until alarm. Timer Status: " + toastMsg);
+			Log.d(TAG, "Broadcast! Timer: " + timer /1000 + "s until alarm. Timer Status: " + timerRunningStr);
 
 			if(!timerRunning){
 				this.cancel();
