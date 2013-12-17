@@ -12,6 +12,7 @@ package ch.ffhs.esa.bewegungsmelder;
  * 
  */
 
+import java.io.File;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -23,9 +24,10 @@ import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.IBinder;
+import android.preference.PreferenceManager;
 import android.util.Log;
 
-public class MotionDetectionService extends Service implements SensorEventListener{
+public class MotionDetectionService extends Service implements SensorEventListener {
 	public static final String MOTION_DETECTION_ACTION = "ch.ffhs.esa.bewegungsmelder.MOTION_DETECTION_ACTION";
 	private static final String TAG = MotionDetectionService.class.getSimpleName();
 
@@ -81,10 +83,6 @@ public class MotionDetectionService extends Service implements SensorEventListen
 		mSensorManager = (SensorManager)getSystemService(SENSOR_SERVICE);
 		mAccelerometer = mSensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE);
 		mSensorManager.registerListener(this, mAccelerometer, SensorManager.SENSOR_DELAY_NORMAL);
-		
-		// Read Settings
-		SharedPreferences preferences = getSharedPreferences("activity_settings", MODE_PRIVATE);
-		delayTime = 1000 * preferences.getInt("pref_intervall_timer_day", 1);
 	}
 
 	@Override
@@ -102,9 +100,16 @@ public class MotionDetectionService extends Service implements SensorEventListen
 	@Override
 	public void onStart(Intent intent, int startId) {
 		super.onStart(intent, startId);
+		
+		// Read Settings
+		SharedPreferences preferences = getSharedPreferences("ch.ffhs.esa.bewegungsmelder_preferences", MODE_MULTI_PROCESS);		
+		String intTmr = preferences.getString("pref_intervall_timer_day", "1");
+		// TODO: Parse ist unschoen. Hab aber nicht geschafft den Wert als Int zu bekommen / WiR 2013-12-17
+		delayTime = 60000 * Integer.valueOf(preferences.getString("pref_intervall_timer_day", "1"));
+		Log.d(TAG, "Delay Time Set to: " + Integer.toString(delayTime) + " Read Timer: " + intTmr);
 		startTimer();
 	}
-
+	
 	@Override
 	public void onSensorChanged(SensorEvent event) {
 		float thres = 0.5f; // Event values groesser thres werden als Bewegung gewertet. TODO: Thres aus Settings lesen	
@@ -142,4 +147,7 @@ public class MotionDetectionService extends Service implements SensorEventListen
 
 	@Override
 	public void onAccuracyChanged(Sensor sensor, int accuracy) {}
+
+	
+	
 }

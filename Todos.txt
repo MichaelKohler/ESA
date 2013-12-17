@@ -3,6 +3,7 @@ Abgabetermin der Beta Version: 2013-12-23 Montag
 NÃ¤chstes Meeting: 2013-12-16 Montag 20:00 Uhr
 
 [ ] Testcases: Sollen noch destruktiver ausgefuehrt werden
+[ ] Umschaltung Tag / Nachtmodus
 
 MainActivity:
                       [ ] (Action Bar usw...), Buttons werden nach Bedarf eingepflegt
@@ -26,9 +27,10 @@ Michi:
 Ralf:
 	[ ] MotionService
 		[x] Grundfunktion (starten, stoppen, zuruecksetzen, verbleibende Zeit broadcasten, abgelaufen broadcasten)
-		[ ] Settings fuer die Empfindlichkeit und Timer muessen noch von den Setting gelesen werden
-		[ ] Broadcast an MainActivity übergeben? 
-		[ ] Service start Button auf MainActivity implementieren
+		[x] Settings fuer den Timer muessen noch von den Setting gelesen werden
+		[ ] Tag / Nachtmodus muss berücksichtigt werden
+		[x] Broadcast an MainActivity übergeben? 
+		[x] Service start Button auf MainActivity implementieren
 	[ ] PositionService
 		[ ] Broadcast receiver für den Position service erstellen
 		[ ] Position bestimmen implementieren

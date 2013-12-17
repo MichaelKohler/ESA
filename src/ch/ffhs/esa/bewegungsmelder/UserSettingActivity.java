@@ -10,14 +10,19 @@ package ch.ffhs.esa.bewegungsmelder;
 
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
+import android.util.Log;
 
 public class UserSettingActivity extends PreferenceActivity {
 	 
+	public final static String PREFS_NAME = "activity_settings";
+	private static final String TAG = UserSettingActivity.class.getSimpleName();
+	
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
  
         addPreferencesFromResource(R.layout.activity_settings);
- 
+        String preferencesName = this.getPreferenceManager().getSharedPreferencesName();
+        Log.d(TAG, "Default Shared Name: "+preferencesName);
     }
 }
