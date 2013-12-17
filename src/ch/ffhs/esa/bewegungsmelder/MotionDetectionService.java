@@ -17,6 +17,7 @@ import java.util.TimerTask;
 
 import android.app.Service;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
@@ -80,6 +81,10 @@ public class MotionDetectionService extends Service implements SensorEventListen
 		mSensorManager = (SensorManager)getSystemService(SENSOR_SERVICE);
 		mAccelerometer = mSensorManager.getDefaultSensor(Sensor.TYPE_GYROSCOPE);
 		mSensorManager.registerListener(this, mAccelerometer, SensorManager.SENSOR_DELAY_NORMAL);
+		
+		// Read Settings
+		SharedPreferences preferences = getSharedPreferences("activity_settings", MODE_PRIVATE);
+		delayTime = 1000 * preferences.getInt("pref_intervall_timer_day", 1);
 	}
 
 	@Override
