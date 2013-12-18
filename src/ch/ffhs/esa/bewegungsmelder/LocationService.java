@@ -12,11 +12,18 @@ package ch.ffhs.esa.bewegungsmelder;
  */
 
 import android.app.Service;
+import android.content.Context;
 import android.content.Intent;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
+import android.os.Bundle;
 import android.os.IBinder;
+import android.util.Log;
 
-public class LocationService extends Service {
-
+public class LocationService extends Service implements LocationListener{
+	private static final String TAG = LocationService.class.getSimpleName();
+	
 	@Override
 	public IBinder onBind(Intent arg0) {
 		// TODO Auto-generated method stub
@@ -30,6 +37,7 @@ public class LocationService extends Service {
 	public void onCreate() {
 		// TODO Auto-generated method stub
 		super.onCreate();
+	
 	}
 
 	/* (non-Javadoc)
@@ -37,7 +45,8 @@ public class LocationService extends Service {
 	 */
 	@Override
 	public void onDestroy() {
-		// TODO Auto-generated method stub
+		LocationManager locationMgr = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
+		locationMgr.removeUpdates(this);
 		super.onDestroy();
 	}
 
@@ -48,6 +57,36 @@ public class LocationService extends Service {
 	public void onStart(Intent intent, int startId) {
 		// TODO Auto-generated method stub
 		super.onStart(intent, startId);
+		LocationManager locationMgr = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
+		locationMgr.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
+	}
+
+	@Override
+	public void onLocationChanged(Location location) {
+		// TODO Auto-generated method stub
+		String mLat = Location.convert(location.getLatitude(), Location.FORMAT_DEGREES);
+		String mLong = Location.convert(location.getLongitude(), Location.FORMAT_DEGREES);;
+		
+		
+		Log.d(TAG, "Location: Lat: " + mLat + " Long: " + mLong);
+	}
+
+	@Override
+	public void onProviderDisabled(String provider) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onProviderEnabled(String provider) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void onStatusChanged(String provider, int status, Bundle extras) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

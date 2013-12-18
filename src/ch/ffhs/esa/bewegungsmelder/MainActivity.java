@@ -79,11 +79,11 @@ public class MainActivity extends Activity {
 		motionServiceRunning = isServiceRunning();
 		// Stop if running
 		if(motionServiceRunning){
-			enableSupervision();
+			disableSupervision();
 		}
 		// Start if not running
 		else{
-			disableSupervision();
+			enableSupervision();
 		}
 	}
 	// Receiver des MotionDetection Services
@@ -125,19 +125,20 @@ public class MainActivity extends Activity {
 	}
 	
 	private void enableSupervision() {
-		Log.d(TAG, "Stopping service!");
-		stopService(new Intent(this, MotionDetectionService.class));
-		motionServiceRunning = false;
-		TextView textViewTimeLeft = (TextView) findViewById(R.id.textViewTimeLeft); 
-		textViewTimeLeft.setText("not running"); // TODO: Sauber implementieren
-	}
-	
-	private void disableSupervision() {
-		Log.d(TAG, "Starting service!");
+		Log.d(TAG, "Starting motion service!");
 		MotionDetectionStatusReceiver br = new MotionDetectionStatusReceiver();
 		registerReceiver(br, new IntentFilter(MotionDetectionService.MOTION_DETECTION_ACTION));
 		startService(new Intent(this, MotionDetectionService.class));
 	}
+	
+	private void disableSupervision() {
+		Log.d(TAG, "Stopping motion service!");
+		stopService(new Intent(this, MotionDetectionService.class));
+		motionServiceRunning = false;
+		TextView textViewTimeLeft = (TextView) findViewById(R.id.textViewTimeLeft); 
+		textViewTimeLeft.setText("-"); 
+	}
+	
 	/* ----------------------- End of Timer Service / WiR 2013-12-16 ------------ */
 	
 	private void enableMode(int mode) {
@@ -153,8 +154,23 @@ public class MainActivity extends Activity {
 	}
 	
 	private void getGPSPosition() {
-	//	TODO: Implement Method
+		
 		Log.d(TAG, "Getting Position...");
+//		TODO: Implement Method
+		startService(new Intent(this, LocationService.class));
+		try {
+			wait(10000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		stopService(new Intent(this, LocationService.class));
+		Log.d(TAG, "LocationServiceStopped");
+		/**
+		
+		
+		
+		 */
 	}
 	
 	
