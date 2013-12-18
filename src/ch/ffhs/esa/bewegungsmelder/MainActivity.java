@@ -33,6 +33,9 @@ public class MainActivity extends Activity {
 	private static final String TAG = MainActivity.class.getSimpleName();
 	boolean motionServiceRunning = false;
 	private static final int RESULT_SETTINGS = 1;
+	private float latitude = 0;
+	private float longitude = 0;
+	private float accuracy = 0;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -107,7 +110,7 @@ public class MainActivity extends Activity {
 						context.stopService(new Intent(context, MotionDetectionService.class));
 						context.unregisterReceiver(MotionDetectionStatusReceiver.this);
 						Log.d(TAG, "Broadcast receiver unregistered, service stopped!");
-						getGPSPosition();
+						runLocationService();
 					}
 				}
 			}
@@ -153,27 +156,52 @@ public class MainActivity extends Activity {
 		
 	}
 	
-	private void getGPSPosition() {
-		
-		Log.d(TAG, "Getting Position...");
-//		TODO: Implement Method
-		startService(new Intent(this, LocationService.class));
-		try {
-			wait(10000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		stopService(new Intent(this, LocationService.class));
-		Log.d(TAG, "LocationServiceStopped");
-		/**
-		
-		
-		
-		 */
+	// Setzt die Positionsdaten, wird aufgerufen, wenn die Accuracy ok ist.
+	private void setPositionData(float lat, float lon, float acc){
+		latitude = lat;
+		longitude = lon;
+		accuracy = acc;
+		 Log.d(TAG, "Location Set: Lat: " + latitude + " Long: " + longitude + " Accuracy: " +accuracy);
 	}
 	
-	
+	private void runLocationService() {		
+		Log.d(TAG, "Getting Position...");
+		LocationReceiver br = new LocationReceiver();
+		registerReceiver(br, new IntentFilter(LocationService.LOCATION_ACTION));
+		startService(new Intent(this, LocationService.class));
+		
+		
+	}
+	// Receiver des Location Services
+		public class LocationReceiver extends BroadcastReceiver{
+			float mLat = 0.0f;
+			float mLong = 0.0f;
+			float mAcc = 0.0f;
+			@Override
+			public void onReceive(Context context, Intent intent) {
+				if (intent.getAction().equals(LocationService.LOCATION_ACTION)){
+					Log.d(TAG, "Location Broadcast received!!!");
+					Bundle bundle = intent.getExtras();
+					if (bundle != null){
+						Log.d(TAG, "bundle != null");					
+						 mAcc = bundle.getFloat("ACCURACY");
+						
+						Log.d(TAG, "Location: Lat: " + mLat + " Long: " + mLong + " Accuracy: " + mAcc);
+
+						// wait for accurate signal, setPosition, stop service, unregister Broadcast receiver
+						if(mAcc < 20){
+							 mLat = bundle.getFloat("LATITUDE");
+							 mLong = bundle.getFloat("LONGITUDE");
+
+							setPositionData(mLat, mLong, mAcc);
+							context.stopService(new Intent(context, LocationService.class));
+							context.unregisterReceiver(LocationReceiver.this);
+							Log.d(TAG, "Broadcast receiver unregistered, service stopped! Accuracy: " +mAcc);
+						}
+					}
+				}
+			}
+		}
 
     /**
      * facilitates the emergency button click
@@ -202,9 +230,11 @@ public class MainActivity extends Activity {
      * @param String aPhoneNumber phone number of the recipient
      */
     private void handleEmergencySMS(String aPhoneNumber) {
-    	getGPSPosition(); 		// TODO: get current location
-        float currentLocationLat = 0;
-        float currentLocationLong = 0;
+    	runLocationService(); 		
+    	// TODO: Der Rest der Methode darf erst ausgeführt werden, wenn die Position gesetzt wurde
+    				
+        float currentLocationLat = latitude;
+        float currentLocationLong = longitude;
         String message = "Notruf! Koordinaten, Lat: " + Float.toString(currentLocationLat) + ", Long: " + Float.toString(currentLocationLong) + ".. Bitte mit leerer SMS bestÃ¤tigen.";
         Helper.sendEmergencySMS(aPhoneNumber, message);
         Context context = getApplicationContext();

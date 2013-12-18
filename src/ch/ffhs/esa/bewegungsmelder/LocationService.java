@@ -22,14 +22,16 @@ import android.os.IBinder;
 import android.util.Log;
 
 public class LocationService extends Service implements LocationListener{
+
 	private static final String TAG = LocationService.class.getSimpleName();
-	
+	public static final String LOCATION_ACTION = "ch.ffhs.esa.bewegungsmelder.LOCATION_ACTION";
+
 	@Override
 	public IBinder onBind(Intent arg0) {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
+
 	/* (non-Javadoc)
 	 * @see android.app.Service#onCreate()
 	 */
@@ -37,7 +39,7 @@ public class LocationService extends Service implements LocationListener{
 	public void onCreate() {
 		// TODO Auto-generated method stub
 		super.onCreate();
-	
+
 	}
 
 	/* (non-Javadoc)
@@ -64,29 +66,38 @@ public class LocationService extends Service implements LocationListener{
 	@Override
 	public void onLocationChanged(Location location) {
 		// TODO Auto-generated method stub
-		String mLat = Location.convert(location.getLatitude(), Location.FORMAT_DEGREES);
-		String mLong = Location.convert(location.getLongitude(), Location.FORMAT_DEGREES);;
-		
-		
-		Log.d(TAG, "Location: Lat: " + mLat + " Long: " + mLong);
+		//	String mLat = Location.convert(location.getLatitude(), Location.FORMAT_DEGREES);
+		// String mLong = Location.convert(location.getLongitude(), Location.FORMAT_DEGREES);
+
+		float mLat = (float) location.getLatitude();
+		float mLong = (float) location.getLongitude();
+
+		float mAcc = location.getAccuracy();
+
+		Log.d(TAG, "Location: Lat: " + mLat + " Long: " + mLong + " Accuracy: " + mAcc);
+		Intent i = new Intent(LOCATION_ACTION);
+		i.putExtra("LATITUDE", mLat);
+		i.putExtra("LONGITUDE", mLong);
+		i.putExtra("ACCURACY", mAcc);
+		sendBroadcast(i);
 	}
 
 	@Override
 	public void onProviderDisabled(String provider) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void onProviderEnabled(String provider) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void onStatusChanged(String provider, int status, Bundle extras) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }

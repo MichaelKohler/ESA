@@ -9,6 +9,12 @@ MainActivity:
                       [ ] (Action Bar usw...), Buttons werden nach Bedarf eingepflegt
                       [ ] Alarm Quittieren (Gleicher Button wie Start button, resetiert auch Timer)
 
+Die MainActivity.runLocationService() Methode braucht eine gewisse Zeit, bis die Position gesetzt wird.
+Dies geschieht mit der MainActivity.setPositionData(float lat, float lon, float acc). 
+Das versenden der Nachricht muss also von der Methode gestartet werden. 
+ 	
+ 	runLocationService() -> setPositionData(float lat, float lon, float acc) -> SMS versenden
+
 Mario:
 	[ ] KontakteMain
 	[ ] Kontakte importieren (Kontaktreferenz in DB)
@@ -25,13 +31,13 @@ Michi:
 	[x] Einstellungen
 
 Ralf:
-	[ ] MotionService
+	[x] MotionService
 		[x] Grundfunktion (starten, stoppen, zuruecksetzen, verbleibende Zeit broadcasten, abgelaufen broadcasten)
 		[x] Settings fuer den Timer muessen noch von den Setting gelesen werden
 		[ ] Tag / Nachtmodus muss berücksichtigt werden
 		[x] Broadcast an MainActivity übergeben? 
 		[x] Service start Button auf MainActivity implementieren
-	[ ] PositionService
-		[ ] Broadcast receiver für den Position service erstellen
-		[ ] Position bestimmen implementieren
-		[ ] Broadcast sender für die aktuelle Position erstellen. Ziel: SMS?
+	[x] PositionService
+		[x] Broadcast receiver für den Position service erstellen
+		[x] Position bestimmen implementieren
+		[x] Broadcast sender für die aktuelle Position erstellen. Ziel: SMS?
