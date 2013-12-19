@@ -8,22 +8,14 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".MainActivity" >
 
-    <ImageButton
-        android:id="@+id/imageButton1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:src="@drawable/ic_action_overflow"
-          android:onClick="onModeButtonClick"
-         />
+   
 
     <ImageButton
         android:id="@+id/imageButton2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/imageButton1"
-        android:layout_toLeftOf="@+id/imageButton1"
+       android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
         android:src="@drawable/ic_action_user"
                 android:onClick="onContactButtonClick"
          />
@@ -38,37 +30,6 @@
         android:layout_marginTop="12dp"
         android:text="GPS" />
 
-    <TextView
-        android:id="@+id/textViewTimeLeft"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/textView1"
-        android:layout_alignBottom="@+id/textView1"
-        android:layout_alignRight="@+id/imageButton1"
-        android:text="00:00" />
-
-    <ProgressBar
-        android:id="@+id/progressBar1"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView1"
-        android:layout_alignRight="@+id/textViewTimeLeft"
-        android:layout_below="@+id/textView1"
-        android:layout_marginTop="31dp"
-        android:max="100"
-        android:progress="42" />
-
-    <Button
-        android:id="@+id/button1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/quickContactBadge1"
-        android:layout_alignRight="@+id/progressBar1"
-        android:layout_alignTop="@+id/quickContactBadge1"
-        android:layout_toRightOf="@+id/quickContactBadge1"
-        android:text="Primary contact" />
-
     <Button
         android:id="@+id/buttonDeveloper"
         style="?android:attr/buttonStyleSmall"
@@ -79,14 +40,6 @@
         android:layout_marginBottom="40dp"
         android:text="DevActivity"
         android:onClick="onDeveloperButtonClicked" />
-
-    <QuickContactBadge
-        android:id="@+id/quickContactBadge1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/progressBar1"
-        android:layout_below="@+id/progressBar1"
-        android:layout_marginTop="20dp" />
 
     <Button
         android:id="@+id/buttonToggleSupervision"
@@ -108,5 +61,36 @@
         android:background="@drawable/selector"
         android:onClick="onEmergencyButtonClicked"
         android:text="Notruf!" />
+
+    <TextView
+        android:id="@+id/textViewTimeLeft"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/progressBar1"
+        android:layout_alignRight="@+id/imageButton2"
+        android:text="00:00" />
+
+    <ProgressBar
+        android:id="@+id/progressBar1"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView1"
+        android:layout_alignRight="@+id/textViewTimeLeft"
+        android:layout_below="@+id/textView1"
+        android:layout_marginTop="20dp"
+        android:max="100"
+        android:progress="42" />
+
+    <Button
+        android:id="@+id/buttonMode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/buttonToggleSupervision"
+        android:layout_alignLeft="@+id/buttonToggleSupervision"
+        android:layout_alignRight="@+id/buttonToggleSupervision"
+        android:layout_marginBottom="14dp"
+        android:onClick="onModeButtonClicked"
+        android:text="Mode" />
 
 </RelativeLayout>

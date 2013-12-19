@@ -26,16 +26,19 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends Activity {
+	public static final String MODE = "ch.ffhs.esa.bewegungsmelder.MODE";
 	private static final String TAG = MainActivity.class.getSimpleName();
 	boolean motionServiceRunning = false;
 	private static final int RESULT_SETTINGS = 1;
 	private float latitude = 0;
 	private float longitude = 0;
 	private float accuracy = 0;
+	private boolean dayMode = false;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -70,9 +73,7 @@ public class MainActivity extends Activity {
 	
 	}
 	
-	public void onModeButtonClick() {
-			
-	}
+	
 	
 /* ----------------------- Start of Timer Service / WiR 2013-12-16 ------------ */
 	
@@ -133,7 +134,9 @@ public class MainActivity extends Activity {
 		Log.d(TAG, "Starting motion service!");
 		MotionDetectionStatusReceiver br = new MotionDetectionStatusReceiver();
 		registerReceiver(br, new IntentFilter(MotionDetectionService.MOTION_DETECTION_ACTION));
-		startService(new Intent(this, MotionDetectionService.class));
+		Intent i = new Intent(this, MotionDetectionService.class);
+		i.putExtra("MODE", dayMode); // Day or Night Mode
+		startService(i);
 	}
 	
 	private void disableSupervision() {
@@ -156,6 +159,21 @@ public class MainActivity extends Activity {
 	
 	private void setProgressBar(int progressValue) {
 		
+	}
+	
+	public void onModeButtonClicked(View view){
+		String buttonModeLabel;
+		Button buttonMode = (Button) findViewById(R.id.buttonMode); 
+		
+		if(dayMode){
+			dayMode = false;
+			buttonModeLabel = "Nachtmodus";
+		}
+		else{
+			dayMode = true;
+			buttonModeLabel = "Tagmodus";
+		}
+		buttonMode.setText(buttonModeLabel);
 	}
 	
 	// Setzt die Positionsdaten, wird aufgerufen, wenn die Accuracy ok ist.
