@@ -15,6 +15,8 @@ Das versenden der Nachricht muss also von der Methode gestartet werden.
  	
  	runLocationService() -> setPositionData(float lat, float lon, float acc) -> SMS versenden
 
+ --> w�re es nicht m�glich, die Koordinaten immer wieder zu speichern und wir verwenden einfach immer die letzte bekannte Position? (Michael)
+
 Mario:
 	[ ] KontakteMain
 	[ ] Kontakte importieren (Kontaktreferenz in DB)
@@ -27,7 +29,6 @@ Michi:
 	                      [ ] benötigt Methode bei Contacts, um Nummer der nächsten Person auszulesen
 	                      [ ] benötigt Methode bei LocationService, um aktuelle Position zu erhalten (ggf. mit recalculateGPSPosition() in MainActivity)
 	[ ] SMS quittieren (leere SMS)
-	                      [ ] Wie soll das verknüpft werden? Listener ist einfach, aber wo entscheiden wir, dass das nächste SMS geschickt werden soll?
 	[x] Einstellungen
 
 Ralf:
