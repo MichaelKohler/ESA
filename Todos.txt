@@ -14,9 +14,6 @@ Dies geschieht mit der MainActivity.setPositionData(float lat, float lon, float 
 Das versenden der Nachricht muss also von der Methode gestartet werden. 
  	
  	runLocationService() -> setPositionData(float lat, float lon, float acc) -> SMS versenden
-
- --> wäre es nicht möglich, die Koordinaten immer wieder zu speichern und wir verwenden einfach immer die letzte bekannte Position? (Michael)
-
 Mario:
 	[ ] KontakteMain
 	[ ] Kontakte importieren (Kontaktreferenz in DB)
