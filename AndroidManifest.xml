@@ -7,11 +7,11 @@
     <uses-sdk
         android:minSdkVersion="14"
         android:targetSdkVersion="14" />
-    
+
     <uses-permission android:name="android.permission.SEND_SMS" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
-    <uses-permission android:name="android.permission.VIBRATE"/>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -60,9 +60,7 @@
             android:name="ch.ffhs.esa.bewegungsmelder.KontaktMain"
             android:label="@string/title_activity_kontakt_main" >
         </activity>
-        
-        
-         <activity
+        <activity
             android:name="ch.ffhs.esa.bewegungsmelder.AddContact"
             android:label="@string/title_activity_add_contact" >
             <meta-data
@@ -73,8 +71,11 @@
             android:name="ch.ffhs.esa.bewegungsmelder.ZeigeKontaktliste"
             android:label="@string/title_activity_zeige_kontaktliste" >
         </activity>
-        
-        
+        <activity
+            android:name="ch.ffhs.esa.bewegungsmelder.KontaktListeTestActivity"
+            android:label="@string/title_activity_kontakt_liste_test" >
+        </activity>
     </application>
 
 </manifest>
+        
