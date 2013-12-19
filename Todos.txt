@@ -29,6 +29,9 @@ Michi:
 	                      [ ] benötigt Methode bei Contacts, um Nummer der nächsten Person auszulesen
 	                      [ ] benötigt Methode bei LocationService, um aktuelle Position zu erhalten (ggf. mit recalculateGPSPosition() in MainActivity)
 	[ ] SMS quittieren (leere SMS)
+	                      [ ] Receiver
+	                      [ ] Keep state
+	                      [ ] Methode, um die SMS an eine weitere Person zu senden, wenn X Minuten vorbei sind
 	[x] Einstellungen
 
 Ralf:
