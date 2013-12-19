@@ -1,6 +1,6 @@
 Abgabetermin der Beta Version: 2013-12-23 Montag
 ===================================
-NÃ¤chstes Meeting: 2013-12-16 Montag 20:00 Uhr
+Naechstes Meeting: 2013-12-22 Sonntag 14:00 Uhr
 
 [ ] Testcases: Sollen noch destruktiver ausgefuehrt werden
 [ ] Umschaltung Tag / Nachtmodus
@@ -38,7 +38,7 @@ Ralf:
 	[x] MotionService
 		[x] Grundfunktion (starten, stoppen, zuruecksetzen, verbleibende Zeit broadcasten, abgelaufen broadcasten)
 		[x] Settings fuer den Timer muessen noch von den Setting gelesen werden
-		[ ] Tag / Nachtmodus muss berücksichtigt werden
+		[ ] Tag / Nachtmodus button, verschiedene Timer
 		[x] Broadcast an MainActivity übergeben? 
 		[x] Service start Button auf MainActivity implementieren
 	[x] PositionService

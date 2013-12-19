@@ -91,6 +91,7 @@ public class MainActivity extends Activity {
 	}
 	// Receiver des MotionDetection Services
 	public class MotionDetectionStatusReceiver extends BroadcastReceiver{
+
 		@Override
 		public void onReceive(Context context, Intent intent) {
 			if (intent.getAction().equals(MotionDetectionService.MOTION_DETECTION_ACTION)){
@@ -116,6 +117,7 @@ public class MainActivity extends Activity {
 			}
 		}
 	}
+	
 	private boolean isServiceRunning(){
 		boolean rs = false;
 		ActivityManager manager = (ActivityManager) getSystemService(ACTIVITY_SERVICE);
