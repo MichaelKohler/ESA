@@ -65,7 +65,7 @@ public class MotionDetectionService extends Service implements SensorEventListen
 			int seconds = timer / 1000;
 			int minutesLeft = seconds / 60;
 			int secondsLeft = seconds % 60;
-			
+
 			i.putExtra("TIME_LEFT", Integer.toString(minutesLeft) + ":" + Integer.toString(secondsLeft)); // Timestring [mm:ss]
 			i.putExtra("TIMER_RUNNING_BOOL", timerRunning); // Boolean
 			i.putExtra("TIMER_RUNNING_STR", timerRunningStr);
@@ -104,22 +104,24 @@ public class MotionDetectionService extends Service implements SensorEventListen
 	@Override
 	public void onStart(Intent intent, int startId) {
 		super.onStart(intent, startId);
-		boolean dayMode = intent.getBundleExtra("MODE") != null;
-		
+		boolean dayMode = intent.getBooleanExtra(("MODE"),false);
+
 		// Read Settings
 		SharedPreferences preferences = getSharedPreferences("ch.ffhs.esa.bewegungsmelder_preferences", MODE_MULTI_PROCESS);	
 		String intTmr;
 		if(dayMode){
+			Log.d(TAG,"Daymode");	
 			intTmr = preferences.getString("pref_intervall_timer_day", "1");
 		}else{
 			intTmr = preferences.getString("pref_intervall_timer_night", "1");
+			Log.d(TAG,"Nightmode");
 		}
 		// TODO: Parse ist unschoen. Hab aber nicht geschafft den Wert als Int zu bekommen / WiR 2013-12-17
-		delayTime = 60000 * Integer.valueOf(preferences.getString("pref_intervall_timer_day", "1"));
+		delayTime = 60000 * Integer.valueOf(intTmr);
 		Log.d(TAG, "Delay Time Set to: " + Integer.toString(delayTime) + " Read Timer: " + intTmr);
 		startTimer();
 	}
-	
+
 	@Override
 	public void onSensorChanged(SensorEvent event) {
 		float thres = 0.5f; // Event values groesser thres werden als Bewegung gewertet. TODO: Thres aus Settings lesen	
@@ -158,6 +160,6 @@ public class MotionDetectionService extends Service implements SensorEventListen
 	@Override
 	public void onAccuracyChanged(Sensor sensor, int accuracy) {}
 
-	
-	
+
+
 }

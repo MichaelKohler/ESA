@@ -38,7 +38,7 @@ public class MainActivity extends Activity {
 	private float latitude = 0;
 	private float longitude = 0;
 	private float accuracy = 0;
-	private boolean dayMode = false;
+	private boolean dayMode = true;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

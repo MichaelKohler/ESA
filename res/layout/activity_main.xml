@@ -91,6 +91,6 @@
         android:layout_alignRight="@+id/buttonToggleSupervision"
         android:layout_marginBottom="14dp"
         android:onClick="onModeButtonClicked"
-        android:text="Mode" />
+        android:text="Tagmodus" />
 
 </RelativeLayout>
