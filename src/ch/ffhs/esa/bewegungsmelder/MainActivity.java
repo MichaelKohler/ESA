@@ -181,7 +181,8 @@ public class MainActivity extends Activity {
 		latitude = lat;
 		longitude = lon;
 		accuracy = acc;
-		 Log.d(TAG, "Location Set: Lat: " + latitude + " Long: " + longitude + " Accuracy: " +accuracy);
+		Log.d(TAG, "Location Set: Lat: " + latitude + " Long: " + longitude + " Accuracy: " +accuracy);
+
 	}
 	
 	private void runLocationService() {		
@@ -189,8 +190,6 @@ public class MainActivity extends Activity {
 		LocationReceiver br = new LocationReceiver();
 		registerReceiver(br, new IntentFilter(LocationService.LOCATION_ACTION));
 		startService(new Intent(this, LocationService.class));
-		
-		
 	}
 	// Receiver des Location Services
 		public class LocationReceiver extends BroadcastReceiver{
@@ -214,6 +213,9 @@ public class MainActivity extends Activity {
 							 mLong = bundle.getFloat("LONGITUDE");
 
 							setPositionData(mLat, mLong, mAcc);
+                            // TODO: get phone number
+                            String phoneNumber = "5556";
+                            handleEmergencySMS(phoneNumber);
 							context.stopService(new Intent(context, LocationService.class));
 							context.unregisterReceiver(LocationReceiver.this);
 							Log.d(TAG, "Broadcast receiver unregistered, service stopped! Accuracy: " +mAcc);
@@ -225,7 +227,7 @@ public class MainActivity extends Activity {
 
     /**
      * facilitates the emergency button click
-     * TODO: add check for Setting (call or SMS)
+     *
      * @author Michael Kohler
      * @param View view the View from which this function is called
      */
@@ -239,7 +241,7 @@ public class MainActivity extends Activity {
             Helper.call(phoneNumber, MainActivity.this);
         }
         else {
-            handleEmergencySMS(phoneNumber);
+            runLocationService();
         }
 	}
 
@@ -250,12 +252,7 @@ public class MainActivity extends Activity {
      * @param String aPhoneNumber phone number of the recipient
      */
     private void handleEmergencySMS(String aPhoneNumber) {
-    	runLocationService(); 		
-    	// TODO: Der Rest der Methode darf erst ausgef�hrt werden, wenn die Position gesetzt wurde
-    				
-        float currentLocationLat = latitude;
-        float currentLocationLong = longitude;
-        String message = "Notruf! Koordinaten, Lat: " + Float.toString(currentLocationLat) + ", Long: " + Float.toString(currentLocationLong) + ".. Bitte mit leerer SMS bestätigen.";
+        String message = "Notruf! Koordinaten, Lat: " + Float.toString(latitude) + ", Long: " + Float.toString(longitude) + ".. Bitte mit leerer SMS bestätigen.";
         Helper.sendEmergencySMS(aPhoneNumber, message);
         Context context = getApplicationContext();
         Toast.makeText(context, "Message sent!", Toast.LENGTH_LONG).show();
