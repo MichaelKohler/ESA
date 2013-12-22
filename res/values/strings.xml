@@ -23,5 +23,10 @@
     <string name="title_activity_kontakt_manuell_hinzu">KontaktManuellHinzu</string>
     <string name="kontaktmanuellbutton">Kontakt manuell hinzufügen</string>
     <string name="kontaktauslistbutton">Kontakt aus Telefonbuch</string>
+    <string name="kontaktspeichernbutton">Speichern</string>
+    <string name="kontaktspeichernabbrechenbutton">Abbrechen</string>
+    <string name="vorname_hint">Vornamen eingeben</string>
+    <string name="nachname_hint">Nachname eingeben</string>
+    <string name="number_hint">telefonnummer eingeben</string>
 
 </resources>

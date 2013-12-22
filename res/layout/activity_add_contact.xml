@@ -24,6 +24,8 @@
         android:layout_above="@+id/contactAddButton"
         android:layout_alignLeft="@+id/contactAddButton"
         android:layout_alignRight="@+id/contactAddButton"
-        android:text="@string/kontaktmanuellbutton" />
+        android:text="@string/kontaktmanuellbutton" 
+        android:onClick="contactmanualAdd"
+        />
 
 </RelativeLayout>

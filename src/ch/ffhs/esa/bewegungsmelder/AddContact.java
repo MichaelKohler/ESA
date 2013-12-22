@@ -70,7 +70,20 @@ public class AddContact extends Activity {
 
 	
 	
+	public void contactmanualAdd (View view){
+		
+		
+		Intent intent = new Intent(this, KontaktManuellHinzu.class);
+		startActivity(intent);
 	
+		
+		
+	/*	FragmentManager manager = getFragmentManager();
+		KontaktDialogFragment d = new KontaktDialogFragment ();
+		d.show(manager, "KontaktDialogFragment");*/
+		
+	}
+
 	
 	
 	
