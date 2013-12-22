@@ -43,8 +43,8 @@ public class MainActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
         Log.d(TAG, "Registering SMS Receiver!");
-        SMSListener smsListener = new SMSListener();
-        registerReceiver(smsListener, new IntentFilter("android.provider.Telephony.SMS_RECEIVED"));
+        SMSReceiver smsReceiver = new SMSReceiver();
+        registerReceiver(smsReceiver, new IntentFilter("android.provider.Telephony.SMS_RECEIVED"));
 
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);

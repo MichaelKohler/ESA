@@ -16,8 +16,8 @@ import android.widget.Toast;
  * Contributors:
  * 	- YOUR NAME HERE <email@email.ch>
  *  */
-public class SMSListener extends BroadcastReceiver {
-    private static final String TAG = SMSListener.class.getSimpleName();
+public class SMSReceiver extends BroadcastReceiver {
+    private static final String TAG = SMSReceiver.class.getSimpleName();
 
     @Override
     public void onReceive(Context context, Intent intent) {
