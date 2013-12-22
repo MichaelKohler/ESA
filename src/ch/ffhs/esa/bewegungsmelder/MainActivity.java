@@ -136,6 +136,7 @@ public class MainActivity extends Activity {
 	
 	private void enableSupervision() {
         ((TextView) findViewById(R.id.labelTopLeft)).setText(R.string.supervision_running);
+        ((Button) findViewById(R.id.buttonToggleSupervision)).setText(R.string.stop_supervision);
 		Log.d(TAG, "Starting motion service!");
 		MotionDetectionStatusReceiver br = new MotionDetectionStatusReceiver();
 		registerReceiver(br, new IntentFilter(MotionDetectionService.MOTION_DETECTION_ACTION));
@@ -146,6 +147,7 @@ public class MainActivity extends Activity {
 	
 	private void disableSupervision() {
         ((TextView) findViewById(R.id.labelTopLeft)).setText(R.string.supervision_stopped);
+        ((Button) findViewById(R.id.buttonToggleSupervision)).setText(R.string.start_supervision);
 		Log.d(TAG, "Stopping motion service!");
 		stopService(new Intent(this, MotionDetectionService.class));
 		motionServiceRunning = false;
@@ -154,9 +156,9 @@ public class MainActivity extends Activity {
 	}
 	
 	/* ----------------------- End of Timer Service / WiR 2013-12-16 ------------ */
-	
+
 	private void enableMode(int mode) {
-		
+
 	}
 	
 	private void recalculateTicker() {
