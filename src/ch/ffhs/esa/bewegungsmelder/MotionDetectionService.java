@@ -6,7 +6,8 @@ package ch.ffhs.esa.bewegungsmelder;
  * 
  * Author: Ralf Wittich <bullit@gmx.ch>
  * Contributors:
- * 	- Ralf Wittich <bullit@gmx.ch> 
+ * 	- Ralf Wittich <bullit@gmx.ch>
+ * - Michael Kohler <mkohler@picbudget.com>
  * 
  * Sends a broadcast with the remaining time and if the timer is expired.
  * 
@@ -48,10 +49,7 @@ public class MotionDetectionService extends Service implements SensorEventListen
 			int timer = delayTime - counter * refreshTime;		// timer calculation
 			counter++;
 
-			//	Log.d(TAG, "Broadcasting! timer: " + timer + "ms to go" + " counter: " +counter + " refreshTime: " +refreshTime  );
-
 			String timerRunningStr;
-
 			if(timer > 0){
 				timerRunning = true;
 				timerRunningStr = "running";
@@ -64,7 +62,14 @@ public class MotionDetectionService extends Service implements SensorEventListen
 			int minutesLeft = seconds / 60;
 			int secondsLeft = seconds % 60;
 
-			i.putExtra("TIME_LEFT", Integer.toString(minutesLeft) + ":" + Integer.toString(secondsLeft)); // Timestring [mm:ss]
+            // we need to format the string if seconds is less than 10 // KoM 2013-12-22
+            String timeLeftDisplay = Integer.toString(minutesLeft) + ":";
+            if (secondsLeft < 10) {
+                 timeLeftDisplay += "0";
+            }
+            timeLeftDisplay += Integer.toString(secondsLeft);
+
+			i.putExtra("TIME_LEFT", timeLeftDisplay); // Timestring [mm:ss]
 			i.putExtra("TIMER_RUNNING_BOOL", timerRunning); // Boolean
 			i.putExtra("TIMER_RUNNING_STR", timerRunningStr);
 			sendBroadcast(i);	 
