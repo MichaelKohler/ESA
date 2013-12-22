@@ -36,7 +36,7 @@ public class MotionDetectionService extends Service implements SensorEventListen
 	private Sensor mAccelerometer;
 	private Timer motionTimer = null;
 	private BroadcastMotionDetectionStatus sendStatus = null;
-	private int delayTime = 10000; //in ms (300000 == 5 min)	//TODO: delayTime auslesen
+	private int delayTime = 10000; // in ms
 	private int refreshTime = 1000; // in ms
 
 	// Inner Class: Definition des Broadcasters
@@ -117,6 +117,8 @@ public class MotionDetectionService extends Service implements SensorEventListen
 			Log.d(TAG,"Nightmode");
 		}
 		// TODO: Parse ist unschoen. Hab aber nicht geschafft den Wert als Int zu bekommen / WiR 2013-12-17
+        // TODO: habe noch keinen Weg gefunden, die Preference als Integer zu speichern, schaue das
+        // TODO: noch an. ist aber vorerst nicht schlimm, da der User nur Nummern eingeben kann / KoM 2013-12-22
 		delayTime = 60000 * Integer.valueOf(intTmr);
 		Log.d(TAG, "Delay Time Set to: " + Integer.toString(delayTime) + " Read Timer: " + intTmr);
 		startTimer();

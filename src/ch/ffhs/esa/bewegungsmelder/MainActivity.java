@@ -215,12 +215,13 @@ public class MainActivity extends Activity {
 						if(mAcc < 20){
 							 mLat = bundle.getFloat("LATITUDE");
 							 mLong = bundle.getFloat("LONGITUDE");
-
 							setPositionData(mLat, mLong, mAcc);
+
                             // TODO: act if no response is coming back
                             // TODO: get phone number
                             String phoneNumber = "5556";
                             handleEmergencySMS(phoneNumber);
+
 							context.stopService(new Intent(context, LocationService.class));
 							context.unregisterReceiver(LocationReceiver.this);
 							Log.d(TAG, "Broadcast receiver unregistered, service stopped! Accuracy: " +mAcc);

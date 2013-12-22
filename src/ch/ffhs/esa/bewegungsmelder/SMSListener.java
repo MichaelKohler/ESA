@@ -23,21 +23,20 @@ public class SMSListener extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         Log.d(TAG, "SMS RECEIVED.. processing..");
         Bundle bundle = intent.getExtras();
-        if (bundle != null && Helper.emergencyOngoing) {
+        if (bundle != null && Helper.emergencyOngoing) { // only do the check if there is an emergency
             try {
                 Object[] pdus = (Object[]) bundle.get("pdus");
                 SmsMessage[] messages = new SmsMessage[pdus.length];
-                for (int i = 0; i < messages.length; i++)
+                for (int i = 0; i < messages.length; i++) // go through all new messages
                 {
                     messages[i] = SmsMessage.createFromPdu((byte[])pdus[i]);
-                    byte[] data = messages[i].getUserData();
-                    String receivedMessage = new String(data);
+                    String receivedMessage = messages[i].getMessageBody();
                     // if we received an empty message, we have a confirmation
                     if (receivedMessage.equals("")) {
                         Helper.emergencyConfirmed = true;
                         Helper.emergencyOngoing = false;
                         // TODO: display "help on the way" or similar notification to the user?
-                        Toast.makeText(context, "SMS ERHALTEN!!!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, "HILFE KOMMT!!!", Toast.LENGTH_SHORT).show();
                         break;
                     }
                 }
