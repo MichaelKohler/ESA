@@ -12,7 +12,7 @@ package ch.ffhs.esa.bewegungsmelder;
  * 
  */
 
-import java.io.File;
+
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -23,9 +23,7 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
-import android.os.Bundle;
 import android.os.IBinder;
-import android.preference.PreferenceManager;
 import android.util.Log;
 
 public class MotionDetectionService extends Service implements SensorEventListener {
@@ -126,7 +124,7 @@ public class MotionDetectionService extends Service implements SensorEventListen
 
 	@Override
 	public void onSensorChanged(SensorEvent event) {
-		float thres = 0.5f; // Event values groesser thres werden als Bewegung gewertet. TODO: Thres aus Settings lesen	
+		float thres = 0.5f; // Event values groesser thres werden als Bewegung gewertet.
 		float axisX = event.values[0];
 		float axisY = event.values[1];
 		float axisZ = event.values[2];
@@ -160,8 +158,7 @@ public class MotionDetectionService extends Service implements SensorEventListen
 	}
 
 	@Override
-	public void onAccuracyChanged(Sensor sensor, int accuracy) {}
-
-
+	public void onAccuracyChanged(Sensor sensor, int accuracy) {
+    }
 
 }
