@@ -27,6 +27,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -128,6 +129,10 @@ public class MainActivity extends Activity {
 					TextView textViewTimeLeft = (TextView) findViewById(R.id.textViewTimeLeft); 
 					textViewTimeLeft.setText(timeLeft);
 					Log.d(TAG, textMsg);
+
+                    // set progress bar accordingly
+                    ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
+                    progressBar.setProgress((Integer) bundle.get("TIMER_PROGRESS_LEVEL"));
 
 					// stop service, unregister Broadcast receiver
 					if(!(Boolean)bundle.get("TIMER_RUNNING_BOOL")){

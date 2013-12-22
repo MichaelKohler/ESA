@@ -69,9 +69,17 @@ public class MotionDetectionService extends Service implements SensorEventListen
             }
             timeLeftDisplay += Integer.toString(secondsLeft);
 
+            // set the progressLevel appropriately
+            // we need to use double because of division limitations with integers
+            // KoM 2013-12-22
+            double total = delayTime/1000.0;
+            double progressLevel = seconds / total * 100;
+            Log.d(TAG, "Progressbar regressing: " + progressLevel + "%");
+
 			i.putExtra("TIME_LEFT", timeLeftDisplay); // Timestring [mm:ss]
 			i.putExtra("TIMER_RUNNING_BOOL", timerRunning); // Boolean
 			i.putExtra("TIMER_RUNNING_STR", timerRunningStr);
+            i.putExtra("TIMER_PROGRESS_LEVEL", (int)progressLevel);
 			sendBroadcast(i);	 
 
 			Log.d(TAG, "Broadcast! Timer: " + timer /1000 + "s until alarm. Timer Status: " + timerRunningStr);
