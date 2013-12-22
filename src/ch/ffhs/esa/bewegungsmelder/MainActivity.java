@@ -217,6 +217,7 @@ public class MainActivity extends Activity {
 							 mLong = bundle.getFloat("LONGITUDE");
 
 							setPositionData(mLat, mLong, mAcc);
+                            // TODO: act if no response is coming back
                             // TODO: get phone number
                             String phoneNumber = "5556";
                             handleEmergencySMS(phoneNumber);
