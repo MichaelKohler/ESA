@@ -9,7 +9,7 @@
     tools:context=".KontaktManuellHinzu" >
 
     <TextView
-        android:id="@+id/textView1"
+        android:id="@+id/labelTopLeft"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
@@ -17,8 +17,8 @@
         android:id="@+id/vorname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView1"
-        android:layout_below="@+id/textView1"
+        android:layout_alignLeft="@+id/labelTopLeft"
+        android:layout_below="@+id/labelTopLeft"
         android:layout_marginTop="14dp"
         android:ems="10"
         android:hint="@string/vorname_hint"
