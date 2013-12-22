@@ -51,22 +51,19 @@
         android:id="@+id/buttonMode"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/buttonToggleSupervision"
-        android:layout_alignLeft="@+id/buttonToggleSupervision"
-        android:layout_alignRight="@+id/buttonToggleSupervision"
-        android:layout_marginBottom="14dp"
         android:onClick="onModeButtonClicked"
-        android:text="Tagmodus" />
+        android:layout_marginBottom="28dp"
+        android:text="Tagmodus"
+        android:layout_alignTop="@+id/buttonToggleSupervision" android:layout_alignRight="@+id/buttonNotruf"/>
 
     <Button
         android:id="@+id/buttonToggleSupervision"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_toLeftOf="@+id/contactButton"
         android:onClick="onSupervisionButtonClicked"
-        android:layout_marginBottom="14dp"
-        android:text="@string/start_supervision" />
+        android:layout_marginBottom="28dp"
+        android:text="@string/start_supervision" android:layout_below="@+id/progressBar"
+        android:layout_alignLeft="@+id/progressBar" android:layout_marginTop="48dp"/>
 
     <Button
         android:id="@+id/buttonNotruf"
@@ -75,9 +72,8 @@
         android:layout_below="@+id/buttonToggleSupervision"
         android:layout_alignLeft="@+id/buttonToggleSupervision"
         android:layout_marginBottom="14dp"
-        android:layout_toLeftOf="@+id/contactButton"
         android:background="@drawable/selector"
         android:onClick="onEmergencyButtonClicked"
-        android:text="Notruf!" />
+        android:text="Notruf!" android:layout_alignRight="@+id/progressBar"/>
 
 </RelativeLayout>
