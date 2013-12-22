@@ -1,0 +1,74 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".KontaktManuellHinzu" >
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <EditText
+        android:id="@+id/vorname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView1"
+        android:layout_below="@+id/textView1"
+        android:layout_marginTop="14dp"
+        android:ems="10"
+        android:hint="@string/vorname_hint"
+        android:inputType="textPersonName" />
+
+    <EditText
+        android:id="@+id/editText2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/vorname"
+        android:layout_below="@+id/vorname"
+        android:layout_marginTop="44dp"
+        android:ems="10"
+        android:hint="@string/nachname_hint"
+        android:inputType="textPersonName" >
+
+        <requestFocus />
+    </EditText>
+
+    <EditText
+        android:id="@+id/editText3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignRight="@+id/abbrechen"
+        android:layout_below="@+id/editText2"
+        android:layout_marginTop="46dp"
+        android:ems="10"
+        android:hint="@string/number_hint"
+        android:inputType="phone" />
+
+    <Button
+        android:id="@+id/speichern"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/editText3"
+        android:layout_below="@+id/editText3"
+        android:layout_marginTop="22dp"
+        android:onClick="speichern"
+        android:text="@string/kontaktspeichernbutton" />
+
+    <Button
+        android:id="@+id/abbrechen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/speichern"
+        android:layout_alignBottom="@+id/speichern"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="56dp"
+        android:onClick="abbrechen"
+        android:text="@string/kontaktspeichernabbrechenbutton" />
+
+</RelativeLayout>

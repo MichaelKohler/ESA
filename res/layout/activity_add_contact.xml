@@ -14,6 +14,18 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:text="Kontakt Hinzufügen" 
-		android:onClick="contactAdd"/>
+        android:onClick="contactAdd"
+        android:text="@string/kontaktauslistbutton" />
+
+    <Button
+        android:id="@+id/kontaktmanuell"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/contactAddButton"
+        android:layout_alignLeft="@+id/contactAddButton"
+        android:layout_alignRight="@+id/contactAddButton"
+        android:text="@string/kontaktmanuellbutton" 
+        android:onClick="contactmanualAdd"
+        />
+
 </RelativeLayout>
