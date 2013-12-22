@@ -27,6 +27,6 @@
     <string name="kontaktspeichernabbrechenbutton">Abbrechen</string>
     <string name="vorname_hint">Vornamen eingeben</string>
     <string name="nachname_hint">Nachname eingeben</string>
-    <string name="number_hint">telefonnummer eingeben</string>
+    <string name="number_hint">Telefonnummer eingeben</string>
 
 </resources>

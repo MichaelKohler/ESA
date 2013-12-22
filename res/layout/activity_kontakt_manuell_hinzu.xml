@@ -43,6 +43,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
+        android:layout_alignRight="@+id/abbrechen"
         android:layout_below="@+id/editText2"
         android:layout_marginTop="46dp"
         android:ems="10"
@@ -56,6 +57,7 @@
         android:layout_alignLeft="@+id/editText3"
         android:layout_below="@+id/editText3"
         android:layout_marginTop="22dp"
+        android:onClick="speichern"
         android:text="@string/kontaktspeichernbutton" />
 
     <Button
@@ -66,6 +68,7 @@
         android:layout_alignBottom="@+id/speichern"
         android:layout_alignParentRight="true"
         android:layout_marginRight="56dp"
+        android:onClick="abbrechen"
         android:text="@string/kontaktspeichernabbrechenbutton" />
 
 </RelativeLayout>
