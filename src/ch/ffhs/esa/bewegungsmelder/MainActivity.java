@@ -259,6 +259,7 @@ public class MainActivity extends Activity {
      */
     private void handleEmergencySMS(String aPhoneNumber) {
         Helper.emergencyOngoing = true;
+        Helper.emergencyConfirmed = false;
         String message = "Notruf! Koordinaten, Lat: " + Float.toString(latitude) + ", Long: " + Float.toString(longitude) + ".. Bitte mit leerer SMS bestätigen.";
         Helper.sendEmergencySMS(aPhoneNumber, message);
         Context context = getApplicationContext();
