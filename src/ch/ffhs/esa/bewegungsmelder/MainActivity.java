@@ -42,6 +42,10 @@ public class MainActivity extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+        Log.d(TAG, "Registering SMS Receiver!");
+        SMSListener smsListener = new SMSListener();
+        registerReceiver(smsListener, new IntentFilter("android.provider.Telephony.SMS_RECEIVED"));
+
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 	}
@@ -252,6 +256,7 @@ public class MainActivity extends Activity {
      * @param String aPhoneNumber phone number of the recipient
      */
     private void handleEmergencySMS(String aPhoneNumber) {
+        Helper.emergencyOngoing = true;
         String message = "Notruf! Koordinaten, Lat: " + Float.toString(latitude) + ", Long: " + Float.toString(longitude) + ".. Bitte mit leerer SMS bestätigen.";
         Helper.sendEmergencySMS(aPhoneNumber, message);
         Context context = getApplicationContext();

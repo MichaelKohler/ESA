@@ -15,6 +15,9 @@ import android.net.Uri;
 import android.telephony.SmsManager;
 
 public class Helper {
+    public static boolean emergencyOngoing = false;
+    public static boolean emergencyConfirmed = false;
+
     /**
      * Sends the emergency SMS
      *
