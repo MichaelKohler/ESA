@@ -65,29 +65,19 @@
         android:layout_centerVertical="true"
         android:layout_toLeftOf="@+id/contactButton"
         android:onClick="onSupervisionButtonClicked"
+        android:layout_marginBottom="14dp"
         android:text="Start / Stop Supervision" />
 
     <Button
         android:id="@+id/buttonNotruf"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/buttonDeveloper"
+        android:layout_below="@+id/buttonToggleSupervision"
         android:layout_alignLeft="@+id/buttonToggleSupervision"
-        android:layout_marginBottom="40dp"
+        android:layout_marginBottom="14dp"
         android:layout_toLeftOf="@+id/contactButton"
         android:background="@drawable/selector"
         android:onClick="onEmergencyButtonClicked"
         android:text="Notruf!" />
-
-    <Button
-        android:id="@+id/buttonDeveloper"
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/button2"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="40dp"
-        android:text="DevActivity"
-        android:onClick="onDeveloperButtonClicked" />
 
 </RelativeLayout>

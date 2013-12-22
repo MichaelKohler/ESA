@@ -52,10 +52,6 @@
         </service>
 
         <activity
-            android:name="ch.ffhs.esa.bewegungsmelder.DeveloperActivity"
-            android:label="@string/title_activity_developer" >
-        </activity>
-        <activity
             android:name="ch.ffhs.esa.bewegungsmelder.Kontakt"
             android:label="@string/title_activity_kontakt" >
         </activity>

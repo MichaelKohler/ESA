@@ -269,11 +269,5 @@ public class MainActivity extends Activity {
         Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         vibrator.vibrate(500);
     }
-	
-	//Developer Debugging Activity call / 2013-11-13 i3ullit
-	public void onDeveloperButtonClicked(View view){
-		Intent i = new Intent(this, DeveloperActivity.class);
-		startActivity(i);
-	}
 
 }
