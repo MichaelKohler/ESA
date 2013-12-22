@@ -135,6 +135,7 @@ public class MainActivity extends Activity {
 	}
 	
 	private void enableSupervision() {
+        ((TextView) findViewById(R.id.labelTopLeft)).setText(R.string.supervision_running);
 		Log.d(TAG, "Starting motion service!");
 		MotionDetectionStatusReceiver br = new MotionDetectionStatusReceiver();
 		registerReceiver(br, new IntentFilter(MotionDetectionService.MOTION_DETECTION_ACTION));
@@ -144,6 +145,7 @@ public class MainActivity extends Activity {
 	}
 	
 	private void disableSupervision() {
+        ((TextView) findViewById(R.id.labelTopLeft)).setText(R.string.supervision_stopped);
 		Log.d(TAG, "Stopping motion service!");
 		stopService(new Intent(this, MotionDetectionService.class));
 		motionServiceRunning = false;
