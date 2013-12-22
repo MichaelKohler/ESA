@@ -20,5 +20,8 @@
     <string name="contact_choice_title">Wählen Sie</string>
     <string name="title_activity_zeige_kontaktliste">ZeigeKontaktliste</string>
     <string name="title_activity_kontakt_liste_test">KontaktListeTestActivity</string>
+    <string name="title_activity_kontakt_manuell_hinzu">KontaktManuellHinzu</string>
+    <string name="kontaktmanuellbutton">Kontakt manuell hinzufügen</string>
+    <string name="kontaktauslistbutton">Kontakt aus Telefonbuch</string>
 
 </resources>
