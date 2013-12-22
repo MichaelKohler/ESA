@@ -70,30 +70,48 @@ public class MainActivity extends Activity {
  
         return true;
     }
-	
+
+/* ----------------------- Start of Button Clicks Handlers ------------ */
+
 	public void onContactButtonClick(View view) {
 		Intent intent = new Intent(this, AddContact.class);
 		startActivity(intent);
-	
 	}
-	
-	
+
+    public void onModeButtonClicked(View view){
+        String buttonModeLabel;
+        Button buttonMode = (Button) findViewById(R.id.buttonMode);
+
+        if(dayMode){
+            dayMode = false;
+            buttonModeLabel = "Nachtmodus";
+        }
+        else{
+            dayMode = true;
+            buttonModeLabel = "Tagmodus";
+        }
+        buttonMode.setText(buttonModeLabel);
+    }
+
+    /**
+     *
+     * @author Ralf Wittich
+     */
+    public void onSupervisionButtonClicked(View view) {
+		/* Test if service running */
+        motionServiceRunning = isServiceRunning();
+        // Stop if running
+        if(motionServiceRunning){
+            disableSupervision();
+        }
+        // Start if not running
+        else{
+            enableSupervision();
+        }
+    }
 	
 /* ----------------------- Start of Timer Service / WiR 2013-12-16 ------------ */
-	
-	public void onSupervisionButtonClicked(View view) {		
 
-		/* Test if service running */
-		motionServiceRunning = isServiceRunning();
-		// Stop if running
-		if(motionServiceRunning){
-			disableSupervision();
-		}
-		// Start if not running
-		else{
-			enableSupervision();
-		}
-	}
 	// Receiver des MotionDetection Services
 	public class MotionDetectionStatusReceiver extends BroadcastReceiver{
 
@@ -157,31 +175,15 @@ public class MainActivity extends Activity {
 	
 	/* ----------------------- End of Timer Service / WiR 2013-12-16 ------------ */
 
-	private void enableMode(int mode) {
 
-	}
-	
+    /* ----------------------- supporting methods ------------ */
+
 	private void recalculateTicker() {
 		
 	}
 	
 	private void setProgressBar(int progressValue) {
 		
-	}
-	
-	public void onModeButtonClicked(View view){
-		String buttonModeLabel;
-		Button buttonMode = (Button) findViewById(R.id.buttonMode); 
-		
-		if(dayMode){
-			dayMode = false;
-			buttonModeLabel = "Nachtmodus";
-		}
-		else{
-			dayMode = true;
-			buttonModeLabel = "Tagmodus";
-		}
-		buttonMode.setText(buttonModeLabel);
 	}
 	
 	// Setzt die Positionsdaten, wird aufgerufen, wenn die Accuracy ok ist.
