@@ -183,21 +183,12 @@ public class MainActivity extends Activity {
 
     /* ----------------------- supporting methods ------------ */
 
-	private void recalculateTicker() {
-		
-	}
-	
-	private void setProgressBar(int progressValue) {
-		
-	}
-	
 	// Setzt die Positionsdaten, wird aufgerufen, wenn die Accuracy ok ist.
 	private void setPositionData(float lat, float lon, float acc){
 		latitude = lat;
 		longitude = lon;
 		accuracy = acc;
 		Log.d(TAG, "Location Set: Lat: " + latitude + " Long: " + longitude + " Accuracy: " +accuracy);
-
 	}
 	
 	private void runLocationService() {		
