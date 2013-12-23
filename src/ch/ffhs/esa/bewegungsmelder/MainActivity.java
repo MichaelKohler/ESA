@@ -256,9 +256,7 @@ public class MainActivity extends Activity {
      * @param View view the View from which this function is called
      */
 	public void onEmergencyButtonClicked(View view) {
-        // TODO: get primary contact's number
-        String phoneNumber = "5556";
-
+        String phoneNumber = new KontaktDBHelper(MainActivity.this).getAllContactsNumbers().get(0);
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         String emergencyHandlingPref = sharedPref.getString("pref_direktruf_aktion", "SMS");
         if (emergencyHandlingPref.equals("CALL")) {
