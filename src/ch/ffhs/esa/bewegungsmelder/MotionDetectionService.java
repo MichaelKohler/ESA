@@ -7,7 +7,7 @@ package ch.ffhs.esa.bewegungsmelder;
  * Author: Ralf Wittich <bullit@gmx.ch>
  * Contributors:
  * 	- Ralf Wittich <bullit@gmx.ch>
- * - Michael Kohler <mkohler@picbudget.com>
+ *  - Michael Kohler <mkohler@picbudget.com>
  * 
  * Sends a broadcast with the remaining time and if the timer is expired.
  * 
@@ -58,6 +58,8 @@ public class MotionDetectionService extends Service implements SensorEventListen
 				timerRunning= false;
 				timerRunningStr = "stopped";
 			};
+			
+			// Umwandeln in Minuten / Sekunden 
 			int seconds = timer / 1000;
 			int minutesLeft = seconds / 60;
 			int secondsLeft = seconds % 60;
@@ -91,6 +93,10 @@ public class MotionDetectionService extends Service implements SensorEventListen
 		}			
 	}
 
+	/* Sensor Service zuordnen, Art und Abtastrate definieren
+	 * (non-Javadoc)
+	 * @see android.app.Service#onCreate()
+	 */
 	@Override
 	public void onCreate() {
 		super.onCreate();
@@ -100,6 +106,11 @@ public class MotionDetectionService extends Service implements SensorEventListen
 		mSensorManager.registerListener(this, mAccelerometer, SensorManager.SENSOR_DELAY_NORMAL);
 	}
 
+	/* Aufraeumen
+	 * 
+	 * (non-Javadoc)
+	 * @see android.app.Service#onDestroy()
+	 */
 	@Override
 	public void onDestroy() {
 		super.onDestroy();
@@ -127,7 +138,7 @@ public class MotionDetectionService extends Service implements SensorEventListen
 			intTmr = preferences.getString("pref_intervall_timer_night", "1");
 			Log.d(TAG,"Nightmode");
 		}
-		// TODO: Parse ist unschoen. Hab aber nicht geschafft den Wert als Int zu bekommen / WiR 2013-12-17
+
         // TODO: habe noch keinen Weg gefunden, die Preference als Integer zu speichern, schaue das
         // TODO: noch an. ist aber vorerst nicht schlimm, da der User nur Nummern eingeben kann / KoM 2013-12-22
 		delayTime = 60000 * Integer.valueOf(intTmr);
@@ -137,7 +148,7 @@ public class MotionDetectionService extends Service implements SensorEventListen
 
 	@Override
 	public void onSensorChanged(SensorEvent event) {
-		float thres = 0.5f; // Event values groesser thres werden als Bewegung gewertet.
+		float thres = 0.5f; // Event values groesser thres werden als Bewegung gewertet. // TODO: Threshold in Settings
 		float axisX = event.values[0];
 		float axisY = event.values[1];
 		float axisZ = event.values[2];
@@ -148,7 +159,9 @@ public class MotionDetectionService extends Service implements SensorEventListen
 			Log.d(TAG, "Sensor changed, restarting timer" );
 		}
 	};
-
+	/*
+	 * Timer starten.
+	 */
 	private void startTimer(){
 		motionTimer = new Timer(true);	// Create new Timer as deamon
 		sendStatus = new BroadcastMotionDetectionStatus();

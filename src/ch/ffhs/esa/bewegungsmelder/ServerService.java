@@ -8,7 +8,7 @@ package ch.ffhs.esa.bewegungsmelder;
  * Contributors:
  * 	- Ralf Wittich <bullit@gmx.ch> 
  * 
- *  Kommuniziert mit dem Ueberwachungsserver
+ *  Kommuniziert mit dem Ueberwachungsserver. Nicht implementiert.
  */
 
 import android.app.Service;

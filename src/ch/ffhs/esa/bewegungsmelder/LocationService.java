@@ -26,10 +26,6 @@ public class LocationService extends Service implements LocationListener{
 	private static final String TAG = LocationService.class.getSimpleName();
 	public static final String LOCATION_ACTION = "ch.ffhs.esa.bewegungsmelder.LOCATION_ACTION";
 
-	@Override
-	public IBinder onBind(Intent arg0) {
-		return null;
-	}
 
 	/* (non-Javadoc)
 	 * @see android.app.Service#onCreate()
@@ -40,7 +36,9 @@ public class LocationService extends Service implements LocationListener{
 
 	}
 
-	/* (non-Javadoc)
+	/* LocationManager updates entfernen
+	 * 
+	 * (non-Javadoc)
 	 * @see android.app.Service#onDestroy()
 	 */
 	@Override
@@ -50,7 +48,9 @@ public class LocationService extends Service implements LocationListener{
 		super.onDestroy();
 	}
 
-	/* (non-Javadoc)
+	/* SystemService definieren und updates anfordern.
+	 * 
+	 * (non-Javadoc)
 	 * @see android.app.Service#onStart(android.content.Intent, int)
 	 */
 	@Override
@@ -60,6 +60,12 @@ public class LocationService extends Service implements LocationListener{
 		locationMgr.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
 	}
 
+	/* Methode die aufgerufen wird wenn die Position sich veraendert. 
+	 * Ein Intent wird mit den Positionsdaten und dem Genauigkeitsindikator als Broadcast versendet. 
+	 * 
+	 * (non-Javadoc)
+	 * @see android.location.LocationListener#onLocationChanged(android.location.Location)
+	 */
 	@Override
 	public void onLocationChanged(Location location) {
 		float mLat = (float) location.getLatitude();
@@ -85,5 +91,11 @@ public class LocationService extends Service implements LocationListener{
 	@Override
 	public void onStatusChanged(String provider, int status, Bundle extras) {
 	}
+	
+	@Override
+	public IBinder onBind(Intent arg0) {
+		return null;
+	}
+
 
 }
