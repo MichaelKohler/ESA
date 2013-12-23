@@ -12,7 +12,10 @@ import android.provider.ContactsContract;
 import android.support.v4.app.NavUtils;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.ListView;
+import android.widget.Toast;
 
 public class KontaktListeTestActivity extends ListActivity {
 
@@ -64,6 +67,19 @@ public class KontaktListeTestActivity extends ListActivity {
 	}
 	
 	
+	
+protected void onListItemClick (ListView l, View v, int position, long id ) { 
+	
+	super.onListItemClick(l, v, position, id);	
+	Object o = this.getListAdapter().getItem(position);
+	String keyword = o.toString();
+	Toast.makeText(this, "You selected: " + keyword,  Toast.LENGTH_LONG).show();
+	
+	
+	}
+	
+	
+	
 	private void displayContacts() {
 	     
 		 ArrayList<String> data = new ArrayList<String>();
@@ -97,8 +113,7 @@ public class KontaktListeTestActivity extends ListActivity {
 	    }
 	
 	
-
+		
 	
 	
-
 }

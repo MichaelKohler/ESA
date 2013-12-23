@@ -86,7 +86,7 @@ public class KontaktManuellHinzu extends Activity {
 		String vorname = t_vorname.getText().toString();
 		String nachname = t_nachname.getText().toString();
 		String telefonnummer = t_telnummer.getText().toString();
-		Toast toast = Toast.makeText(getApplicationContext(), "Kontakt Vorname: " + vorname + " Nachname: " + nachname + " Telefonnummer: " + telefonnummer + "wurde hinzugefügt", Toast.LENGTH_SHORT);
+		Toast toast = Toast.makeText(getApplicationContext(), "Kontakt Vorname: " + vorname + " Nachname: " + nachname + " Telefonnummer: " + telefonnummer + " wurde hinzugefügt", Toast.LENGTH_SHORT);
 		toast.show();
 		
 		ContentValues values = new ContentValues();
