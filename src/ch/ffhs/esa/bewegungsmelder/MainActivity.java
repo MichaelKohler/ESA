@@ -220,8 +220,7 @@ public class MainActivity extends Activity {
 							setPositionData(mLat, mLong, mAcc);
 
                             // TODO: act if no response is coming back
-                            // TODO: get phone number
-                            String phoneNumber = "5556";
+                            String phoneNumber = new KontaktDBHelper(MainActivity.this).getAllContactsNumbers().get(0);
                             handleEmergencySMS(phoneNumber);
 
 							context.stopService(new Intent(context, LocationService.class));

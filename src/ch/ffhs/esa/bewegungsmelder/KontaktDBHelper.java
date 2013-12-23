@@ -3,9 +3,12 @@
 package ch.ffhs.esa.bewegungsmelder;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import ch.ffhs.esa.bewegungsmelder.KontaktDBContract.KontaktTabelle;
+
+import java.util.ArrayList;
 
 public class KontaktDBHelper extends SQLiteOpenHelper {
 	
@@ -46,8 +49,28 @@ public class KontaktDBHelper extends SQLiteOpenHelper {
         onUpgrade(db, oldVersion, newVersion);
     }
 
-    
-    
-    
+    /**
+     * returns all contact numbers
+     *
+     * @author Michael Kohler
+     * @return ArrayList with all the contact numbers
+     */
+    public ArrayList<String> getAllContactsNumbers() {
+        ArrayList<String> contactList = new ArrayList<String>();
+        String selectQuery = "SELECT  * FROM " + KontaktTabelle.TABLE_NAME;
+
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(selectQuery, null);
+
+        // loop through all results
+        if (cursor.moveToFirst()) {
+            do {
+                contactList.add(cursor.getString(3));
+            } while (cursor.moveToNext());
+        }
+
+        // return contact list
+        return contactList;
+    }
 
 }

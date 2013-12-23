@@ -6,14 +6,9 @@ Naechstes Meeting: 2013-12-26 Donnerstag 14:00 Uhr
 [x] Umschaltung Tag / Nachtmodus
 
 MainActivity:
-                      [ ] (Action Bar usw...), Buttons werden nach Bedarf eingepflegt
+                      [x] (Action Bar usw...), Buttons werden nach Bedarf eingepflegt
                       [ ] Alarm Quittieren (Gleicher Button wie Start button, resetiert auch Timer)
 
-Die MainActivity.runLocationService() Methode braucht eine gewisse Zeit, bis die Position gesetzt wird.
-Dies geschieht mit der MainActivity.setPositionData(float lat, float lon, float acc). 
-Das versenden der Nachricht muss also von der Methode gestartet werden. 
- 	
- 	runLocationService() -> setPositionData(float lat, float lon, float acc) -> SMS versenden
 Mario:
 	[ ] KontakteMain
 	[ ] Kontakte importieren (Kontaktreferenz in DB)
@@ -30,6 +25,7 @@ Michi:
 	                      [x] Keep state
 	                      [ ] Methode, um die SMS an eine weitere Person zu senden, wenn X Minuten vorbei sind
 	[x] Einstellungen
+	[ ] ServerService erweitern
 
 Ralf:
 	[x] MotionService
