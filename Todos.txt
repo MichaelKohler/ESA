@@ -35,7 +35,7 @@ Ralf:
 	[x] MotionService
 		[x] Grundfunktion (starten, stoppen, zuruecksetzen, verbleibende Zeit broadcasten, abgelaufen broadcasten)
 		[x] Settings fuer den Timer muessen noch von den Setting gelesen werden
-		[ ] Tag / Nachtmodus button, verschiedene Timer
+		[x] Tag / Nachtmodus button, verschiedene Timer
 		[x] Broadcast an MainActivity übergeben? 
 		[x] Service start Button auf MainActivity implementieren
 	[x] PositionService
