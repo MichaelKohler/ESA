@@ -66,6 +66,7 @@ public class MainActivity extends Activity {
      */
     public void onDestroy() {
         MainActivity.this.stopService(new Intent(MainActivity.this, MotionDetectionService.class));
+        super.onDestroy();
     }
 
 	@Override
