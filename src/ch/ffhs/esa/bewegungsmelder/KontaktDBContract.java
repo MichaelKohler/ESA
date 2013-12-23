@@ -1,3 +1,5 @@
+// Author: Mario Aloise (MAS-Student)
+
 package ch.ffhs.esa.bewegungsmelder;
 
 import android.content.ContentValues;
@@ -18,7 +20,7 @@ public final class KontaktDBContract {
         public static final String COLUMN_NAME_NUMBER = "Telefonnummer";
     }
 	
-	private static final String TEXT_TYPE = "TEXT";
+	private static final String TEXT_TYPE = " TEXT";
 private static final String COMMA_SEP = ",";
 private static final String SQL_CREATE_ENTRIES =
     "CREATE TABLE " + KontaktTabelle.TABLE_NAME + " (" +

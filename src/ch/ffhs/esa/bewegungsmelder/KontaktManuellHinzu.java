@@ -1,3 +1,6 @@
+// Author: Mario Aloise (MAS-Student)
+
+
 package ch.ffhs.esa.bewegungsmelder;
 
 //import ch.ffhs.esa.bewegungsmelder.KontaktDBContract.KontaktTabelle;
