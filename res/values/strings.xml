@@ -28,5 +28,9 @@
     <string name="vorname_hint">Vornamen eingeben</string>
     <string name="nachname_hint">Nachname eingeben</string>
     <string name="number_hint">Telefonnummer eingeben</string>
+    <string name="supervision_running">Supervision läuft</string>
+    <string name="supervision_stopped">Supervision gestoppt</string>
+    <string name="start_supervision">Start Supervision</string>
+    <string name="stop_supervision">Stop Supervision</string>
 
 </resources>

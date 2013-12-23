@@ -27,6 +27,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -42,6 +43,10 @@ public class MainActivity extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+        Log.d(TAG, "Registering SMS Receiver!");
+        SMSReceiver smsReceiver = new SMSReceiver();
+        registerReceiver(smsReceiver, new IntentFilter("android.provider.Telephony.SMS_RECEIVED"));
+
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 	}
@@ -66,30 +71,48 @@ public class MainActivity extends Activity {
  
         return true;
     }
-	
+
+/* ----------------------- Start of Button Clicks Handlers ------------ */
+
 	public void onContactButtonClick(View view) {
 		Intent intent = new Intent(this, AddContact.class);
 		startActivity(intent);
-	
 	}
-	
-	
+
+    public void onModeButtonClicked(View view){
+        String buttonModeLabel;
+        Button buttonMode = (Button) findViewById(R.id.buttonMode);
+
+        if(dayMode){
+            dayMode = false;
+            buttonModeLabel = "Nachtmodus";
+        }
+        else{
+            dayMode = true;
+            buttonModeLabel = "Tagmodus";
+        }
+        buttonMode.setText(buttonModeLabel);
+    }
+
+    /**
+     *
+     * @author Ralf Wittich
+     */
+    public void onSupervisionButtonClicked(View view) {
+		/* Test if service running */
+        motionServiceRunning = isServiceRunning();
+        // Stop if running
+        if(motionServiceRunning){
+            disableSupervision();
+        }
+        // Start if not running
+        else{
+            enableSupervision();
+        }
+    }
 	
 /* ----------------------- Start of Timer Service / WiR 2013-12-16 ------------ */
-	
-	public void onSupervisionButtonClicked(View view) {		
 
-		/* Test if service running */
-		motionServiceRunning = isServiceRunning();
-		// Stop if running
-		if(motionServiceRunning){
-			disableSupervision();
-		}
-		// Start if not running
-		else{
-			enableSupervision();
-		}
-	}
 	// Receiver des MotionDetection Services
 	public class MotionDetectionStatusReceiver extends BroadcastReceiver{
 
@@ -106,6 +129,10 @@ public class MainActivity extends Activity {
 					TextView textViewTimeLeft = (TextView) findViewById(R.id.textViewTimeLeft); 
 					textViewTimeLeft.setText(timeLeft);
 					Log.d(TAG, textMsg);
+
+                    // set progress bar accordingly
+                    ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
+                    progressBar.setProgress((Integer) bundle.get("TIMER_PROGRESS_LEVEL"));
 
 					// stop service, unregister Broadcast receiver
 					if(!(Boolean)bundle.get("TIMER_RUNNING_BOOL")){
@@ -131,6 +158,8 @@ public class MainActivity extends Activity {
 	}
 	
 	private void enableSupervision() {
+        ((TextView) findViewById(R.id.labelTopLeft)).setText(R.string.supervision_running);
+        ((Button) findViewById(R.id.buttonToggleSupervision)).setText(R.string.stop_supervision);
 		Log.d(TAG, "Starting motion service!");
 		MotionDetectionStatusReceiver br = new MotionDetectionStatusReceiver();
 		registerReceiver(br, new IntentFilter(MotionDetectionService.MOTION_DETECTION_ACTION));
@@ -140,6 +169,8 @@ public class MainActivity extends Activity {
 	}
 	
 	private void disableSupervision() {
+        ((TextView) findViewById(R.id.labelTopLeft)).setText(R.string.supervision_stopped);
+        ((Button) findViewById(R.id.buttonToggleSupervision)).setText(R.string.start_supervision);
 		Log.d(TAG, "Stopping motion service!");
 		stopService(new Intent(this, MotionDetectionService.class));
 		motionServiceRunning = false;
@@ -148,32 +179,16 @@ public class MainActivity extends Activity {
 	}
 	
 	/* ----------------------- End of Timer Service / WiR 2013-12-16 ------------ */
-	
-	private void enableMode(int mode) {
-		
-	}
-	
+
+
+    /* ----------------------- supporting methods ------------ */
+
 	private void recalculateTicker() {
 		
 	}
 	
 	private void setProgressBar(int progressValue) {
 		
-	}
-	
-	public void onModeButtonClicked(View view){
-		String buttonModeLabel;
-		Button buttonMode = (Button) findViewById(R.id.buttonMode); 
-		
-		if(dayMode){
-			dayMode = false;
-			buttonModeLabel = "Nachtmodus";
-		}
-		else{
-			dayMode = true;
-			buttonModeLabel = "Tagmodus";
-		}
-		buttonMode.setText(buttonModeLabel);
 	}
 	
 	// Setzt die Positionsdaten, wird aufgerufen, wenn die Accuracy ok ist.
@@ -211,11 +226,13 @@ public class MainActivity extends Activity {
 						if(mAcc < 20){
 							 mLat = bundle.getFloat("LATITUDE");
 							 mLong = bundle.getFloat("LONGITUDE");
-
 							setPositionData(mLat, mLong, mAcc);
+
+                            // TODO: act if no response is coming back
                             // TODO: get phone number
                             String phoneNumber = "5556";
                             handleEmergencySMS(phoneNumber);
+
 							context.stopService(new Intent(context, LocationService.class));
 							context.unregisterReceiver(LocationReceiver.this);
 							Log.d(TAG, "Broadcast receiver unregistered, service stopped! Accuracy: " +mAcc);
@@ -252,6 +269,8 @@ public class MainActivity extends Activity {
      * @param String aPhoneNumber phone number of the recipient
      */
     private void handleEmergencySMS(String aPhoneNumber) {
+        Helper.emergencyOngoing = true;
+        Helper.emergencyConfirmed = false;
         String message = "Notruf! Koordinaten, Lat: " + Float.toString(latitude) + ", Long: " + Float.toString(longitude) + ".. Bitte mit leerer SMS bestätigen.";
         Helper.sendEmergencySMS(aPhoneNumber, message);
         Context context = getApplicationContext();
@@ -259,11 +278,5 @@ public class MainActivity extends Activity {
         Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         vibrator.vibrate(500);
     }
-	
-	//Developer Debugging Activity call / 2013-11-13 i3ullit
-	public void onDeveloperButtonClicked(View view){
-		Intent i = new Intent(this, DeveloperActivity.class);
-		startActivity(i);
-	}
 
 }

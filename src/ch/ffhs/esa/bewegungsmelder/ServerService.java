@@ -19,7 +19,6 @@ public class ServerService extends Service {
 
 	@Override
 	public IBinder onBind(Intent intent) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
@@ -28,7 +27,6 @@ public class ServerService extends Service {
 	 */
 	@Override
 	public void onCreate() {
-		// TODO Auto-generated method stub
 		// Baut die Verbindung auf und meldet Resultat
 		super.onCreate();
 	}
@@ -38,7 +36,6 @@ public class ServerService extends Service {
 	 */
 	@Override
 	public void onDestroy() {
-		// TODO Auto-generated method stub
 		// Baut die Verbindung ab und meldet Resultat
 		super.onDestroy();
 	}
@@ -48,8 +45,7 @@ public class ServerService extends Service {
 	 */
 	@Override
 	public void onStart(Intent intent, int startId) {
-		// TODO Auto-generated method stub
-		// Wird nach onCreate ausgef�hrt
+		// Wird nach onCreate ausgefuehrt
 		super.onStart(intent, startId);
 	}
 

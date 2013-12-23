@@ -9,6 +9,7 @@
         android:targetSdkVersion="14" />
 
     <uses-permission android:name="android.permission.SEND_SMS" />
+    <uses-permission android:name="android.permission.RECEIVE_SMS" />
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -51,10 +52,6 @@
         </service>
 
         <activity
-            android:name="ch.ffhs.esa.bewegungsmelder.DeveloperActivity"
-            android:label="@string/title_activity_developer" >
-        </activity>
-        <activity
             android:name="ch.ffhs.esa.bewegungsmelder.Kontakt"
             android:label="@string/title_activity_kontakt" >
         </activity>
@@ -87,6 +84,11 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="ch.ffhs.esa.bewegungsmelder.AddContact" />
         </activity>
+        <receiver android:name=".SMSReceiver" android:exported="true" >
+            <intent-filter android:priority="999">
+                <action android:name="android.provider.Telephony.SMS_RECEIVED" />
+            </intent-filter>
+        </receiver>
     </application>
 
 </manifest>
