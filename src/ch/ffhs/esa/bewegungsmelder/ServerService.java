@@ -52,7 +52,7 @@ public class ServerService extends Service {
         SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
         server = sharedPref.getString("pref_server_address", "");
         port = sharedPref.getString("pref_server_port", "3001");
-        interval = Integer.parseInt(sharedPref.getString("pref_server_ping_intervall", "1")) * 60 * 1000;
+        interval = Integer.parseInt(sharedPref.getString("pref_server_ping_intervall", "5")) * 60 * 1000;
         Log.d("ServerService", "Interval: " + interval);
     }
 

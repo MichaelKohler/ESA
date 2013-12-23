@@ -42,7 +42,7 @@
         <EditTextPreference
             android:key="pref_server_ping_intervall"
             android:title="@string/pref_server_ping_intervall"
-            android:defaultValue="1"
+            android:defaultValue="5"
             android:inputType="numberDecimal" />
     </PreferenceCategory>
 </PreferenceScreen>
