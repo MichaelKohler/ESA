@@ -1,9 +1,9 @@
 Abgabetermin der Beta Version: 2013-12-23 Montag
 ===================================
-Naechstes Meeting: 2013-12-22 Sonntag 14:00 Uhr
+Naechstes Meeting: 2013-12-26 Donnerstag 14:00 Uhr
 
 [ ] Testcases: Sollen noch destruktiver ausgefuehrt werden
-[ ] Umschaltung Tag / Nachtmodus
+[x] Umschaltung Tag / Nachtmodus
 
 MainActivity:
                       [ ] (Action Bar usw...), Buttons werden nach Bedarf eingepflegt
@@ -24,10 +24,10 @@ Michi:
 	[x] SMS versenden
 	                      [ ] benötigt Methode bei Contacts, um Nummer des "Primary Contact" auszulesen
 	                      [ ] benötigt Methode bei Contacts, um Nummer der nächsten Person auszulesen
-	                      [ ] benötigt Methode bei LocationService, um aktuelle Position zu erhalten (ggf. mit recalculateGPSPosition() in MainActivity)
-	[ ] SMS quittieren (leere SMS)
-	                      [ ] Receiver
-	                      [ ] Keep state
+	                      [x] benötigt Methode bei LocationService, um aktuelle Position zu erhalten (ggf. mit recalculateGPSPosition() in MainActivity)
+	[x] SMS quittieren (leere SMS)
+	                      [x] Receiver
+	                      [x] Keep state
 	                      [ ] Methode, um die SMS an eine weitere Person zu senden, wenn X Minuten vorbei sind
 	[x] Einstellungen
 
@@ -35,7 +35,7 @@ Ralf:
 	[x] MotionService
 		[x] Grundfunktion (starten, stoppen, zuruecksetzen, verbleibende Zeit broadcasten, abgelaufen broadcasten)
 		[x] Settings fuer den Timer muessen noch von den Setting gelesen werden
-		[ ] Tag / Nachtmodus button, verschiedene Timer
+		[x] Tag / Nachtmodus button, verschiedene Timer
 		[x] Broadcast an MainActivity �bergeben? 
 		[x] Service start Button auf MainActivity implementieren
 	[x] PositionService
