@@ -44,13 +44,29 @@ public class MainActivity extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+        // Starting the SMS Receiver // KoM 2013-12-23
         Log.d(TAG, "Registering SMS Receiver!");
         SMSReceiver smsReceiver = new SMSReceiver();
         registerReceiver(smsReceiver, new IntentFilter("android.provider.Telephony.SMS_RECEIVED"));
 
+        // Starting the Server Service // KoM 2013-12-23
+        Log.d(TAG, "Starting the Server Service!");
+        Intent i = new Intent(this, ServerService.class);
+        startService(i);
+
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 	}
+
+    @Override
+    /**
+     * stop the serverservice before destroying
+     *
+     * @author Michael Kohler
+     */
+    public void onDestroy() {
+        MainActivity.this.stopService(new Intent(MainActivity.this, MotionDetectionService.class));
+    }
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {

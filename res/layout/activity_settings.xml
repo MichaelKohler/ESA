@@ -33,11 +33,11 @@
         <EditTextPreference
             android:key="pref_server_address"
             android:title="@string/pref_server_address"
-            android:defaultValue="---" />
+            android:defaultValue="" />
         <EditTextPreference
             android:key="pref_server_port"
             android:title="@string/pref_server_port"
-            android:defaultValue="3000"
+            android:defaultValue="3001"
             android:inputType="numberDecimal" />
         <EditTextPreference
             android:key="pref_server_ping_intervall"
