@@ -28,4 +28,14 @@
         android:onClick="contactmanualAdd"
         />
 
+    <LinearLayout
+         android:id="@+id/kontaktlisteMain"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/kontaktmanuell"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="150dp"
+        android:orientation="vertical" >
+    </LinearLayout>
+
 </RelativeLayout>
