@@ -25,7 +25,7 @@
         android:inputType="textPersonName" />
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/nachname"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/vorname"
@@ -39,12 +39,12 @@
     </EditText>
 
     <EditText
-        android:id="@+id/editText3"
+        android:id="@+id/telnummer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignRight="@+id/abbrechen"
-        android:layout_below="@+id/editText2"
+        android:layout_below="@+id/nachname"
         android:layout_marginTop="46dp"
         android:ems="10"
         android:hint="@string/number_hint"
@@ -54,8 +54,8 @@
         android:id="@+id/speichern"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/editText3"
-        android:layout_below="@+id/editText3"
+        android:layout_alignLeft="@+id/telnummer"
+        android:layout_below="@+id/telnummer"
         android:layout_marginTop="22dp"
         android:onClick="speichern"
         android:text="@string/kontaktspeichernbutton" />

@@ -1,13 +1,24 @@
 package ch.ffhs.esa.bewegungsmelder;
 
-import android.os.Bundle;
+//import ch.ffhs.esa.bewegungsmelder.KontaktDBContract.KontaktTabelle;
 import android.app.Activity;
+import android.content.ContentValues;
+import android.database.sqlite.SQLiteDatabase;
+import android.os.Bundle;
+import android.support.v4.app.NavUtils;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.support.v4.app.NavUtils;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.Toast;
+import ch.ffhs.esa.bewegungsmelder.KontaktDBContract.KontaktTabelle;
+
 
 public class KontaktManuellHinzu extends Activity {
 
+	
+	
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -49,4 +60,41 @@ public class KontaktManuellHinzu extends Activity {
 		return super.onOptionsItemSelected(item);
 	}
 
-}
+	
+	public void speichern (View view){
+		
+		KontaktDBHelper mDbHelper = new KontaktDBHelper(this);
+		SQLiteDatabase db = mDbHelper.getWritableDatabase();
+
+
+		EditText t_vorname = (EditText)findViewById(R.id.vorname);
+		EditText t_nachname = (EditText)findViewById(R.id.nachname);
+		EditText t_telnummer = (EditText)findViewById(R.id.telnummer);
+		String vorname = t_vorname.getText().toString();
+		String nachname = t_nachname.getText().toString();
+		String telefonnummer = t_telnummer.getText().toString();
+		Toast toast = Toast.makeText(getApplicationContext(), "Vorname: " + vorname + " Nachname: " + nachname + " Telefonnummer: " + telefonnummer, Toast.LENGTH_SHORT);
+		toast.show();
+		
+		ContentValues values = new ContentValues();
+		values.put(KontaktTabelle.COLUMN_NAME_VORNAME, vorname);
+		values.put(KontaktTabelle.COLUMN_NAME_NACHNAME, nachname);
+		values.put(KontaktTabelle.COLUMN_NAME_NUMBER, telefonnummer);
+
+		db.insert(
+				KontaktTabelle.TABLE_NAME,
+				null,
+		         values);
+
+
+		//updateList();
+		}
+
+	
+		
+		
+		
+	}
+	
+	
+

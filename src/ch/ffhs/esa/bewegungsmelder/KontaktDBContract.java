@@ -1,6 +1,10 @@
 package ch.ffhs.esa.bewegungsmelder;
 
+import android.content.ContentValues;
+import android.database.sqlite.SQLiteDatabase;
 import android.provider.BaseColumns;
+import android.widget.EditText;
+import android.widget.Toast;
 
 public final class KontaktDBContract {
 	
@@ -28,6 +32,14 @@ private static final String SQL_CREATE_ENTRIES =
 private static final String SQL_DELETE_ENTRIES =
     "DROP TABLE IF EXISTS " + KontaktTabelle.TABLE_NAME;	
 	
+
+
+
 	
+
+	
+
+
+
 
 }
