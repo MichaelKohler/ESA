@@ -10,7 +10,9 @@ MainActivity:
                       [ ] Alarm Quittieren (Gleicher Button wie Start button, resetiert auch Timer)
 
 Mario:
-	[ ] KontakteMain
+	[ ] Kontakt PrimaryFlag setzen
+	[ ] Erstellte Kontakte in Liste anzeigen
+	[ ] 
 	[ ] Kontakte importieren (Kontaktreferenz in DB)
 	[ ] Kontakte editieren
 	[ ] Kontakte loeschen
