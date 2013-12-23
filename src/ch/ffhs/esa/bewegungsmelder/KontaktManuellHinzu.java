@@ -1,18 +1,23 @@
-// Author: Mario Aloise (MAS-Student)
+	// Author: Mario Aloise (MAS-Student)
 
 
 package ch.ffhs.esa.bewegungsmelder;
 
 //import ch.ffhs.esa.bewegungsmelder.KontaktDBContract.KontaktTabelle;
 import android.app.Activity;
+import android.content.ContentResolver;
 import android.content.ContentValues;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
+import android.support.v4.widget.SimpleCursorAdapter;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ListAdapter;
+import android.widget.ListView;
 import android.widget.Toast;
 import ch.ffhs.esa.bewegungsmelder.KontaktDBContract.KontaktTabelle;
 
@@ -64,6 +69,11 @@ public class KontaktManuellHinzu extends Activity {
 	}
 
 	
+	
+	
+	
+	
+	
 	public void speichern (View view){
 		
 		KontaktDBHelper mDbHelper = new KontaktDBHelper(this);
@@ -76,7 +86,7 @@ public class KontaktManuellHinzu extends Activity {
 		String vorname = t_vorname.getText().toString();
 		String nachname = t_nachname.getText().toString();
 		String telefonnummer = t_telnummer.getText().toString();
-		Toast toast = Toast.makeText(getApplicationContext(), "Vorname: " + vorname + " Nachname: " + nachname + " Telefonnummer: " + telefonnummer, Toast.LENGTH_SHORT);
+		Toast toast = Toast.makeText(getApplicationContext(), "Kontakt Vorname: " + vorname + " Nachname: " + nachname + " Telefonnummer: " + telefonnummer + "wurde hinzugefügt", Toast.LENGTH_SHORT);
 		toast.show();
 		
 		ContentValues values = new ContentValues();
