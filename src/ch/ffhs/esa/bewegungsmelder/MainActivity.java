@@ -30,6 +30,7 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+import java.util.ArrayList;
 
 public class MainActivity extends Activity {
 	public static final String MODE = "ch.ffhs.esa.bewegungsmelder.MODE";
@@ -219,9 +220,9 @@ public class MainActivity extends Activity {
 							 mLong = bundle.getFloat("LONGITUDE");
 							setPositionData(mLat, mLong, mAcc);
 
-                            // TODO: act if no response is coming back
-                            String phoneNumber = new KontaktDBHelper(MainActivity.this).getAllContactsNumbers().get(0);
-                            handleEmergencySMS(phoneNumber);
+                            // TODO: act if no response is coming back -> sending to next contact
+                            ArrayList<String> phoneNumber = new KontaktDBHelper(MainActivity.this).getAllContactsNumbers();
+                            handleEmergencySMS(phoneNumber.get(0));
 
 							context.stopService(new Intent(context, LocationService.class));
 							context.unregisterReceiver(LocationReceiver.this);

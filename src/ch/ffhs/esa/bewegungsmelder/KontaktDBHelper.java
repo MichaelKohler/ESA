@@ -65,7 +65,7 @@ public class KontaktDBHelper extends SQLiteOpenHelper {
         // loop through all results
         if (cursor.moveToFirst()) {
             do {
-                contactList.add(cursor.getString(3));
+                contactList.add(cursor.getString(4));
             } while (cursor.moveToNext());
         }
 
