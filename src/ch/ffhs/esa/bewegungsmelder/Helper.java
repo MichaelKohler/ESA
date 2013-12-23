@@ -52,6 +52,8 @@ public class Helper {
      * @param aServerPort
      */
     public static void sendPOSTRequest(String aServerURL, String aServerPort) {
-      Log.d("FOO", "SENDING REQUEST!!");
+      Log.d("Helper", "SENDING REQUEST!!");
+      //new POSTTask().execute(aServerURL, aServerPort);
     }
+
 }
