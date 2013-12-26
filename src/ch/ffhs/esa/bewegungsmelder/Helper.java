@@ -18,6 +18,7 @@ import android.util.Log;
 public class Helper {
     public static boolean emergencyOngoing = false;
     public static boolean emergencyConfirmed = false;
+    private static final String TAG = Helper.class.getSimpleName();
 
     /**
      * Sends the emergency SMS
@@ -29,6 +30,7 @@ public class Helper {
     public static void sendEmergencySMS(String aPhoneNumber, String aMessage) {
         SmsManager smsManager = SmsManager.getDefault();
         smsManager.sendTextMessage(aPhoneNumber, null, aMessage, null, null);
+        Log.d(TAG, "SMS Sent: Nr: " + aPhoneNumber + " Message: " +aMessage);
     }
 
     /**

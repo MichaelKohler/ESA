@@ -35,6 +35,9 @@ Michi:
 	[ ] Setting-Button in AddContact Activity rausnehmen
 
 Ralf:
+	[ ] Funktion SMS versenden debuggen / testen mit real device
+		[ ] Von Motion Service
+		[ ] Via Button 
 	[x] MotionService
 		[x] Grundfunktion (starten, stoppen, zuruecksetzen, verbleibende Zeit broadcasten, abgelaufen broadcasten)
 		[x] Settings fuer den Timer muessen noch von den Setting gelesen werden
