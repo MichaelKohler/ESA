@@ -19,6 +19,7 @@ Mario:
  	[ ] Kontakte importieren (Kontaktreferenz in DB)
 	[ ] Kontakte editieren
 	[ ] Kontakte loeschen
+	[ ]
 
 Michi:
 	[x] SMS versenden
@@ -31,6 +32,7 @@ Michi:
 	                      [ ] Methode, um die SMS an eine weitere Person zu senden, wenn X Minuten vorbei sind
 	[x] Einstellungen
 	[ ] ServerService erweitern
+	[ ] ToDo Button in AddContact Activity rausnehmen
 
 Ralf:
 	[ ] Funktion SMS versenden debuggen / testen mit real device
