@@ -277,7 +277,9 @@ public class MainActivity extends Activity {
     private void handleEmergencySMS(String aPhoneNumber) {
         Helper.emergencyOngoing = true;
         Helper.emergencyConfirmed = false;
-        String message = "Notruf! Koordinaten, Lat: " + Float.toString(latitude) + ", Long: " + Float.toString(longitude) + ".. Bitte mit leerer SMS bestaetigen.";
+  //      String message = "Notruf! Koordinaten, Lat: " + Float.toString(latitude) + ", Long: " + Float.toString(longitude) + ".. Bitte mit leerer SMS bestaetigen.";
+        String message = "Notruf! Position: https://maps.google.com/maps?q=" + Float.toString(latitude) +","+ Float.toString(longitude) + ".. Bitte mit leerer SMS bestaetigen.";
+        
         Log.d(TAG, "Sending SMS: Number: " + aPhoneNumber + "Content: " + message);
         Helper.sendEmergencySMS(aPhoneNumber, message);
         Context context = getApplicationContext();
