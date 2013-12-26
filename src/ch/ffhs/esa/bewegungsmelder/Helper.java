@@ -13,6 +13,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.telephony.SmsManager;
+import android.util.Log;
 
 public class Helper {
     public static boolean emergencyOngoing = false;
@@ -42,4 +43,17 @@ public class Helper {
         callIntent.setData(Uri.parse("tel:" + aPhoneNumber));
         aActivity.startActivity(callIntent);
     }
+
+    /**
+     * sends a POST request to the server specified
+     *
+     * @author Michael Kohler
+     * @param aServerURL
+     * @param aServerPort
+     */
+    public static void sendPOSTRequest(String aServerURL, String aServerPort) {
+      Log.d("Helper", "SENDING REQUEST!!");
+      //new POSTTask().execute(aServerURL, aServerPort);
+    }
+
 }
