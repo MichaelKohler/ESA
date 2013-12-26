@@ -32,7 +32,7 @@ Michi:
 	                      [ ] Methode, um die SMS an eine weitere Person zu senden, wenn X Minuten vorbei sind
 	[x] Einstellungen
 	[ ] ServerService erweitern
-	[ ] ToDo Button in AddContact Activity rausnehmen
+	[ ] Setting-Button in AddContact Activity rausnehmen
 
 Ralf:
 	[x] MotionService
