@@ -59,7 +59,7 @@ public class AddContact extends Activity {
 	public void contactAdd (View view){
 		
 		
-		Intent intent = new Intent(this, KontaktListeTestActivity.class);
+		Intent intent = new Intent(this, ContactListActivity.class);
 		startActivity(intent);
 	
 		

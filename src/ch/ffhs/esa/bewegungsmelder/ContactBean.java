@@ -1,9 +1,8 @@
 package ch.ffhs.esa.bewegungsmelder;
 
-public class KontaktObjekt {
-
+public class ContactBean {
 	private String name;
-	private String telnr;
+	private String phoneNo;
 	
 	public String getName() {
 		return name;
@@ -12,10 +11,11 @@ public class KontaktObjekt {
 		this.name = name;
 	}
 	public String getPhoneNo() {
-		return telnr;
+		return phoneNo;
 	}
 	public void setPhoneNo(String phoneNo) {
-		this.telnr = telnr;
+		this.phoneNo = phoneNo;
 	}
+	
 	
 }

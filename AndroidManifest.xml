@@ -85,11 +85,19 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="ch.ffhs.esa.bewegungsmelder.AddContact" />
         </activity>
-        <receiver android:name=".SMSReceiver" android:exported="true" >
-            <intent-filter android:priority="999">
+
+        <receiver
+            android:name="ch.ffhs.esa.bewegungsmelder.SMSReceiver"
+            android:exported="true" >
+            <intent-filter android:priority="999" >
                 <action android:name="android.provider.Telephony.SMS_RECEIVED" />
             </intent-filter>
         </receiver>
+
+        <activity
+            android:name="ch.ffhs.esa.bewegungsmelder.ContactListActivity"
+            android:label="@string/title_activity_contact_list" >
+        </activity>
     </application>
 
 </manifest>

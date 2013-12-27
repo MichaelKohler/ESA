@@ -32,5 +32,6 @@
     <string name="supervision_stopped">Supervision gestoppt</string>
     <string name="start_supervision">Start Supervision</string>
     <string name="stop_supervision">Stop Supervision</string>
+    <string name="title_activity_contact_list">ContactListActivity</string>
 
 </resources>
