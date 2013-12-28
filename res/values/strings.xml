@@ -21,8 +21,7 @@
     <string name="title_activity_zeige_kontaktliste">ZeigeKontaktliste</string>
     <string name="title_activity_kontakt_liste_test">KontaktListeTestActivity</string>
     <string name="title_activity_kontakt_manuell_hinzu">KontaktManuellHinzu</string>
-    <string name="kontaktmanuellbutton">Kontakt manuell hinzufügen</string>
-    <string name="kontaktauslistbutton">Kontakt aus Telefonbuch</string>
+    <string name="kontakthinzubutton">Kontakt hinzufügen</string>
     <string name="kontaktspeichernbutton">Speichern</string>
     <string name="kontaktspeichernabbrechenbutton">Abbrechen</string>
     <string name="vorname_hint">Vornamen eingeben</string>

@@ -3,6 +3,7 @@
 package ch.ffhs.esa.bewegungsmelder;
 
 import android.app.Activity;
+import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
@@ -58,34 +59,21 @@ public class AddContact extends Activity {
 	
 	public void contactAdd (View view){
 		
-		
-		Intent intent = new Intent(this, ContactListActivity.class);
+		/*		
+			Intent intent = new Intent(this, ContactListActivity.class);
 		startActivity(intent);
+	*/
+		
 	
-		
-		
-	/*	FragmentManager manager = getFragmentManager();
+		FragmentManager manager = getFragmentManager();
 		KontaktDialogFragment d = new KontaktDialogFragment ();
-		d.show(manager, "KontaktDialogFragment");*/
+		d.show(manager, "KontaktDialogFragment");
+		
 		
 	}
 
 	
 	
-	public void contactmanualAdd (View view){
-		
-		
-		Intent intent = new Intent(this, KontaktManuellHinzu.class);
-		startActivity(intent);
-	
-		
-		
-	/*	FragmentManager manager = getFragmentManager();
-		KontaktDialogFragment d = new KontaktDialogFragment ();
-		d.show(manager, "KontaktDialogFragment");*/
-		
-	}
-
 	
 	
 	

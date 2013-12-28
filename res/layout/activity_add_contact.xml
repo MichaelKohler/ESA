@@ -15,27 +15,17 @@
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:onClick="contactAdd"
-        android:text="@string/kontaktauslistbutton" />
+        android:text="@string/kontakthinzubutton" />
 
-    <Button
-        android:id="@+id/kontaktmanuell"
+    <LinearLayout
+        android:id="@+id/kontaktlisteMain"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/contactAddButton"
-        android:layout_alignLeft="@+id/contactAddButton"
-        android:layout_alignRight="@+id/contactAddButton"
-        android:text="@string/kontaktmanuellbutton" 
-        android:onClick="contactmanualAdd"
-        />
-
-    <LinearLayout
-         android:id="@+id/kontaktlisteMain"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/kontaktmanuell"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="150dp"
         android:orientation="vertical" >
+
     </LinearLayout>
 
 </RelativeLayout>
