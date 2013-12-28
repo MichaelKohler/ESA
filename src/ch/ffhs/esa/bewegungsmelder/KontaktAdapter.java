@@ -11,14 +11,14 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-public class ContanctAdapter extends ArrayAdapter<ContactBean> {
+public class KontaktAdapter extends ArrayAdapter<Kontakt> {
 
 	private Activity activity;
-	private List<ContactBean> items;
+	private List<Kontakt> items;
 	private int row;
-	private ContactBean objBean;
+	private Kontakt objBean;
 
-	public ContanctAdapter(Activity act, int row, List<ContactBean> items) {
+	public KontaktAdapter(Activity act, int row, List<Kontakt> items) {
 		super(act, row, items);
 
 		this.activity = act;
@@ -50,14 +50,15 @@ public class ContanctAdapter extends ArrayAdapter<ContactBean> {
 		holder.tvname = (TextView) view.findViewById(R.id.tvname);
 		holder.tvPhoneNo = (TextView) view.findViewById(R.id.tvphone);
 
-		if (holder.tvname != null && null != objBean.getName()
+		 if (holder.tvname != null && null != objBean.getName()
 				&& objBean.getName().trim().length() > 0) {
-			holder.tvname.setText(Html.fromHtml(objBean.getName()));
+			holder.tvname.setText((objBean.getName()));
 		}
 		if (holder.tvPhoneNo != null && null != objBean.getPhoneNo()
 				&& objBean.getPhoneNo().trim().length() > 0) {
-			holder.tvPhoneNo.setText(Html.fromHtml(objBean.getPhoneNo()));
-		}
+			holder.tvPhoneNo.setText((objBean.getPhoneNo()));
+		} 
+		
 		return view;
 	}
 

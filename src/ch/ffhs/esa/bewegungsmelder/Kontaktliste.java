@@ -1,0 +1,106 @@
+package ch.ffhs.esa.bewegungsmelder;
+
+import java.util.ArrayList;
+import java.util.List;
+import android.app.Activity;
+import android.database.Cursor;
+import android.os.Bundle;
+import android.provider.ContactsContract;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.ListView;
+import android.widget.Toast;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.support.v4.app.NavUtils;
+
+public class Kontaktliste extends Activity implements
+OnItemClickListener {
+
+private ListView listView;
+private List<Kontakt> list = new ArrayList<Kontakt>();
+
+@Override
+protected void onCreate(Bundle savedInstanceState) {
+super.onCreate(savedInstanceState);
+setContentView(R.layout.activity_kontaktliste);
+setupActionBar();
+
+
+listView = (ListView) findViewById(R.id.list);
+listView.setOnItemClickListener(this);
+
+Cursor phones = getContentResolver().query(
+		ContactsContract.CommonDataKinds.Phone.CONTENT_URI, null, null,
+		null, null);
+while (phones.moveToNext()) {
+
+	String name = phones
+			.getString(phones
+					.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));
+
+	String phoneNumber = phones
+			.getString(phones
+					.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
+
+	Kontakt objContact = new Kontakt();
+	objContact.setName(name);
+	objContact.setPhoneNo(phoneNumber);
+	list.add(objContact);
+
+}
+phones.close();
+
+KontaktAdapter objAdapter = new KontaktAdapter(
+		Kontaktliste.this, R.layout.alluser_row, list);
+listView.setAdapter(objAdapter);
+
+
+}
+
+
+@Override
+public void onItemClick(AdapterView<?> listview, View v, int position,
+	long id) {
+Kontakt bean = (Kontakt) listview.getItemAtPosition(position);
+ String ausgabe_name = bean.getName();
+ String ausgabe_tel = bean.getPhoneNo();
+ Toast.makeText(this, "You selected " + ausgabe_name + ausgabe_tel, Toast.LENGTH_SHORT).show();
+}
+
+
+	/**
+	 * Set up the {@link android.app.ActionBar}.
+	 */
+	private void setupActionBar() {
+
+		getActionBar().setDisplayHomeAsUpEnabled(true);
+
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.kontaktliste, menu);
+		return true;
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		case android.R.id.home:
+			// This ID represents the Home or Up button. In the case of this
+			// activity, the Up button is shown. Use NavUtils to allow users
+			// to navigate up one level in the application structure. For
+			// more details, see the Navigation pattern on Android Design:
+			//
+			// http://developer.android.com/design/patterns/navigation.html#up-vs-back
+			//
+			NavUtils.navigateUpFromSameTask(this);
+			return true;
+		}
+		return super.onOptionsItemSelected(item);
+	}
+
+}

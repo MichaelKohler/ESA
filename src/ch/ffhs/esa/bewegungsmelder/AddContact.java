@@ -59,12 +59,12 @@ public class AddContact extends Activity {
 	
 	public void contactAdd (View view){
 		
-		/*		
-			Intent intent = new Intent(this, ContactListActivity.class);
+			
+		/*			Intent intent = new Intent(this, Kontaktliste.class);
 		startActivity(intent);
-	*/
-		
 	
+		*/
+		
 		FragmentManager manager = getFragmentManager();
 		KontaktDialogFragment d = new KontaktDialogFragment ();
 		d.show(manager, "KontaktDialogFragment");

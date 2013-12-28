@@ -98,6 +98,13 @@
             android:name="ch.ffhs.esa.bewegungsmelder.ContactListActivity"
             android:label="@string/title_activity_contact_list" >
         </activity>
+        <activity
+            android:name="ch.ffhs.esa.bewegungsmelder.Kontaktliste"
+            android:label="@string/title_activity_kontaktliste" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="ch.ffhs.esa.bewegungsmelder.AddContact" />
+        </activity>
     </application>
 
 </manifest>

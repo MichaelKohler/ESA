@@ -1,6 +1,6 @@
 package ch.ffhs.esa.bewegungsmelder;
 
-public class ContactBean {
+public class Kontakt {
 	private String name;
 	private String phoneNo;
 	

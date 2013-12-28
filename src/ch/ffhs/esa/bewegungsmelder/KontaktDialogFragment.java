@@ -26,7 +26,7 @@ public class KontaktDialogFragment extends DialogFragment {
               
                 	if (which == 0){
                 	   
-                		Intent intent = new Intent(getActivity(), ContactListActivity.class);
+                		Intent intent = new Intent(getActivity(), Kontaktliste.class);
                 		startActivity(intent);
                 		
                	   	 //Toast.makeText(getActivity(), "erstes item ausgewählt", Toast.LENGTH_LONG).show();
