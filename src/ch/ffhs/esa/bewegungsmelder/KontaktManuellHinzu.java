@@ -4,19 +4,20 @@
 package ch.ffhs.esa.bewegungsmelder;
 
 //import ch.ffhs.esa.bewegungsmelder.KontaktDBContract.KontaktTabelle;
+import java.util.ArrayList;
+
 import android.app.Activity;
-import android.content.ContentResolver;
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
-import android.support.v4.widget.SimpleCursorAdapter;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 import ch.ffhs.esa.bewegungsmelder.KontaktDBContract.KontaktTabelle;
@@ -27,7 +28,6 @@ public class KontaktManuellHinzu extends Activity {
 	
 	
 	
-	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_kontakt_manuell_hinzu);
@@ -71,27 +71,23 @@ public class KontaktManuellHinzu extends Activity {
 	
 	
 	
-	
-	
-	
 	public void speichern (View view){
 		
 		KontaktDBHelper mDbHelper = new KontaktDBHelper(this);
 		SQLiteDatabase db = mDbHelper.getWritableDatabase();
 
 
-		EditText t_vorname = (EditText)findViewById(R.id.vorname);
-		EditText t_nachname = (EditText)findViewById(R.id.nachname);
+		EditText t_name = (EditText)findViewById(R.id.name);
 		EditText t_telnummer = (EditText)findViewById(R.id.telnummer);
-		String vorname = t_vorname.getText().toString();
-		String nachname = t_nachname.getText().toString();
+		String name = t_name.getText().toString();
+		
 		String telefonnummer = t_telnummer.getText().toString();
-		Toast toast = Toast.makeText(getApplicationContext(), "Kontakt Vorname: " + vorname + " Nachname: " + nachname + " Telefonnummer: " + telefonnummer + " wurde hinzugefügt", Toast.LENGTH_SHORT);
+		Toast toast = Toast.makeText(getApplicationContext(), "Kontakt: " + name + " Telefonnummer: " + telefonnummer + " wurde hinzugefügt", Toast.LENGTH_SHORT);
 		toast.show();
 		
 		ContentValues values = new ContentValues();
-		values.put(KontaktTabelle.COLUMN_NAME_VORNAME, vorname);
-		values.put(KontaktTabelle.COLUMN_NAME_NACHNAME, nachname);
+		
+		values.put(KontaktTabelle.COLUMN_NAME_NAME, name);
 		values.put(KontaktTabelle.COLUMN_NAME_NUMBER, telefonnummer);
 
 		db.insert(
@@ -99,10 +95,53 @@ public class KontaktManuellHinzu extends Activity {
 				null,
 		         values);
 
-
-		//updateList();
+		db.close();
+		
+		Intent intent = new Intent(this, AddContact.class);
+		startActivity(intent);
+		
+		updateList();
 		}
+	
 
+public void updateList(){
+		
+		ArrayList<String> updatelist = new ArrayList<String>();
+		KontaktDBHelper mDbHelper = new KontaktDBHelper(this);
+		SQLiteDatabase db = mDbHelper.getReadableDatabase();
+		
+		String[] projection = {
+				
+				KontaktTabelle._ID,
+			    KontaktTabelle.COLUMN_NAME_NAME,
+				KontaktTabelle.COLUMN_NAME_NUMBER,
+				
+			    };
+		
+		Cursor c = db.query(KontaktTabelle.TABLE_NAME, projection, null, null, null, null, null);
+		
+		if (c.moveToFirst()){
+			
+		do {
+			updatelist.add(c.getString(1));;
+			updatelist.add(c.getString(2));
+		}	 while (c.moveToNext());
+		
+
+		
+		}
+		
+	
+	
+	
+		ArrayAdapter adapter = new ArrayAdapter<String>(this, R.layout.alluser_row, updatelist);
+		ListView list = (ListView)findViewById(R.id.furz);
+		list.setAdapter(adapter);
+		
+				
+		
+		}
+	
 	
 		
 		

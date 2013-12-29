@@ -12,9 +12,9 @@ MainActivity:
 Mario:
 	[ ] Kontakt PrimaryFlag setzen
 	[ ] Erstellte Kontakte in Liste anzeigen
-	[ ] Methode zum Auslesen von Kontakten
-	[ ] Activities aus DialogFragmen starten
-	[ ] Kontakte aus TelBuch in DB schreiben
+	[X] Methode zum Auslesen von Kontakten
+	[X] Activities aus DialogFragmen starten
+	[X] Kontakte aus TelBuch in DB schreiben
 	[ ] Max 5 KontakteControl
  	[ ] Kontakte importieren (Kontaktreferenz in DB)
 	[ ] Kontakte editieren

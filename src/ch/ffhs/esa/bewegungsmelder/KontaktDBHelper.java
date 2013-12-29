@@ -24,9 +24,8 @@ public class KontaktDBHelper extends SQLiteOpenHelper {
 	private static final String SQL_CREATE_ENTRIES =
 		    "CREATE TABLE " + KontaktTabelle.TABLE_NAME + " (" +
 		    KontaktTabelle._ID + " INTEGER PRIMARY KEY," +
-		    KontaktTabelle.COLUMN_NAME_ENTRY_ID + TEXT_TYPE + COMMA_SEP +
-		    KontaktTabelle.COLUMN_NAME_VORNAME + TEXT_TYPE + COMMA_SEP +
-		    KontaktTabelle.COLUMN_NAME_NACHNAME + TEXT_TYPE + COMMA_SEP +
+		   
+		    KontaktTabelle.COLUMN_NAME_NAME + TEXT_TYPE + COMMA_SEP +
 			KontaktTabelle.COLUMN_NAME_NUMBER + TEXT_TYPE + 
 		    " )"; 
    

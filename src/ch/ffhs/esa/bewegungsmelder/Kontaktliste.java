@@ -2,18 +2,22 @@ package ch.ffhs.esa.bewegungsmelder;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import android.app.Activity;
+import android.content.ContentValues;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.support.v4.app.NavUtils;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.Toast;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.support.v4.app.NavUtils;
+import ch.ffhs.esa.bewegungsmelder.KontaktDBContract.KontaktTabelle;
 
 public class Kontaktliste extends Activity implements
 OnItemClickListener {
@@ -66,8 +70,30 @@ public void onItemClick(AdapterView<?> listview, View v, int position,
 Kontakt bean = (Kontakt) listview.getItemAtPosition(position);
  String ausgabe_name = bean.getName();
  String ausgabe_tel = bean.getPhoneNo();
- Toast.makeText(this, "You selected " + ausgabe_name + ausgabe_tel, Toast.LENGTH_SHORT).show();
+ 
+
+ KontaktDBHelper mDbHelper = new KontaktDBHelper(this);
+	SQLiteDatabase db = mDbHelper.getWritableDatabase();
+	
+	ContentValues values = new ContentValues();
+	values.put(KontaktTabelle.COLUMN_NAME_NAME, ausgabe_name);
+		values.put(KontaktTabelle.COLUMN_NAME_NUMBER, ausgabe_tel);
+
+	db.insert(
+			KontaktTabelle.TABLE_NAME,
+			null,
+	         values);
+
+	db.close();
+	
+	Toast.makeText(this, "You selected " + ausgabe_name + ausgabe_tel, Toast.LENGTH_SHORT).show();
+
 }
+
+
+
+
+
 
 
 	/**

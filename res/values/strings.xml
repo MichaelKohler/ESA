@@ -24,8 +24,6 @@
     <string name="kontakthinzubutton">Kontakt hinzufügen</string>
     <string name="kontaktspeichernbutton">Speichern</string>
     <string name="kontaktspeichernabbrechenbutton">Abbrechen</string>
-    <string name="vorname_hint">Vornamen eingeben</string>
-    <string name="nachname_hint">Nachname eingeben</string>
     <string name="number_hint">Telefonnummer eingeben</string>
     <string name="supervision_running">Supervision läuft</string>
     <string name="supervision_stopped">Supervision gestoppt</string>
@@ -33,5 +31,6 @@
     <string name="stop_supervision">Stop Supervision</string>
     <string name="title_activity_contact_list">ContactListActivity</string>
     <string name="title_activity_kontaktliste">Kontaktliste</string>
+    <string name="name_hint">Name eingeben</string>
 
 </resources>
