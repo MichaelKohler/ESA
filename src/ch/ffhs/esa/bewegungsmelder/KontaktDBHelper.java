@@ -6,12 +6,13 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 import ch.ffhs.esa.bewegungsmelder.KontaktDBContract.KontaktTabelle;
 
 import java.util.ArrayList;
 
 public class KontaktDBHelper extends SQLiteOpenHelper {
-	
+	private static final String TAG = KontaktDBHelper.class.getSimpleName();
 	
 	public static final int DATABASE_VERSION = 1;
 	public static final String DATABASE_NAME = "KontaktDB.db";
@@ -34,17 +35,20 @@ public class KontaktDBHelper extends SQLiteOpenHelper {
 	
 	
     public KontaktDBHelper (Context context) {
-        super(context, DATABASE_NAME, null, DATABASE_VERSION);
+        super(context, DATABASE_NAME, null, DATABASE_VERSION);    
     }
     public void onCreate(SQLiteDatabase db) {
+    	Log.d(TAG, "Table creation executed!");
+    	//db.execSQL(SQL_DELETE_ENTRIES); // Benoetigt um falsche DB zu löschen :-)
         db.execSQL(SQL_CREATE_ENTRIES);
     }
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-     
+    	Log.d(TAG, "onUpgrade!");
         db.execSQL(SQL_DELETE_ENTRIES);
         onCreate(db);
     }
     public void onDowngrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+    	Log.d(TAG, "onDowngrade!");
         onUpgrade(db, oldVersion, newVersion);
     }
 

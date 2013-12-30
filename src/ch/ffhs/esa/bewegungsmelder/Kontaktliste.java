@@ -32,7 +32,7 @@ setContentView(R.layout.activity_kontaktliste);
 setupActionBar();
 
 
-listView = (ListView) findViewById(R.id.list);
+listView = (ListView) findViewById(R.id.kontaktliste);
 listView.setOnItemClickListener(this);
 
 Cursor phones = getContentResolver().query(
