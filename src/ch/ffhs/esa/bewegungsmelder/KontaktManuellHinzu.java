@@ -86,14 +86,21 @@ public class KontaktManuellHinzu extends Activity {
 		String name = t_name.getText().toString();
 
 		String telefonnummer = t_telnummer.getText().toString();
-		Toast toast = Toast.makeText(getApplicationContext(), "Kontakt: " + name + " Telefonnummer: " + telefonnummer + " wurde hinzugefügt", Toast.LENGTH_SHORT);
-		toast.show();
-
+		
 		ContentValues values = new ContentValues();
 
 		values.put(KontaktTabelle.COLUMN_NAME_NAME, name);
 		values.put(KontaktTabelle.COLUMN_NAME_NUMBER, telefonnummer);
 
+		
+		String countQuery = "SELECT  * FROM " + KontaktTabelle.TABLE_NAME;
+		Cursor cursor = db.rawQuery(countQuery, null);
+		int count = cursor.getCount();
+	    cursor.close();
+		
+		
+		if (count < 5){
+		
 		db.insert(
 				KontaktTabelle.TABLE_NAME,
 				null,
@@ -103,7 +110,24 @@ public class KontaktManuellHinzu extends Activity {
 
 		Intent intent = new Intent(this, AddContact.class);
 		startActivity(intent);
+		
+		Toast toast = Toast.makeText(getApplicationContext(), "Kontakt: " + name + " Telefonnummer: " + telefonnummer + " wurde hinzugefügt", Toast.LENGTH_SHORT);
+		toast.show();
 
+		
+
+		}
+		
+		
+		else {
+			
+			Toast.makeText(this, "Sie haben bereits 5 Kontakte eingefügt- bitte zuerst Kontakt löschen" , Toast.LENGTH_SHORT).show();	
+			
+			Intent intent = new Intent(this, AddContact.class);
+			startActivity(intent);
+			
+		}
+		
 		
 	}
 

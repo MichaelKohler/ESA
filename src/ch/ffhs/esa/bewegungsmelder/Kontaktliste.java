@@ -80,6 +80,16 @@ Kontakt bean = (Kontakt) listview.getItemAtPosition(position);
 	values.put(KontaktTabelle.COLUMN_NAME_NAME, ausgabe_name);
 		values.put(KontaktTabelle.COLUMN_NAME_NUMBER, ausgabe_tel);
 
+	
+		String countQuery = "SELECT  * FROM " + KontaktTabelle.TABLE_NAME;
+		Cursor cursor = db.rawQuery(countQuery, null);
+		int count = cursor.getCount();
+	    cursor.close();
+		
+		
+		if (count < 5){	
+		
+		
 	db.insert(
 			KontaktTabelle.TABLE_NAME,
 			null,
@@ -87,11 +97,24 @@ Kontakt bean = (Kontakt) listview.getItemAtPosition(position);
 
 	db.close();
 	
-	Toast.makeText(this, "You selected " + ausgabe_name + ausgabe_tel, Toast.LENGTH_SHORT).show();
+	Toast.makeText(this, "Kontakt: " + ausgabe_name + " Telefonnummer: " + ausgabe_tel  + " wurde hinzugefügt", Toast.LENGTH_SHORT).show();
 	
 	Intent intent = new Intent(this, AddContact.class);
 	startActivity(intent);
 
+	}
+		
+		
+else {
+			
+			Toast.makeText(this, "Sie haben bereits 5 Kontakte eingefügt- bitte zuerst Kontakt löschen" , Toast.LENGTH_SHORT).show();	
+			
+			Intent intent = new Intent(this, AddContact.class);
+			startActivity(intent);
+			
+		}	
+		
+		
 }
 
 
