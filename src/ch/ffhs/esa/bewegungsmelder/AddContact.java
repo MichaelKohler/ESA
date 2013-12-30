@@ -15,15 +15,19 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.Toast;
 import ch.ffhs.esa.bewegungsmelder.KontaktDBContract.KontaktTabelle;
 
-public class AddContact extends Activity {
+public class AddContact extends Activity implements
+OnItemClickListener {
 
 	private static final int ADD_KONTAKT_DIALOG = 1;
 	private static final String TAG = AddContact.class.getSimpleName();
-
+	private ListView listView;
 	
 	
 	@Override
@@ -33,6 +37,8 @@ public class AddContact extends Activity {
 		// Show the Up button in the action bar.
 		setupActionBar();
 		updateList();
+		listView = (ListView) findViewById(R.id.updateList);
+		listView.setOnItemClickListener(this);
 	}
 
 	/**
@@ -144,6 +150,12 @@ public class AddContact extends Activity {
 		ListView list = (ListView) findViewById(R.id.updateList);
 		list.setAdapter(objAdapter);
 		
+	}
+
+	@Override
+	public void onItemClick(AdapterView<?> listView, View v, int position, long id) {
+		
+		Toast.makeText(this, "Ich wurde geklickt" , Toast.LENGTH_SHORT).show();
 	}
 		
 	
