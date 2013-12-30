@@ -3,6 +3,7 @@
 package ch.ffhs.esa.bewegungsmelder;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import android.app.Activity;
 import android.app.FragmentManager;
@@ -22,7 +23,7 @@ public class AddContact extends Activity {
 
 	private static final int ADD_KONTAKT_DIALOG = 1;
 	private static final String TAG = AddContact.class.getSimpleName();
-	
+
 	
 	
 	@Override
@@ -90,7 +91,12 @@ public class AddContact extends Activity {
 	
 	public void updateList(){
 		Log.d(TAG, "Updating List");
-		ArrayList<String> updatelist = new ArrayList<String>();
+		
+		
+		List<Kontakt> updatelist = new ArrayList<Kontakt>();
+		
+		
+		//ArrayList<String> updatelist = new ArrayList<String>();
 		KontaktDBHelper mDbHelper = new KontaktDBHelper(this);
 		SQLiteDatabase db = mDbHelper.getReadableDatabase();
 
@@ -116,24 +122,30 @@ public class AddContact extends Activity {
 
 		Log.d(TAG, "Cursor: " + c.toString());
 
+		
+	
 		if (c.moveToFirst()){
 
 			do {
-				updatelist.add(c.getString(1));;
-				updatelist.add(c.getString(2));
+			
+			String name = c.getString(1);
+			String phoneNumber = c.getString(2);
+			Kontakt objContact = new Kontakt();
+			objContact.setName(name);
+			objContact.setPhoneNo(phoneNumber);
+			updatelist.add(objContact);
+		
 			}	 while (c.moveToNext());
 		}
 
-		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.zeige_kontaktlise_element, updatelist);
-		// Content View auf activity_kontaktliste aendern /2013-12-30 WiR
+		
+		KontaktAdapter objAdapter = new KontaktAdapter(this, R.layout.alluser_row, updatelist);
 		setContentView(R.layout.activity_add_contact);
 		ListView list = (ListView) findViewById(R.id.updateList);
-		// Content View wieder zuruecksetzen /2013-12-30 WiR
-		// setContentView(R.layout.activity_kontakt_manuell_hinzu);
-
-		Log.d(TAG,"ListView list: " +list.toString());
-		list.setAdapter(adapter);	
+		list.setAdapter(objAdapter);
+		
 	}
+		
 	
 	
 	
