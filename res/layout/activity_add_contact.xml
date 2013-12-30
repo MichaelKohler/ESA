@@ -18,7 +18,7 @@
         android:text="@string/kontakthinzubutton" />
 
     <ListView
-        android:id="@+id/furz"
+        android:id="@+id/updateList"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@+id/contactAddButton" />

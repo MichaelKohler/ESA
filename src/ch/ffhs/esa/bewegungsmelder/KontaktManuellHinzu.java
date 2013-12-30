@@ -104,56 +104,12 @@ public class KontaktManuellHinzu extends Activity {
 		Intent intent = new Intent(this, AddContact.class);
 		startActivity(intent);
 
-		updateList();
+		
 	}
 
 
-	public void updateList(){
-		Log.d(TAG, "Updating List");
-		ArrayList<String> updatelist = new ArrayList<String>();
-		KontaktDBHelper mDbHelper = new KontaktDBHelper(this);
-		SQLiteDatabase db = mDbHelper.getReadableDatabase();
-
-		String[] projection = {
-
-				KontaktTabelle._ID,
-				KontaktTabelle.COLUMN_NAME_NAME,
-				KontaktTabelle.COLUMN_NAME_NUMBER,
-
-		};
-
-		Cursor c = null;
-
-		try {
-			c = db.query(KontaktTabelle.TABLE_NAME, projection, null, null, null, null, null);
-		} catch (Exception e) {
-			c = db.rawQuery("SELECT  * FROM " + KontaktTabelle.TABLE_NAME, null);
-			for (int i = 0; i < c.getColumnCount();i++){
-				Log.d(TAG, "Catched an exception on query!!!! Raw Query of column " +i + ":" + c.getColumnName(i) );
-			}
-			e.printStackTrace();
-		}
-
-		Log.d(TAG, "Cursor: " + c.toString());
-
-		if (c.moveToFirst()){
-
-			do {
-				updatelist.add(c.getString(1));;
-				updatelist.add(c.getString(2));
-			}	 while (c.moveToNext());
-		}
-
-		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.alluser_row, updatelist);
-		// Content View auf activity_kontaktliste aendern /2013-12-30 WiR
-		setContentView(R.layout.activity_kontaktliste);
-		ListView list = (ListView) findViewById(R.id.kontaktliste);
-		// Content View wieder zuruecksetzen /2013-12-30 WiR
-		setContentView(R.layout.activity_kontakt_manuell_hinzu);
-
-		Log.d(TAG,"ListView list: " +list.toString());
-		list.setAdapter(adapter);	
-	}		
+	
+		
 }
 
 
