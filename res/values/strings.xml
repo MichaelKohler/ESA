@@ -15,12 +15,12 @@
     <string name="title_activity_developer">DeveloperActivity</string>
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_kontakt">Kontakt</string>
-    <string name="title_activity_kontakt_main">KontaktMain</string>
-    <string name="title_activity_add_contact">Kontakt Hinzufugen</string>
+    <string name="title_activity_kontakt_main">Kontakt Main</string>
+    <string name="title_activity_add_contact">Kontakt Hinzufügen</string>
     <string name="contact_choice_title">Wählen Sie</string>
     <string name="title_activity_zeige_kontaktliste">ZeigeKontaktliste</string>
     <string name="title_activity_kontakt_liste_test">KontaktListeTestActivity</string>
-    <string name="title_activity_kontakt_manuell_hinzu">KontaktManuellHinzu</string>
+    <string name="title_activity_kontakt_manuell_hinzu">Kontakt manuell hinzu</string>
     <string name="kontakthinzubutton">Kontakt hinzufügen</string>
     <string name="kontaktspeichernbutton">Speichern</string>
     <string name="kontaktspeichernabbrechenbutton">Abbrechen</string>

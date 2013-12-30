@@ -155,7 +155,16 @@ OnItemClickListener {
 	@Override
 	public void onItemClick(AdapterView<?> listView, View v, int position, long id) {
 		
-		Toast.makeText(this, "Ich wurde geklickt" , Toast.LENGTH_SHORT).show();
+		//Toast.makeText(this, "Ich wurde geklickt" , Toast.LENGTH_SHORT).show();
+		
+		
+		
+		FragmentManager manager = getFragmentManager();
+		KontaktManageDialogFragment d = new KontaktManageDialogFragment ();
+		d.show(manager, "KontaktManageDialogFragment");
+		 
+		
+		
 	}
 		
 	

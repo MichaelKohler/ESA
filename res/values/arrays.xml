@@ -13,4 +13,12 @@
         <item name="Manuell">Manuell hinzufuegen</item>
         
     </string-array>
+    
+        
+        <string-array name="kontakt_manage_array">
+            <item name="Kontaktloeschen">Kontakt löschen</item>
+        <item name="Bearbeiten">Kontakt Bearbeiten</item>
+        <item name="Primary">Als Primär Kontakt setzen</item>
+    </string-array>
+        
 </resources>
