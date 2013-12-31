@@ -98,8 +98,14 @@ public class KontaktManuellHinzu extends Activity {
 		int count = cursor.getCount();
 	    cursor.close();
 		
+		if(name.matches("") || telefonnummer.matches ("")){
+			
+			Toast toast = Toast.makeText(getApplicationContext(), "Bitte beide Felder vollständig ausfüllen", Toast.LENGTH_SHORT);
+			toast.show();	
+		}
+		else{
 		
-		if (count < 5){
+		if (count < 5 ){
 		
 		db.insert(
 				KontaktTabelle.TABLE_NAME,
@@ -128,10 +134,23 @@ public class KontaktManuellHinzu extends Activity {
 			
 		}
 		
-		
+		}
 	}
 
+	public void abbrechen (View view){
 
+		EditText t_name_clear = (EditText)findViewById(R.id.name);
+		EditText t_telnummer_clear = (EditText)findViewById(R.id.telnummer);	
+		t_name_clear.setText("");	
+		t_telnummer_clear.setText("");
+		
+		Intent intent = new Intent(this, AddContact.class);
+		startActivity(intent);
+
+		}
+	
+	
+	
 	
 		
 }
