@@ -17,6 +17,7 @@ Mario:
 	[X] Kontakte aus TelBuch in DB schreiben
 	[X] Max 5 KontakteControl
  	[X] Kontakte importieren (Kontaktreferenz in DB)
+ 	[X] Abbrechen() Methode; Felder leer Kontrolle
 	[ ] Kontakte editieren
 	[ ] Kontakte loeschen
 	
