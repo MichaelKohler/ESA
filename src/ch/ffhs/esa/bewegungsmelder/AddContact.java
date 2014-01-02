@@ -28,6 +28,7 @@ OnItemClickListener {
 	private static final int ADD_KONTAKT_DIALOG = 1;
 	private static final String TAG = AddContact.class.getSimpleName();
 	private ListView listView;
+	private  int geklicktesItem;
 	
 	
 	@Override
@@ -134,11 +135,15 @@ OnItemClickListener {
 
 			do {
 			
+			String ID = c.getString(0);	
 			String name = c.getString(1);
 			String phoneNumber = c.getString(2);
+			
 			Kontakt objContact = new Kontakt();
 			objContact.setName(name);
 			objContact.setPhoneNo(phoneNumber);
+			objContact.setObjektID(ID);
+			
 			updatelist.add(objContact);
 		
 			}	 while (c.moveToNext());
@@ -150,27 +155,78 @@ OnItemClickListener {
 		ListView list = (ListView) findViewById(R.id.updateList);
 		list.setAdapter(objAdapter);
 		
+		
+	/*
+	Object o = list
+	Kontakt k = (Kontakt)o;
+	String s = k.getName();
+	
+	Toast.makeText(this, "Das ist s " +s , Toast.LENGTH_SHORT).show();
+		
+	*/	
+
+		
 	}
 
+	
+	
 	@Override
 	public void onItemClick(AdapterView<?> listView, View v, int position, long id) {
 		
-		//Toast.makeText(this, "Ich wurde geklickt" , Toast.LENGTH_SHORT).show();
+		
+		
+		
+	//	Toast.makeText(this, "Ich wurde geklickt " + position , Toast.LENGTH_SHORT).show();
+		
 		
 		
 		
 		FragmentManager manager = getFragmentManager();
 		KontaktManageDialogFragment d = new KontaktManageDialogFragment ();
 		d.show(manager, "KontaktManageDialogFragment");
-		 
 		
+		
+	
 		
 	}
+	
+	
+	
+	public void deleteKontakt(){
 		
-	
+		ListView list = (ListView) findViewById(R.id.updateList);
+		Object o = list.getItemAtPosition(geklicktesItem);
+		Kontakt k = (Kontakt)o;
+		String s = k.getObjektID();
+		KontaktDBHelper mDbHelper = new KontaktDBHelper(this);
+		SQLiteDatabase db = mDbHelper.getWritableDatabase();
+		String selection = "_ID ='"+s+"'";
+		db.delete(KontaktTabelle.TABLE_NAME, selection, null);
+		
+		 
+		
+	}
 	
 	
 		
+	public void modifyKontakt(){
+		
+		ListView list = (ListView) findViewById(R.id.updateList);
+		Object o = list.getItemAtPosition(geklicktesItem);
+		Kontakt k = (Kontakt)o;
+		String name = k.getName();
+		String nummer = k.getPhoneNo();
+		
+		
+		
+		
+	}	
+	
+
+
+	
+
+	
 	};
 	
 	
