@@ -45,7 +45,10 @@ Ralf:
 		[x] Tag / Nachtmodus button, verschiedene Timer
 		[x] Broadcast an MainActivity übergeben? 
 		[x] Service start Button auf MainActivity implementieren
+		[ ] Service stoppt, wenn das Phone gedreht wird (State wird nicht übernommen)
 	[x] PositionService
 		[x] Broadcast receiver für den Position service erstellen
 		[x] Position bestimmen implementieren
 		[x] Broadcast sender für die aktuelle Position erstellen. Ziel: SMS?
+		[ ] Abbruchbedingung wenn keine genaue Position gefunden wird
+		
