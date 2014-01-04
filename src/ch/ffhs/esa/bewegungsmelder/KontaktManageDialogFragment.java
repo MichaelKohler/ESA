@@ -38,7 +38,9 @@ public class KontaktManageDialogFragment extends DialogFragment {
                 	
                 	else if (which == 1){
                 		
-                		Toast.makeText(getActivity(), "zweites item ausgewählt", Toast.LENGTH_SHORT).show();
+                		
+                		((AddContact)getActivity()).modifyKontakt();
+                		//Toast.makeText(getActivity(), "zweites item ausgewählt", Toast.LENGTH_SHORT).show();
                 		
                 	}
                 	

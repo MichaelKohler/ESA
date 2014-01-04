@@ -1,0 +1,58 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".KontaktUpdate" >
+
+ 
+
+     <TextView
+        android:id="@+id/labelTopLeft"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <EditText
+        android:id="@+id/update_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/labelTopLeft"
+        android:layout_below="@+id/labelTopLeft"
+        android:layout_marginTop="14dp"
+        android:ems="10"
+        android:inputType="textPersonName" />
+
+    <Button
+        android:id="@+id/update_speichern"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/update_name"
+        android:layout_centerVertical="true"
+        android:onClick="updateSpeichern"
+        android:text="@string/kontaktspeichernbutton" />
+
+    <EditText
+        android:id="@+id/update_telnummer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/update_name"
+        android:layout_below="@+id/update_name"
+        android:ems="10"
+        android:inputType="phone" >
+
+    </EditText>
+
+    <Button
+        android:id="@+id/update_abbrechen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="39dp"
+        android:onClick="updateAbbrechen"
+        android:text="@string/kontaktspeichernabbrechenbutton" />
+
+</RelativeLayout>

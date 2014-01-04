@@ -7,6 +7,7 @@ import java.util.List;
 
 import android.app.Activity;
 import android.app.FragmentManager;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -185,6 +186,7 @@ OnItemClickListener {
 		KontaktManageDialogFragment d = new KontaktManageDialogFragment ();
 		d.show(manager, "KontaktManageDialogFragment");
 		
+		geklicktesItem = position;
 		
 	
 		
@@ -192,7 +194,7 @@ OnItemClickListener {
 	
 	
 	
-	public void deleteKontakt(){
+public void deleteKontakt(){
 		
 		ListView list = (ListView) findViewById(R.id.updateList);
 		Object o = list.getItemAtPosition(geklicktesItem);
@@ -208,17 +210,21 @@ OnItemClickListener {
 	}
 	
 	
-		
+	
 	public void modifyKontakt(){
 		
 		ListView list = (ListView) findViewById(R.id.updateList);
 		Object o = list.getItemAtPosition(geklicktesItem);
 		Kontakt k = (Kontakt)o;
+		String tel = k.getPhoneNo();
 		String name = k.getName();
-		String nummer = k.getPhoneNo();
+		String id = k.getObjektID();
 		
-		
-		
+		Intent intent = new Intent(this, KontaktUpdate.class);
+		intent.putExtra("Telefonnummer", tel);
+		intent.putExtra("Name", name);
+		intent.putExtra("ID", id);
+		startActivity(intent);
 		
 	}	
 	

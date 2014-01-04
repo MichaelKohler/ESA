@@ -32,5 +32,6 @@
     <string name="title_activity_contact_list">ContactListActivity</string>
     <string name="title_activity_kontaktliste">Kontaktliste</string>
     <string name="name_hint">Name eingeben</string>
+    <string name="title_activity_kontakt_update">KontaktUpdate</string>
 
 </resources>

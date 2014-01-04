@@ -105,6 +105,13 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="ch.ffhs.esa.bewegungsmelder.AddContact" />
         </activity>
+        <activity
+            android:name="ch.ffhs.esa.bewegungsmelder.KontaktUpdate"
+            android:label="@string/title_activity_kontakt_update" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="ch.ffhs.esa.bewegungsmelder.AddContact" />
+        </activity>
     </application>
 
 </manifest>
