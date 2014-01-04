@@ -2,6 +2,14 @@ Abgabetermin der Beta Version: 2013-12-23 Montag
 ===================================
 Naechstes Meeting: 2013-12-26 Donnerstag 14:00 Uhr
 
+Abgabe 2013-01-06:
+
+[ ] Ausgefuellter Testplan
+[ ] Release Notes
+[ ] Projekt
+
+---------------------------------------------------------------------------------------------------------------------------------------
+
 [ ] Testcases: Sollen noch destruktiver ausgefuehrt werden
 [x] Umschaltung Tag / Nachtmodus
 
