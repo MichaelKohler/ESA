@@ -124,18 +124,18 @@ public void updateSpeichern (View view){
 		KontaktDBHelper mDbHelper = new KontaktDBHelper(this);
 		SQLiteDatabase db = mDbHelper.getWritableDatabase();
 		
-			
+		
 		EditText t_update_name = (EditText)findViewById(R.id.update_name);
 		EditText t_update_telnummer = (EditText)findViewById(R.id.update_telnummer);
-		
-		t_update_name.setText(update_name);
-		t_update_telnummer.setText(update_telefonnummer);
 	
+			
+		String name_new = t_update_name.getText().toString();
+		String telefonnummer_new = t_update_telnummer.getText().toString();
 		
 		ContentValues values = new ContentValues();
 
-		values.put(KontaktTabelle.COLUMN_NAME_NAME, update_name);
-		values.put(KontaktTabelle.COLUMN_NAME_NUMBER, update_telefonnummer);
+		values.put(KontaktTabelle.COLUMN_NAME_NAME, name_new);
+		values.put(KontaktTabelle.COLUMN_NAME_NUMBER, telefonnummer_new);
 		
 		
 		
@@ -146,7 +146,9 @@ public void updateSpeichern (View view){
 		}
 		else{    */
 			
-			String selection = "_ID ='"+ObjektID+"'"; ;
+		String whereID = getObjektID();
+		
+			String selection = "_ID ='"+whereID+"'"; ;
 			
 		
 		db.update(
@@ -160,7 +162,7 @@ public void updateSpeichern (View view){
 		Intent intent_b = new Intent(this, AddContact.class);
 		startActivity(intent_b);
 		
-		Toast toast = Toast.makeText(getApplicationContext(), "Kontakt: " + update_name + " Telefonnummer: " + update_telefonnummer + " wurde upgedated", Toast.LENGTH_SHORT);
+		Toast toast = Toast.makeText(getApplicationContext(), "Kontakt: " + name_new + " Telefonnummer: " + telefonnummer_new + " wurde upgedated", Toast.LENGTH_SHORT);
 		toast.show();
 
 		

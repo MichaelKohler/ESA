@@ -84,7 +84,6 @@ public class KontaktManuellHinzu extends Activity {
 		EditText t_name = (EditText)findViewById(R.id.name);
 		EditText t_telnummer = (EditText)findViewById(R.id.telnummer);
 		String name = t_name.getText().toString();
-
 		String telefonnummer = t_telnummer.getText().toString();
 		
 		ContentValues values = new ContentValues();
