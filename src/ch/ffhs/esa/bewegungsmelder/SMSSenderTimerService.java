@@ -36,6 +36,7 @@ public class SMSSenderTimerService extends Service {
     public void onStart(Intent intent, int startId) {
         // Wird nach onCreate ausgefuehrt
         super.onStart(intent, startId);
+        Helper.emergencyOngoing = false;
         handler.postDelayed(runnable, interval);
     }
 
@@ -57,6 +58,7 @@ public class SMSSenderTimerService extends Service {
      */
     @Override
     public void onDestroy() {
+        Helper.emergencyOngoing = false;
         super.onDestroy();
     }
 
