@@ -58,7 +58,7 @@ public class Helper {
      */
     public static void sendPOSTRequest(String aServerURL, String aServerPort) {
       Log.d("Helper", "SENDING NETWORK REQUEST!!");
-      //new POSTTask().execute(aServerURL, aServerPort);
+      new POSTTask().execute(aServerURL, aServerPort);
     }
 
     /**
