@@ -38,11 +38,6 @@ public class KontaktDBHelper extends SQLiteOpenHelper {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);    
     }
 
-    public KontaktDBHelper () {
-        // we need the MainActivity Context here -> how??
-        super(null, DATABASE_NAME, null, DATABASE_VERSION);
-    }
-
     public void onCreate(SQLiteDatabase db) {
     	Log.d(TAG, "Table creation executed!");
     	//db.execSQL(SQL_DELETE_ENTRIES); // Benoetigt um falsche DB zu l�schen :-)

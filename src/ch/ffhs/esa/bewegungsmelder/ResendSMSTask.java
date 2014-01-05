@@ -17,8 +17,7 @@ import java.util.ArrayList;
 public class ResendSMSTask extends AsyncTask<Integer, Integer, Integer> {
     protected Integer doInBackground(Integer... params) {
         Log.d("ResendSMSTask", "Running async sms sending..");
-        ArrayList<String> phoneNumbers = new KontaktDBHelper().getAllContactsNumbers();
-        String currentPhoneNumber = phoneNumbers.get(params[0] % phoneNumbers.size());
+        String currentPhoneNumber = ""; // TODO: get next phone number using KontaktDbHelper!!
         Helper.sendEmergencySMS(currentPhoneNumber, Helper.emergencyMessage);
         return 0;
     }
