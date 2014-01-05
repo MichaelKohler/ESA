@@ -51,7 +51,11 @@
             android:enabled="true"
             android:process=":ServiceProcess" >
         </service>
-
+        <service
+                android:name="ch.ffhs.esa.bewegungsmelder.SMSSenderTimerService"
+                android:enabled="true"
+                android:process=":ServiceProcess" >
+        </service>
         <activity
             android:name="ch.ffhs.esa.bewegungsmelder.Kontakt"
             android:label="@string/title_activity_kontakt" >

@@ -38,7 +38,7 @@ Michi:
 	[x] SMS quittieren (leere SMS)
 	                      [x] Receiver
 	                      [x] Keep state
-	                      [ ] Methode, um die SMS an eine weitere Person zu senden, wenn X Minuten vorbei sind
+	                      [x] Methode, um die SMS an eine weitere Person zu senden, wenn X Minuten vorbei sind
 	[x] Einstellungen
 	[ ] ServerService erweitern
 	[ ] Setting-Button in AddContact Activity rausnehmen

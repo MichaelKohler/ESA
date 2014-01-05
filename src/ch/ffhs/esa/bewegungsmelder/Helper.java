@@ -15,9 +15,12 @@ import android.net.Uri;
 import android.telephony.SmsManager;
 import android.util.Log;
 
+import java.util.ArrayList;
+
 public class Helper {
-    public static boolean emergencyOngoing = false;
+    public static boolean emergencyOngoing = true;
     public static boolean emergencyConfirmed = false;
+    public static String emergencyMessage = "";
     private static final String TAG = Helper.class.getSimpleName();
 
     /**
@@ -54,8 +57,22 @@ public class Helper {
      * @param aServerPort
      */
     public static void sendPOSTRequest(String aServerURL, String aServerPort) {
-      Log.d("Helper", "SENDING REQUEST!!");
+      Log.d("Helper", "SENDING NETWORK REQUEST!!");
       //new POSTTask().execute(aServerURL, aServerPort);
     }
 
+    /**
+     * resends the SMS if necessary
+     *
+     * @author Michael Kohler
+     * @param counter to indicate which round we're on
+     */
+    public static void checkAndResendSMS(int counter) {
+        Log.d("Helper", "Checking if SMS necessary");
+        Log.d("Helper", "SMS: Ongoing? " + emergencyOngoing);
+        Log.d("Helper", "SMS Confirmed? " + emergencyConfirmed);
+        if (emergencyOngoing && !emergencyConfirmed) {
+            new ResendSMSTask().execute(counter);
+        }
+    }
 }

@@ -37,9 +37,14 @@ public class KontaktDBHelper extends SQLiteOpenHelper {
     public KontaktDBHelper (Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);    
     }
+
+    public KontaktDBHelper () {
+        super(null, DATABASE_NAME, null, DATABASE_VERSION);
+    }
+
     public void onCreate(SQLiteDatabase db) {
     	Log.d(TAG, "Table creation executed!");
-    	//db.execSQL(SQL_DELETE_ENTRIES); // Benoetigt um falsche DB zu löschen :-)
+    	//db.execSQL(SQL_DELETE_ENTRIES); // Benoetigt um falsche DB zu lï¿½schen :-)
         db.execSQL(SQL_CREATE_ENTRIES);
     }
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
@@ -68,7 +73,7 @@ public class KontaktDBHelper extends SQLiteOpenHelper {
         // loop through all results
         if (cursor.moveToFirst()) {
             do {
-                contactList.add(cursor.getString(4));
+                contactList.add(cursor.getString(2));
             } while (cursor.moveToNext());
         }
 

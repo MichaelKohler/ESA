@@ -35,7 +35,6 @@ public class SMSReceiver extends BroadcastReceiver {
                     if (receivedMessage.equals("")) {
                         Helper.emergencyConfirmed = true;
                         Helper.emergencyOngoing = false;
-                        // TODO: display "help on the way" or similar notification to the user?
                         Toast.makeText(context, "HILFE KOMMT!!!", Toast.LENGTH_SHORT).show();
                         break;
                     }

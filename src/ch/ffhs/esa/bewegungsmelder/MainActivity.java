@@ -11,6 +11,7 @@ package ch.ffhs.esa.bewegungsmelder;
  *  - Michael Kohler <mkohler@picobudget.com>
  *  */
 
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.app.Activity;
@@ -45,6 +46,7 @@ public class MainActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		Log.d(TAG, "Method: onCreate");
+        Helper.emergencyOngoing = false;
         // Starting the SMS Receiver // KoM 2013-12-23
         Log.d(TAG, "Registering SMS Receiver!");
         SMSReceiver smsReceiver = new SMSReceiver();
@@ -63,20 +65,26 @@ public class MainActivity extends Activity {
 		LocationReceiver lr = new LocationReceiver();
 		registerReceiver(lr, new IntentFilter(LocationService.LOCATION_ACTION));
 
+        // Starting the Resend Service // KoM 2013-01-04
+        Log.d(TAG, "Starting the SMSSenderTimerService!");
+        Intent j = new Intent(this, SMSSenderTimerService.class);
+        startService(j);
+
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 	}
 
     @Override
     /**
-     * stop the serverservice before destroying
+     * stop the services before destroying
      *
      * @author Michael Kohler
      */
     public void onDestroy() {
     	Log.d(TAG, "Method: onDestroy");
-     //   MainActivity.this.stopService(new Intent(MainActivity.this, MotionDetectionService.class));
-  
+        MainActivity.this.stopService(new Intent(MainActivity.this, MotionDetectionService.class));
+        MainActivity.this.stopService(new Intent(MainActivity.this, ServerService.class));
+        MainActivity.this.stopService(new Intent(MainActivity.this, SMSSenderTimerService.class));
         super.onDestroy();
     }
 
@@ -248,9 +256,8 @@ public class MainActivity extends Activity {
 							 mLong = bundle.getFloat("LONGITUDE");
 							setPositionData(mLat, mLong, mAcc);
 
-                            // TODO: act if no response is coming back -> sending to next contact
-                            ArrayList<String> phoneNumber = new KontaktDBHelper(MainActivity.this).getAllContactsNumbers();
-                            handleEmergencySMS(phoneNumber.get(0));
+                            ArrayList<String> phoneNumbers = new KontaktDBHelper(MainActivity.this).getAllContactsNumbers();
+                            handleEmergencySMS(phoneNumbers.get(0));
 
 							context.stopService(new Intent(context, LocationService.class));
 							Log.d(TAG, "Broadcast receiver unregistered, service stopped! Accuracy: " +mAcc);
@@ -287,15 +294,12 @@ public class MainActivity extends Activity {
     private void handleEmergencySMS(String aPhoneNumber) {
         Helper.emergencyOngoing = true;
         Helper.emergencyConfirmed = false;
-  //      String message = "Notruf! Koordinaten, Lat: " + Float.toString(latitude) + ", Long: " + Float.toString(longitude) + ".. Bitte mit leerer SMS bestaetigen.";
-        String message = "Notruf! Position: https://maps.google.com/maps?q=" + Float.toString(latitude) +","+ Float.toString(longitude) + ".. Bitte mit leerer SMS bestaetigen.";
-        
-        Log.d(TAG, "Sending SMS: Number: " + aPhoneNumber + "Content: " + message);
-        Helper.sendEmergencySMS(aPhoneNumber, message);
+        Helper.emergencyMessage = "Notruf! Position: https://maps.google.com/maps?q=" + Float.toString(latitude) +","+ Float.toString(longitude) + ".. Bitte mit leerer SMS bestaetigen.";
+        Log.d(TAG, "Sending SMS: Number: " + aPhoneNumber + " Content: " + Helper.emergencyMessage);
+        Helper.sendEmergencySMS(aPhoneNumber, Helper.emergencyMessage);
         Context context = getApplicationContext();
         Toast.makeText(context, "Message sent!", Toast.LENGTH_LONG).show();
         Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
         vibrator.vibrate(500);
     }
-
 }
