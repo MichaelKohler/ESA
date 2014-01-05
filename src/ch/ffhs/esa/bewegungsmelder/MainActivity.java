@@ -44,6 +44,7 @@ public class MainActivity extends Activity {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		Log.d(TAG, "Method: onCreate");
         // Starting the SMS Receiver // KoM 2013-12-23
         Log.d(TAG, "Registering SMS Receiver!");
         SMSReceiver smsReceiver = new SMSReceiver();
@@ -53,6 +54,14 @@ public class MainActivity extends Activity {
         Log.d(TAG, "Starting the Server Service!");
         Intent i = new Intent(this, ServerService.class);
         startService(i);
+        
+        // Register MotionDetectionReceiver
+        MotionDetectionStatusReceiver br = new MotionDetectionStatusReceiver();
+		registerReceiver(br, new IntentFilter(MotionDetectionService.MOTION_DETECTION_ACTION));
+		
+		// Register LocationReceiver
+		LocationReceiver lr = new LocationReceiver();
+		registerReceiver(lr, new IntentFilter(LocationService.LOCATION_ACTION));
 
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
@@ -65,7 +74,9 @@ public class MainActivity extends Activity {
      * @author Michael Kohler
      */
     public void onDestroy() {
-        MainActivity.this.stopService(new Intent(MainActivity.this, MotionDetectionService.class));
+    	Log.d(TAG, "Method: onDestroy");
+     //   MainActivity.this.stopService(new Intent(MainActivity.this, MotionDetectionService.class));
+  
         super.onDestroy();
     }
 
@@ -152,11 +163,10 @@ public class MainActivity extends Activity {
                     ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
                     progressBar.setProgress((Integer) bundle.get("TIMER_PROGRESS_LEVEL"));
 
-					// stop service, unregister Broadcast receiver
+					// stop service
 					if(!(Boolean)bundle.get("TIMER_RUNNING_BOOL")){
 						context.stopService(new Intent(context, MotionDetectionService.class));
-						context.unregisterReceiver(MotionDetectionStatusReceiver.this);
-						Log.d(TAG, "Broadcast receiver unregistered, service stopped!");
+						Log.d(TAG, "Service stopped!");
 						runLocationService();
 					}
 				}
@@ -176,17 +186,19 @@ public class MainActivity extends Activity {
 	}
 	
 	private void enableSupervision() {
+		Log.d(TAG, "Method: enableSupervision");
         ((TextView) findViewById(R.id.labelTopLeft)).setText(R.string.supervision_running);
         ((Button) findViewById(R.id.buttonToggleSupervision)).setText(R.string.stop_supervision);
 		Log.d(TAG, "Starting motion service!");
-		MotionDetectionStatusReceiver br = new MotionDetectionStatusReceiver();
-		registerReceiver(br, new IntentFilter(MotionDetectionService.MOTION_DETECTION_ACTION));
+//		MotionDetectionStatusReceiver br = new MotionDetectionStatusReceiver();
+//		registerReceiver(br, new IntentFilter(MotionDetectionService.MOTION_DETECTION_ACTION));
 		Intent i = new Intent(this, MotionDetectionService.class);
 		i.putExtra("MODE", dayMode); // Day or Night Mode
 		startService(i);
 	}
 	
 	private void disableSupervision() {
+		Log.d(TAG, "Method: disableSupervision");
         ((TextView) findViewById(R.id.labelTopLeft)).setText(R.string.supervision_stopped);
         ((Button) findViewById(R.id.buttonToggleSupervision)).setText(R.string.start_supervision);
 		Log.d(TAG, "Stopping motion service!");
@@ -211,8 +223,7 @@ public class MainActivity extends Activity {
 	
 	private void runLocationService() {		
 		Log.d(TAG, "Getting Position...");
-		LocationReceiver br = new LocationReceiver();
-		registerReceiver(br, new IntentFilter(LocationService.LOCATION_ACTION));
+	
 		startService(new Intent(this, LocationService.class));
 	}
 	// Receiver des Location Services
@@ -242,7 +253,6 @@ public class MainActivity extends Activity {
                             handleEmergencySMS(phoneNumber.get(0));
 
 							context.stopService(new Intent(context, LocationService.class));
-							context.unregisterReceiver(LocationReceiver.this);
 							Log.d(TAG, "Broadcast receiver unregistered, service stopped! Accuracy: " +mAcc);
 						}
 					}
