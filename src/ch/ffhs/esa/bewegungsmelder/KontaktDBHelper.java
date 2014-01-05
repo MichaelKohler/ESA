@@ -39,6 +39,7 @@ public class KontaktDBHelper extends SQLiteOpenHelper {
     }
 
     public KontaktDBHelper () {
+        // we need the MainActivity Context here -> how??
         super(null, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
