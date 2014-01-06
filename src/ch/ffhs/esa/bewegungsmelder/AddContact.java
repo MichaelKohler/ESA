@@ -77,24 +77,27 @@ OnItemClickListener {
 	}
 
 	
+	
+	/**
+	 * Diese Methode öffnet den Dialog mit der Wahlmöglichkeit für das hinzufügen der Kontakte. 
+	 * @author Mario Aloise
+	 */
+	
 	public void contactAdd (View view){
-		
-		/*	
-					Intent intent = new Intent(this, KontaktManuellHinzu.class);
-		startActivity(intent);
-		
-	*/
 		
 		
 		FragmentManager manager = getFragmentManager();
 		KontaktDialogFragment d = new KontaktDialogFragment ();
 		d.show(manager, "KontaktDialogFragment");
-		
-		
+			
 		
 	}
 
-	
+	/**
+	 * Diese Methode wird jedesmal aufgerufen, wenn die Activity erstellt wird und sorgt dafür, dass die Kontaktliste
+	 * immer aktualisiert wird. 
+	 * @author Mario Aloise
+	 */	
 	
 	
 	public void updateList(){
@@ -104,7 +107,6 @@ OnItemClickListener {
 		List<Kontakt> updatelist = new ArrayList<Kontakt>();
 		
 		
-		//ArrayList<String> updatelist = new ArrayList<String>();
 		KontaktDBHelper mDbHelper = new KontaktDBHelper(this);
 		SQLiteDatabase db = mDbHelper.getReadableDatabase();
 
@@ -157,30 +159,22 @@ OnItemClickListener {
 		list.setAdapter(objAdapter);
 		
 		
-	/*
-	Object o = list
-	Kontakt k = (Kontakt)o;
-	String s = k.getName();
-	
-	Toast.makeText(this, "Das ist s " +s , Toast.LENGTH_SHORT).show();
-		
-	*/	
 
 		
 	}
 
 	
+	/**
+	 * Diese Methode öffnet den Dialog mit der Wahlmöglichkeit für löschen, verändern und setzen des 
+	 * Primary Flags eines gewählten Kontaktes (primary Flag funktioniert noch nicht). 
+	 * @author Mario Aloise
+	 */	
 	
 	@Override
 	public void onItemClick(AdapterView<?> listView, View v, int position, long id) {
 		
 		
-		
-		
-	//	Toast.makeText(this, "Ich wurde geklickt " + position , Toast.LENGTH_SHORT).show();
-		
-		
-		
+	
 		
 		FragmentManager manager = getFragmentManager();
 		KontaktManageDialogFragment d = new KontaktManageDialogFragment ();
@@ -192,6 +186,11 @@ OnItemClickListener {
 		
 	}
 	
+
+	/**
+	 * Diese Methode erlaubt das löschen eines Kontaktes.
+	 * @author Mario Aloise
+	 */
 	
 	
 public void deleteKontakt(){
@@ -209,7 +208,10 @@ public void deleteKontakt(){
 		
 	}
 	
-	
+/**
+ * Diese Methode erlaubt das editieren eines Kontaktes.
+ * @author Mario Aloise
+ */
 	
 	public void modifyKontakt(){
 		
@@ -229,8 +231,6 @@ public void deleteKontakt(){
 	}	
 	
 
-
-	
 
 	
 	};
