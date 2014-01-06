@@ -82,6 +82,7 @@ public class MotionDetectionService extends Service implements SensorEventListen
 			i.putExtra("TIMER_RUNNING_BOOL", timerRunning); // Boolean
 			i.putExtra("TIMER_RUNNING_STR", timerRunningStr);
             i.putExtra("TIMER_PROGRESS_LEVEL", (int)progressLevel);
+            i.putExtra("TIMER_STOPPED", false); // Boolean
 			sendBroadcast(i);	 
 
 			Log.d(TAG, "Broadcast! Timer: " + timer /1000 + "s until alarm. Timer Status: " + timerRunningStr);
@@ -118,6 +119,8 @@ public class MotionDetectionService extends Service implements SensorEventListen
 		sendStatus.cancel();
 		stopTimer();
 		Log.d(TAG, "destroyed");	
+		Intent i = new Intent(MOTION_DETECTION_ACTION);		
+		sendBroadcast(i);
 	}
 
 	/* 

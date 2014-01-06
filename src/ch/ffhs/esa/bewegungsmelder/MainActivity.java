@@ -154,15 +154,15 @@ public class MainActivity extends Activity {
 					Log.d(TAG, "bundle != null");
 					String timeLeft = (String) bundle.get("TIME_LEFT");
 					String textMsg = "Status: " + (String) bundle.get("TIMER_RUNNING_STR") + " Time left: " + timeLeft;
-					
+
 					TextView textViewTimeLeft = (TextView) findViewById(R.id.textViewTimeLeft); 
 					textViewTimeLeft.setText(timeLeft);
 					Log.d(TAG, textMsg);
 
-                    // set progress bar accordingly
-                    ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
-                    progressBar.setProgress((Integer) bundle.get("TIMER_PROGRESS_LEVEL"));
-
+					// set progress bar accordingly
+					ProgressBar progressBar = (ProgressBar) findViewById(R.id.progressBar);
+					progressBar.setProgress((Integer) bundle.get("TIMER_PROGRESS_LEVEL"));
+					Log.d(TAG, "Progress Bar Set");
 					// stop service
 					if(!(Boolean)bundle.get("TIMER_RUNNING_BOOL")){
 						context.stopService(new Intent(context, MotionDetectionService.class));
@@ -170,6 +170,10 @@ public class MainActivity extends Activity {
 						Log.d(TAG, "Broadcast receiver unregistered, service stopped!");
 						runLocationService();
 					}
+				}
+				else{
+					Log.d(TAG, "Timer_Stopped");
+					context.unregisterReceiver(MotionDetectionStatusReceiver.this);
 				}
 			}
 		}
