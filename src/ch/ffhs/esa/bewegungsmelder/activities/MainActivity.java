@@ -269,7 +269,12 @@ public class MainActivity extends Activity {
 							setPositionData(mLat, mLong, mAcc);
 
                             ArrayList<String> phoneNumbers = new KontaktDBHelper(MainActivity.this).getAllContactsNumbers();
-                            handleEmergencySMS(phoneNumbers.get(0));
+                            if (phoneNumbers.size() > 0) {
+                                handleEmergencySMS(phoneNumbers.get(0));
+                            }
+                            else {
+                                Toast.makeText(context, "KEIN KONTAKT ERFASST -> KEINE SMS GESENDET!", Toast.LENGTH_SHORT).show();
+                            }
 
 							context.stopService(new Intent(context, LocationService.class));
 							context.unregisterReceiver(LocationReceiver.this);
