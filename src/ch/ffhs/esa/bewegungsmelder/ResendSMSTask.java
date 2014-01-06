@@ -15,10 +15,16 @@ import java.util.ArrayList;
  *  - Michael Kohler <mkohler@picobudget.com>
  *  */
 public class ResendSMSTask extends AsyncTask<Integer, Integer, Integer> {
+    private Context context;
+
+    public ResendSMSTask(Context aContext){
+        context = aContext;
+    }
+
     protected Integer doInBackground(Integer... params) {
         Log.d("ResendSMSTask", "Running async sms sending..");
         String currentPhoneNumber = ""; // TODO: get next phone number using KontaktDbHelper!!
-        Helper.sendEmergencySMS(currentPhoneNumber, Helper.emergencyMessage);
+        Helper.sendEmergencySMS(currentPhoneNumber, context);
         return 0;
     }
 }

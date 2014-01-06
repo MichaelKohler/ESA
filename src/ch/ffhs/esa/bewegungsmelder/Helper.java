@@ -10,17 +10,17 @@ package ch.ffhs.esa.bewegungsmelder;
  *  */
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
+import android.preference.PreferenceManager;
 import android.telephony.SmsManager;
 import android.util.Log;
 
 import java.util.ArrayList;
 
 public class Helper {
-    public static boolean emergencyOngoing = true;
-    public static boolean emergencyConfirmed = false;
-    public static String emergencyMessage = "";
     private static final String TAG = Helper.class.getSimpleName();
 
     /**
@@ -34,6 +34,17 @@ public class Helper {
         SmsManager smsManager = SmsManager.getDefault();
         smsManager.sendTextMessage(aPhoneNumber, null, aMessage, null, null);
         Log.d(TAG, "SMS Sent: Nr: " + aPhoneNumber + " Message: " +aMessage);
+    }
+
+    /**
+     * Sends the emergency SMS
+     *
+     * @author Michael Kohler
+     * @param String aPhoneNumber phone number of recipient
+     */
+    public static void sendEmergencySMS(String aPhoneNumber, Context aContext) {
+        String message = getEmergencyMessage(aContext);
+        sendEmergencySMS(aPhoneNumber, message);
     }
 
     /**
@@ -66,13 +77,96 @@ public class Helper {
      *
      * @author Michael Kohler
      * @param counter to indicate which round we're on
+     * @param aContext context
      */
-    public static void checkAndResendSMS(int counter) {
-        Log.d("Helper", "Checking if SMS necessary");
-        Log.d("Helper", "SMS: Ongoing? " + emergencyOngoing);
-        Log.d("Helper", "SMS Confirmed? " + emergencyConfirmed);
+    public static void checkAndResendSMS(int counter, Context aContext) {
+        boolean emergencyOngoing = isEmergencyOngoing(aContext);
+        Log.d("Helper", "Is emergency ongoing: " + emergencyOngoing);
+        boolean emergencyConfirmed = isEmergencyConfirmed(aContext);
+        Log.d("Helper", "Is emergency confirmed: " + emergencyConfirmed);
         if (emergencyOngoing && !emergencyConfirmed) {
-            new ResendSMSTask().execute(counter);
+            ResendSMSTask task = new ResendSMSTask(aContext);
+            task.execute(counter);
         }
+    }
+
+    /**
+     * returns whether an emergency is ongoing or not
+     *
+     * @author Michael Kohler
+     * @param aContext context
+     * @return whether an emergency is ongoing or not
+     */
+    public static boolean isEmergencyOngoing(Context aContext) {
+        return PreferenceManager.getDefaultSharedPreferences(aContext)
+                .getBoolean("pref_emergencyongoing", false);
+    }
+
+    /**
+     * returns whether an emergency is confirmed or not
+     *
+     * @author Michael Kohler
+     * @param aContext context
+     * @return whether an emergency is confirmed or not
+     *
+     */
+    public static boolean isEmergencyConfirmed(Context aContext) {
+        return PreferenceManager.getDefaultSharedPreferences(aContext)
+                .getBoolean("pref_emergencyconfirmed", false);
+    }
+
+    /**
+     * sets the emergency message for later use
+     *
+     * @author Michael Kohler
+     * @param aMessage - message to be stored
+     * @param aContext context
+     */
+    public static void setEmergencyMessage(String aMessage, Context aContext) {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(aContext);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putString("pref_emergencymessage", aMessage);
+        editor.commit();
+    }
+
+    /**
+     * returns the stored emergency message
+     *
+     * @author Michael Kohler
+     *
+     * @param aContext context
+     * @return emergency message
+     */
+    public static String getEmergencyMessage(Context aContext) {
+        return PreferenceManager.getDefaultSharedPreferences(aContext)
+                .getString("pref_emergencymessage", "");
+    }
+
+    /**
+     * sets whether an emergency is ongoing or not
+     *
+     * @author Michael Kohler
+     * @param aOngoing - whether emergency is ongoing or not
+     * @param aContext context
+     */
+    public static void setEmergencyOngoing(boolean aOngoing, Context aContext) {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(aContext);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putBoolean("pref_emergencyongoing", aOngoing);
+        editor.commit();
+    }
+
+    /**
+     * sets whether an emergency is confirmed or not
+     *
+     * @author Michael Kohler
+     * @param aConfirmed - whether emergency is confirmed or not
+     * @param aContext context
+     */
+    public static void setEmergencyConfirmed(boolean aConfirmed, Context aContext) {
+        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(aContext);
+        SharedPreferences.Editor editor = prefs.edit();
+        editor.putBoolean("pref_emergencyconfirmed", aConfirmed);
+        editor.commit();
     }
 }

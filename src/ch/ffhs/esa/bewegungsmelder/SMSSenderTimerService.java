@@ -11,6 +11,7 @@ package ch.ffhs.esa.bewegungsmelder;
  */
 
 import android.app.Service;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Handler;
 import android.os.IBinder;
@@ -18,13 +19,15 @@ import android.util.Log;
 
 public class SMSSenderTimerService extends Service {
     Handler handler = new Handler();
-    int interval = 60 * 1000;
+    int interval = 10 * 1000;
     int counter = 0;
+    Context context = this;
 
     private Runnable runnable = new Runnable() {
         @Override
         public void run() {
-            Helper.checkAndResendSMS(counter);
+            Log.d("Helper", "Checking if SMS necessary");
+            Helper.checkAndResendSMS(counter, context);
             counter++;
         }
     };
@@ -36,7 +39,6 @@ public class SMSSenderTimerService extends Service {
     public void onStart(Intent intent, int startId) {
         // Wird nach onCreate ausgefuehrt
         super.onStart(intent, startId);
-        Helper.emergencyOngoing = false;
         handler.postDelayed(runnable, interval);
     }
 
@@ -58,7 +60,6 @@ public class SMSSenderTimerService extends Service {
      */
     @Override
     public void onDestroy() {
-        Helper.emergencyOngoing = false;
         super.onDestroy();
     }
 

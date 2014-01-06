@@ -46,7 +46,6 @@ public class MainActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		Log.d(TAG, "Method: onCreate");
-        Helper.emergencyOngoing = false;
         // Starting the SMS Receiver // KoM 2013-12-23
         Log.d(TAG, "Registering SMS Receiver!");
         SMSReceiver smsReceiver = new SMSReceiver();
@@ -293,18 +292,18 @@ public class MainActivity extends Activity {
      * @param String aPhoneNumber phone number of the recipient
      */
     private void handleEmergencySMS(String aPhoneNumber) {
-    	
-    	// accuracy 9999 is set after 20 position changes w/o reaching acc < 20 
-    	String acc = "";
-    	if(accuracy == 9999){
-    		acc = "Position ungenau!!!";
-    	};
-    	
-        Helper.emergencyOngoing = true;
-        Helper.emergencyConfirmed = false;
-        Helper.emergencyMessage = "Notruf! " + acc + " Position: https://maps.google.com/maps?q=" + Float.toString(latitude) +","+ Float.toString(longitude) + ".. Bitte mit leerer SMS bestaetigen.";
-        Log.d(TAG, "Sending SMS: Number: " + aPhoneNumber + " Content: " + Helper.emergencyMessage);
-        Helper.sendEmergencySMS(aPhoneNumber, Helper.emergencyMessage);
+        // accuracy 9999 is set after 20 position changes w/o reaching acc < 20
+        String acc = "";
+        if(accuracy == 9999){
+            acc = "Position ungenau!!!";
+        };
+
+        String emergencyMessage = "Notruf! " + acc + " Position: https://maps.google.com/maps?q=" + Float.toString(latitude) +","+ Float.toString(longitude) + ".. Bitte mit einer SMS mit \"OK\" (ohne Anfuehrungszeichen) als Text bestaetigen.";
+        Helper.setEmergencyMessage(emergencyMessage, this); // save emergencyMessage for later
+        Helper.setEmergencyOngoing(true, this);
+        Helper.setEmergencyConfirmed(false, this);
+        Log.d(TAG, "Sending SMS: Number: " + aPhoneNumber + " Content: " + emergencyMessage);
+        Helper.sendEmergencySMS(aPhoneNumber, emergencyMessage);
         Context context = getApplicationContext();
         Toast.makeText(context, "Message sent!", Toast.LENGTH_LONG).show();
         Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
