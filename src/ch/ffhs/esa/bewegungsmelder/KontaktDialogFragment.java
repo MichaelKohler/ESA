@@ -1,5 +1,11 @@
 // Author: Mario Aloise (MAS-Student)
 
+	/**
+	 * Dieses DialogFragment wird in der Activity 'AddContact' aufgerufen 
+	 * und ermöglicht die Wahl der verschiedenen Optionen für das Hinzufügen von Kontakten.
+	  * @author Mario Aloise
+	 */
+
 package ch.ffhs.esa.bewegungsmelder;
 
 
@@ -45,7 +51,7 @@ public class KontaktDialogFragment extends DialogFragment {
                 	   
                }
 
-				
+	
 
 				
         });
