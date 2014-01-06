@@ -173,6 +173,10 @@ public class MainActivity extends Activity {
 					Log.d(TAG, "Progress Bar Set");
 					// stop service
 					if(!(Boolean)bundle.get("TIMER_RUNNING_BOOL")){
+                        // we need to set the Label to "Start Supervision" once the timer is at 0 // 2014-01-06 Michael Kohler
+                        Button supervisionButton = (Button) findViewById(R.id.buttonToggleSupervision);
+                        supervisionButton.setText(R.string.start_supervision);
+
 						context.stopService(new Intent(context, MotionDetectionService.class));
 						context.unregisterReceiver(MotionDetectionStatusReceiver.this);
 						Log.d(TAG, "Broadcast receiver unregistered, service stopped!");
