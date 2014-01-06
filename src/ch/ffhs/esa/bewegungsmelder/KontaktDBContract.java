@@ -1,4 +1,8 @@
-// Author: Mario Aloise (MAS-Student)
+
+	/**
+	 * Diese 'Contract' Klasse definiert das Layout der SQL lite DD. 
+	  * @author Mario Aloise
+	 */
 
 package ch.ffhs.esa.bewegungsmelder;
 
