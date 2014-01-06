@@ -250,7 +250,8 @@ public class MainActivity extends Activity {
 						Log.d(TAG, "Location: Lat: " + mLat + " Long: " + mLong + " Accuracy: " + mAcc);
 
 						// wait for accurate signal, setPosition, stop service, unregister Broadcast receiver
-						if(mAcc < 20){
+						// 9999 if no accurate position can be found
+						if(mAcc < 20 || mAcc == 9999){
 							 mLat = bundle.getFloat("LATITUDE");
 							 mLong = bundle.getFloat("LONGITUDE");
 							setPositionData(mLat, mLong, mAcc);
@@ -292,9 +293,16 @@ public class MainActivity extends Activity {
      * @param String aPhoneNumber phone number of the recipient
      */
     private void handleEmergencySMS(String aPhoneNumber) {
+    	
+    	// accuracy 9999 is set after 20 position changes w/o reaching acc < 20 
+    	String acc = "";
+    	if(accuracy == 9999){
+    		acc = "Position ungenau!!!";
+    	};
+    	
         Helper.emergencyOngoing = true;
         Helper.emergencyConfirmed = false;
-        Helper.emergencyMessage = "Notruf! Position: https://maps.google.com/maps?q=" + Float.toString(latitude) +","+ Float.toString(longitude) + ".. Bitte mit leerer SMS bestaetigen.";
+        Helper.emergencyMessage = "Notruf! " + acc + " Position: https://maps.google.com/maps?q=" + Float.toString(latitude) +","+ Float.toString(longitude) + ".. Bitte mit leerer SMS bestaetigen.";
         Log.d(TAG, "Sending SMS: Number: " + aPhoneNumber + " Content: " + Helper.emergencyMessage);
         Helper.sendEmergencySMS(aPhoneNumber, Helper.emergencyMessage);
         Context context = getApplicationContext();

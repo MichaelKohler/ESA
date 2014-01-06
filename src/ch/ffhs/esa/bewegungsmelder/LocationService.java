@@ -25,7 +25,7 @@ public class LocationService extends Service implements LocationListener{
 
 	private static final String TAG = LocationService.class.getSimpleName();
 	public static final String LOCATION_ACTION = "ch.ffhs.esa.bewegungsmelder.LOCATION_ACTION";
-
+	int count = 0;	// Counts the locationChanged events
 
 	/* (non-Javadoc)
 	 * @see android.app.Service#onCreate()
@@ -58,6 +58,7 @@ public class LocationService extends Service implements LocationListener{
 		super.onStart(intent, startId);
 		LocationManager locationMgr = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
 		locationMgr.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0, this);
+		count = 0;
 	}
 
 	/* Methode die aufgerufen wird wenn die Position sich veraendert. 
@@ -72,12 +73,19 @@ public class LocationService extends Service implements LocationListener{
 		float mLong = (float) location.getLongitude();
 		float mAcc = location.getAccuracy();
 
-		Log.d(TAG, "Location: Lat: " + mLat + " Long: " + mLong + " Accuracy: " + mAcc);
+		Log.d(TAG, "Location: Lat: " + mLat + " Long: " + mLong + " Accuracy: " + mAcc + "LocChanged: " +count);
 		Intent i = new Intent(LOCATION_ACTION);
+		
+		// Send 9999 after 20 locationChanged events 
+		if(count >= 20){
+			mAcc = 9999;
+		}
+		
 		i.putExtra("LATITUDE", mLat);
 		i.putExtra("LONGITUDE", mLong);
 		i.putExtra("ACCURACY", mAcc);
 		sendBroadcast(i);
+		count++;
 	}
 
 	@Override
