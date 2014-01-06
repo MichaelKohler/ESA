@@ -19,7 +19,7 @@ import android.util.Log;
 
 public class SMSSenderTimerService extends Service {
     Handler handler = new Handler();
-    int interval = 10 * 1000;
+    int interval = 60 * 1000;
     int counter = 0;
     Context context = this;
 
