@@ -35,7 +35,7 @@ public class SMSReceiver extends BroadcastReceiver {
                     String receivedMessage = messages[i].getMessageBody();
                     // if we received an empty message, we have a confirmation
                     if (receivedMessage.toUpperCase().equals("OK")) {
-                        // emergency is ongoing, save this state
+                        // emergency is not ongoing anymore, save this state
                         Helper.setEmergencyOngoing(false, context);
                         Helper.setEmergencyConfirmed(true, context);
                         Toast.makeText(context, "HILFE KOMMT!!!", Toast.LENGTH_SHORT).show();
