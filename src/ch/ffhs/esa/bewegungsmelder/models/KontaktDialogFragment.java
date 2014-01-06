@@ -2,11 +2,11 @@
 
 	/**
 	 * Dieses DialogFragment wird in der Activity 'AddContact' aufgerufen 
-	 * und ermöglicht die Wahl der verschiedenen Optionen für das Hinzufügen von Kontakten.
+	 * und ermï¿½glicht die Wahl der verschiedenen Optionen fï¿½r das Hinzufï¿½gen von Kontakten.
 	  * @author Mario Aloise
 	 */
 
-package ch.ffhs.esa.bewegungsmelder;
+package ch.ffhs.esa.bewegungsmelder.models;
 
 
 import android.annotation.SuppressLint;
@@ -16,9 +16,9 @@ import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.Toast;
-
-
+import ch.ffhs.esa.bewegungsmelder.R;
+import ch.ffhs.esa.bewegungsmelder.activities.KontaktManuellHinzu;
+import ch.ffhs.esa.bewegungsmelder.activities.Kontaktliste;
 
 
 @SuppressLint("UseValueOf")
@@ -35,7 +35,7 @@ public class KontaktDialogFragment extends DialogFragment {
                 		Intent intent = new Intent(getActivity(), Kontaktliste.class);
                 		startActivity(intent);
                 		
-               	   	 //Toast.makeText(getActivity(), "erstes item ausgewählt", Toast.LENGTH_LONG).show();
+               	   	 //Toast.makeText(getActivity(), "erstes item ausgewï¿½hlt", Toast.LENGTH_LONG).show();
                		   
                	     }
                	      else

@@ -1,6 +1,6 @@
 // Author: Mario Aloise (MAS-Student)
 
-package ch.ffhs.esa.bewegungsmelder;
+package ch.ffhs.esa.bewegungsmelder.activities;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,11 +17,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.Toast;
-import ch.ffhs.esa.bewegungsmelder.KontaktDBContract.KontaktTabelle;
+import ch.ffhs.esa.bewegungsmelder.R;
+import ch.ffhs.esa.bewegungsmelder.helpers.KontaktDBHelper;
+import ch.ffhs.esa.bewegungsmelder.models.*;
 
 public class AddContact extends Activity implements
 OnItemClickListener {
@@ -79,7 +79,7 @@ OnItemClickListener {
 	
 	
 	/**
-	 * Diese Methode öffnet den Dialog mit der Wahlmöglichkeit für das hinzufügen der Kontakte. 
+	 * Diese Methode ï¿½ffnet den Dialog mit der Wahlmï¿½glichkeit fï¿½r das hinzufï¿½gen der Kontakte. 
 	 * @author Mario Aloise
 	 */
 	
@@ -94,7 +94,7 @@ OnItemClickListener {
 	}
 
 	/**
-	 * Diese Methode wird jedesmal aufgerufen, wenn die Activity erstellt wird und sorgt dafür, dass die Kontaktliste
+	 * Diese Methode wird jedesmal aufgerufen, wenn die Activity erstellt wird und sorgt dafï¿½r, dass die Kontaktliste
 	 * immer aktualisiert wird. 
 	 * @author Mario Aloise
 	 */	
@@ -112,18 +112,18 @@ OnItemClickListener {
 
 		String[] projection = {
 
-				KontaktTabelle._ID,
-				KontaktTabelle.COLUMN_NAME_NAME,
-				KontaktTabelle.COLUMN_NAME_NUMBER,
+				KontaktDBContract.KontaktTabelle._ID,
+				KontaktDBContract.KontaktTabelle.COLUMN_NAME_NAME,
+				KontaktDBContract.KontaktTabelle.COLUMN_NAME_NUMBER,
 
 		};
 
 		Cursor c = null;
 
 		try {
-			c = db.query(KontaktTabelle.TABLE_NAME, projection, null, null, null, null, null);
+			c = db.query(KontaktDBContract.KontaktTabelle.TABLE_NAME, projection, null, null, null, null, null);
 		} catch (Exception e) {
-			c = db.rawQuery("SELECT  * FROM " + KontaktTabelle.TABLE_NAME, null);
+			c = db.rawQuery("SELECT  * FROM " + KontaktDBContract.KontaktTabelle.TABLE_NAME, null);
 			for (int i = 0; i < c.getColumnCount();i++){
 				Log.d(TAG, "Catched an exception on query!!!! Raw Query of column " +i + ":" + c.getColumnName(i) );
 			}
@@ -165,8 +165,8 @@ OnItemClickListener {
 
 	
 	/**
-	 * Diese Methode öffnet den Dialog mit der Wahlmöglichkeit für löschen, verändern und setzen des 
-	 * Primary Flags eines gewählten Kontaktes (primary Flag funktioniert noch nicht). 
+	 * Diese Methode ï¿½ffnet den Dialog mit der Wahlmï¿½glichkeit fï¿½r lï¿½schen, verï¿½ndern und setzen des 
+	 * Primary Flags eines gewï¿½hlten Kontaktes (primary Flag funktioniert noch nicht). 
 	 * @author Mario Aloise
 	 */	
 	
@@ -188,7 +188,7 @@ OnItemClickListener {
 	
 
 	/**
-	 * Diese Methode erlaubt das löschen eines Kontaktes.
+	 * Diese Methode erlaubt das lï¿½schen eines Kontaktes.
 	 * @author Mario Aloise
 	 */
 	
@@ -202,7 +202,7 @@ public void deleteKontakt(){
 		KontaktDBHelper mDbHelper = new KontaktDBHelper(this);
 		SQLiteDatabase db = mDbHelper.getWritableDatabase();
 		String selection = "_ID ='"+s+"'";
-		db.delete(KontaktTabelle.TABLE_NAME, selection, null);
+		db.delete(KontaktDBContract.KontaktTabelle.TABLE_NAME, selection, null);
 		
 		 
 		

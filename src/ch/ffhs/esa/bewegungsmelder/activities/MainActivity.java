@@ -1,4 +1,4 @@
-package ch.ffhs.esa.bewegungsmelder;
+package ch.ffhs.esa.bewegungsmelder.activities;
 
 /* This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
@@ -11,7 +11,6 @@ package ch.ffhs.esa.bewegungsmelder;
  *  - Michael Kohler <mkohler@picobudget.com>
  *  */
 
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.app.Activity;
@@ -31,6 +30,15 @@ import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+import ch.ffhs.esa.bewegungsmelder.R;
+import ch.ffhs.esa.bewegungsmelder.helpers.Helper;
+import ch.ffhs.esa.bewegungsmelder.helpers.KontaktDBHelper;
+import ch.ffhs.esa.bewegungsmelder.receivers.SMSReceiver;
+import ch.ffhs.esa.bewegungsmelder.services.LocationService;
+import ch.ffhs.esa.bewegungsmelder.services.MotionDetectionService;
+import ch.ffhs.esa.bewegungsmelder.services.SMSSenderTimerService;
+import ch.ffhs.esa.bewegungsmelder.services.ServerService;
+
 import java.util.ArrayList;
 
 public class MainActivity extends Activity {

@@ -1,4 +1,4 @@
-package ch.ffhs.esa.bewegungsmelder;
+package ch.ffhs.esa.bewegungsmelder.tasks;
 
 /* This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
@@ -24,7 +24,7 @@ import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
-class POSTTask extends AsyncTask<String, String, String> {
+public class POSTTask extends AsyncTask<String, String, String> {
     protected String doInBackground(String... params) {
         Log.d("POSTTask", "Running async request..");
         HttpClient httpClient = new DefaultHttpClient();

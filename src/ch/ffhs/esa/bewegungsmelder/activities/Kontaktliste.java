@@ -1,4 +1,4 @@
-package ch.ffhs.esa.bewegungsmelder;
+package ch.ffhs.esa.bewegungsmelder.activities;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +18,11 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import android.widget.Toast;
-import ch.ffhs.esa.bewegungsmelder.KontaktDBContract.KontaktTabelle;
+import ch.ffhs.esa.bewegungsmelder.models.KontaktAdapter;
+import ch.ffhs.esa.bewegungsmelder.models.KontaktDBContract.KontaktTabelle;
+import ch.ffhs.esa.bewegungsmelder.R;
+import ch.ffhs.esa.bewegungsmelder.helpers.KontaktDBHelper;
+import ch.ffhs.esa.bewegungsmelder.models.Kontakt;
 
 public class Kontaktliste extends Activity implements
 OnItemClickListener {
@@ -65,7 +69,7 @@ listView.setAdapter(objAdapter);
 }
 
 /**
- * Durch diese Methode wird ein, vom User gewählter Kontakt in die DB geschrieben. If-statement sorgt dafür, dass höchstens 5 Kontakte hinzugefügt werden können.
+ * Durch diese Methode wird ein, vom User gewï¿½hlter Kontakt in die DB geschrieben. If-statement sorgt dafï¿½r, dass hï¿½chstens 5 Kontakte hinzugefï¿½gt werden kï¿½nnen.
   * @author Mario Aloise
  */
 
@@ -101,7 +105,7 @@ Kontakt bean = (Kontakt) listview.getItemAtPosition(position);
 
 	db.close();
 	
-	Toast.makeText(this, "Kontakt: " + ausgabe_name + " Telefonnummer: " + ausgabe_tel  + " wurde hinzugefügt", Toast.LENGTH_SHORT).show();
+	Toast.makeText(this, "Kontakt: " + ausgabe_name + " Telefonnummer: " + ausgabe_tel  + " wurde hinzugefï¿½gt", Toast.LENGTH_SHORT).show();
 	
 	Intent intent = new Intent(this, AddContact.class);
 	startActivity(intent);
@@ -111,7 +115,7 @@ Kontakt bean = (Kontakt) listview.getItemAtPosition(position);
 		
 else {
 			
-			Toast.makeText(this, "Sie haben bereits 5 Kontakte eingefügt- bitte zuerst Kontakt löschen" , Toast.LENGTH_SHORT).show();	
+			Toast.makeText(this, "Sie haben bereits 5 Kontakte eingefï¿½gt- bitte zuerst Kontakt lï¿½schen" , Toast.LENGTH_SHORT).show();	
 			
 			Intent intent = new Intent(this, AddContact.class);
 			startActivity(intent);

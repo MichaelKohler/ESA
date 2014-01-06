@@ -1,4 +1,4 @@
-package ch.ffhs.esa.bewegungsmelder;
+package ch.ffhs.esa.bewegungsmelder.activities;
 
 /* This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
@@ -11,6 +11,7 @@ package ch.ffhs.esa.bewegungsmelder;
 import android.os.Bundle;
 import android.preference.PreferenceActivity;
 import android.util.Log;
+import ch.ffhs.esa.bewegungsmelder.R;
 
 public class UserSettingActivity extends PreferenceActivity {
 	 

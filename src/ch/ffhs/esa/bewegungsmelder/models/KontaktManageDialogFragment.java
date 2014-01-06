@@ -1,6 +1,6 @@
 // Author: Mario Aloise (MAS-Student)
 
-package ch.ffhs.esa.bewegungsmelder;
+package ch.ffhs.esa.bewegungsmelder.models;
 
 
 import android.annotation.SuppressLint;
@@ -11,8 +11,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Toast;
-
-
+import ch.ffhs.esa.bewegungsmelder.R;
+import ch.ffhs.esa.bewegungsmelder.activities.AddContact;
 
 
 @SuppressLint("UseValueOf")
@@ -30,7 +30,7 @@ public class KontaktManageDialogFragment extends DialogFragment {
                 	Intent intent = new Intent(getActivity(), AddContact.class);
                 	startActivity(intent);
                 		
-                		//Toast.makeText(getActivity(), "erstes item ausgewählt", Toast.LENGTH_SHORT).show();
+                		//Toast.makeText(getActivity(), "erstes item ausgewï¿½hlt", Toast.LENGTH_SHORT).show();
                 		
                	   	                		   
                	     }
@@ -40,7 +40,7 @@ public class KontaktManageDialogFragment extends DialogFragment {
                 		
                 		
                 		((AddContact)getActivity()).modifyKontakt();
-                		//Toast.makeText(getActivity(), "zweites item ausgewählt", Toast.LENGTH_SHORT).show();
+                		//Toast.makeText(getActivity(), "zweites item ausgewï¿½hlt", Toast.LENGTH_SHORT).show();
                 		
                 	}
                 	

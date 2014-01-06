@@ -1,19 +1,20 @@
-package ch.ffhs.esa.bewegungsmelder;
+package ch.ffhs.esa.bewegungsmelder.models;
 
 import java.util.List;
 
 import android.app.Activity;
 import android.content.Context;
-import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
+import ch.ffhs.esa.bewegungsmelder.R;
+import ch.ffhs.esa.bewegungsmelder.models.Kontakt;
 
 
 /**
- * AdapterKlasse für Kontaktliste 
+ * AdapterKlasse fï¿½r Kontaktliste 
   * @author Mario Aloise
  */
 
@@ -27,7 +28,7 @@ public class KontaktAdapter extends ArrayAdapter<Kontakt> {
 
 
 	/**
-	 * Konstruktor für KontaktAdapter Objekt 
+	 * Konstruktor fï¿½r KontaktAdapter Objekt 
 	  * @author Mario Aloise
 	 */
 	
@@ -41,7 +42,7 @@ public class KontaktAdapter extends ArrayAdapter<Kontakt> {
 	}
 
 	/**
-	 * Diese Methode gibt den View mit viewholder für Kontaktname und Kontaktnummer zurück 
+	 * Diese Methode gibt den View mit viewholder fï¿½r Kontaktname und Kontaktnummer zurï¿½ck 
 	  * @author Mario Aloise
 	 */
 	

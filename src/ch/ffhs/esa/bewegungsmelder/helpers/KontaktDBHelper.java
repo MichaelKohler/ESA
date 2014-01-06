@@ -1,15 +1,15 @@
 	/**
-	 * Die KontaktDBHelper Klasse ist eine Hilfsklasse mit Methoden fürs Erstellen und Warten der DB.
+	 * Die KontaktDBHelper Klasse ist eine Hilfsklasse mit Methoden fï¿½rs Erstellen und Warten der DB.
 	  * @author Mario Aloise
 	 */
-package ch.ffhs.esa.bewegungsmelder;
+package ch.ffhs.esa.bewegungsmelder.helpers;
 
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
-import ch.ffhs.esa.bewegungsmelder.KontaktDBContract.KontaktTabelle;
+import ch.ffhs.esa.bewegungsmelder.models.KontaktDBContract.KontaktTabelle;
 
 import java.util.ArrayList;
 

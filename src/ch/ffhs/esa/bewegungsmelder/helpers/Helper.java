@@ -1,4 +1,4 @@
-package ch.ffhs.esa.bewegungsmelder;
+package ch.ffhs.esa.bewegungsmelder.helpers;
 
 /* This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
@@ -17,8 +17,8 @@ import android.net.Uri;
 import android.preference.PreferenceManager;
 import android.telephony.SmsManager;
 import android.util.Log;
-
-import java.util.ArrayList;
+import ch.ffhs.esa.bewegungsmelder.tasks.POSTTask;
+import ch.ffhs.esa.bewegungsmelder.tasks.ResendSMSTask;
 
 public class Helper {
     private static final String TAG = Helper.class.getSimpleName();

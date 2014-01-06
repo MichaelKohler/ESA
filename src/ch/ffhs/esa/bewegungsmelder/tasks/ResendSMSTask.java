@@ -1,8 +1,10 @@
-package ch.ffhs.esa.bewegungsmelder;
+package ch.ffhs.esa.bewegungsmelder.tasks;
 
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
+import ch.ffhs.esa.bewegungsmelder.helpers.Helper;
+import ch.ffhs.esa.bewegungsmelder.helpers.KontaktDBHelper;
 
 import java.util.ArrayList;
 

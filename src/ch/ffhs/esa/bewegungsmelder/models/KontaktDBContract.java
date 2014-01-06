@@ -4,15 +4,11 @@
 	  * @author Mario Aloise
 	 */
 
-package ch.ffhs.esa.bewegungsmelder;
+package ch.ffhs.esa.bewegungsmelder.models;
 
-import android.content.ContentValues;
-import android.database.sqlite.SQLiteDatabase;
 import android.provider.BaseColumns;
-import android.widget.EditText;
-import android.widget.Toast;
 
-public final class KontaktDBContract {
+    public final class KontaktDBContract {
 	
 	public KontaktDBContract() {}
 	

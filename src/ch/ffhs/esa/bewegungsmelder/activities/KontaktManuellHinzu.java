@@ -1,10 +1,9 @@
 // Author: Mario Aloise (MAS-Student)
 
 
-package ch.ffhs.esa.bewegungsmelder;
+package ch.ffhs.esa.bewegungsmelder.activities;
 
-//import ch.ffhs.esa.bewegungsmelder.KontaktDBContract.KontaktTabelle;
-import java.util.ArrayList;
+//import KontaktDBContract.KontaktTabelle;
 
 import android.app.Activity;
 import android.content.ContentValues;
@@ -17,11 +16,11 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.Toast;
-import ch.ffhs.esa.bewegungsmelder.KontaktDBContract.KontaktTabelle;
+import ch.ffhs.esa.bewegungsmelder.models.KontaktDBContract.KontaktTabelle;
+import ch.ffhs.esa.bewegungsmelder.R;
+import ch.ffhs.esa.bewegungsmelder.helpers.KontaktDBHelper;
 
 
 public class KontaktManuellHinzu extends Activity {
@@ -73,7 +72,7 @@ public class KontaktManuellHinzu extends Activity {
 	
 	/**
 	 * Methode zum Speichern von Kontakten. If-Statements stellen sicher, dass nicht mehr als 5 Kontakte eingegeben werden
-	 * und der User beide Felder asufüllen muss 
+	 * und der User beide Felder asufï¿½llen muss 
 	 * @author Mario Aloise
 	 */	
 	
@@ -100,7 +99,7 @@ public class KontaktManuellHinzu extends Activity {
 		
 		if(name.matches("") || telefonnummer.matches ("")){
 			
-			Toast toast = Toast.makeText(getApplicationContext(), "Bitte beide Felder vollständig ausfüllen", Toast.LENGTH_SHORT);
+			Toast toast = Toast.makeText(getApplicationContext(), "Bitte beide Felder vollstï¿½ndig ausfï¿½llen", Toast.LENGTH_SHORT);
 			toast.show();	
 		}
 		else{
@@ -117,7 +116,7 @@ public class KontaktManuellHinzu extends Activity {
 		Intent intent = new Intent(this, AddContact.class);
 		startActivity(intent);
 		
-		Toast toast = Toast.makeText(getApplicationContext(), "Kontakt: " + name + " Telefonnummer: " + telefonnummer + " wurde hinzugefügt", Toast.LENGTH_SHORT);
+		Toast toast = Toast.makeText(getApplicationContext(), "Kontakt: " + name + " Telefonnummer: " + telefonnummer + " wurde hinzugefï¿½gt", Toast.LENGTH_SHORT);
 		toast.show();
 
 		
@@ -127,7 +126,7 @@ public class KontaktManuellHinzu extends Activity {
 		
 		else {
 			
-			Toast.makeText(this, "Sie haben bereits 5 Kontakte eingefügt- bitte zuerst Kontakt löschen" , Toast.LENGTH_SHORT).show();	
+			Toast.makeText(this, "Sie haben bereits 5 Kontakte eingefï¿½gt- bitte zuerst Kontakt lï¿½schen" , Toast.LENGTH_SHORT).show();	
 			
 			Intent intent = new Intent(this, AddContact.class);
 			startActivity(intent);
@@ -139,8 +138,8 @@ public class KontaktManuellHinzu extends Activity {
 
 	
 	/**
-	 * Durch klicken auf den Button 'Abbrechen' wird diese Methode aufgerufen, die den Inhalt der Textfelder löscht 
-	 * und den User zur 'AddContact Activity zurückbringt.
+	 * Durch klicken auf den Button 'Abbrechen' wird diese Methode aufgerufen, die den Inhalt der Textfelder lï¿½scht 
+	 * und den User zur 'AddContact Activity zurï¿½ckbringt.
 	 * @author Mario Aloise
 	 */	
 	

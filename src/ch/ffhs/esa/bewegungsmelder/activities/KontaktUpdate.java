@@ -1,4 +1,4 @@
-package ch.ffhs.esa.bewegungsmelder;
+package ch.ffhs.esa.bewegungsmelder.activities;
 
 import android.app.Activity;
 import android.content.ContentValues;
@@ -11,7 +11,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
-import ch.ffhs.esa.bewegungsmelder.KontaktDBContract.KontaktTabelle;
+import ch.ffhs.esa.bewegungsmelder.models.KontaktDBContract.KontaktTabelle;
+import ch.ffhs.esa.bewegungsmelder.R;
+import ch.ffhs.esa.bewegungsmelder.helpers.KontaktDBHelper;
 
 public class KontaktUpdate extends Activity {
 
@@ -141,7 +143,7 @@ public void updateSpeichern (View view){
 		
 	/*	if(update_name.matches("") || update_telefonnummer.matches ("")){
 			
-			Toast toast = Toast.makeText(getApplicationContext(), "Bitte beide Felder vollständig ausfüllen", Toast.LENGTH_SHORT);
+			Toast toast = Toast.makeText(getApplicationContext(), "Bitte beide Felder vollstï¿½ndig ausfï¿½llen", Toast.LENGTH_SHORT);
 			toast.show();	
 		}
 		else{    */
