@@ -136,6 +136,12 @@ public class MainActivity extends Activity {
      * @author Ralf Wittich
      */
     public void onSupervisionButtonClicked(View view) {
+        // check if there is any contact // 2014-01-06 Michael Kohler
+        ArrayList<String> phoneNumbers = new KontaktDBHelper(MainActivity.this).getAllContactsNumbers();
+        if (phoneNumbers.size() == 0) {
+            Toast.makeText(this, "KEIN KONTAKT ERFASST -> bitte erfassen", Toast.LENGTH_SHORT).show();
+            return;
+        }
 		/* Test if service running */
         motionServiceRunning = isServiceRunning();
         // Stop if running
@@ -203,7 +209,7 @@ public class MainActivity extends Activity {
 	}
 	
 	private void enableSupervision() {
-		Log.d(TAG, "Method: enableSupervision");
+        Log.d(TAG, "Method: enableSupervision");
         ((TextView) findViewById(R.id.labelTopLeft)).setText(R.string.supervision_running);
         ((Button) findViewById(R.id.buttonToggleSupervision)).setText(R.string.stop_supervision);
 		Log.d(TAG, "Starting motion service!");
