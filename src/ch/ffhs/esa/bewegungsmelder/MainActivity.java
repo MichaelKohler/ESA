@@ -56,14 +56,6 @@ public class MainActivity extends Activity {
         Log.d(TAG, "Starting the Server Service!");
         Intent i = new Intent(this, ServerService.class);
         startService(i);
-        
-        // Register MotionDetectionReceiver
-        MotionDetectionStatusReceiver br = new MotionDetectionStatusReceiver();
-		registerReceiver(br, new IntentFilter(MotionDetectionService.MOTION_DETECTION_ACTION));
-		
-		// Register LocationReceiver
-		LocationReceiver lr = new LocationReceiver();
-		registerReceiver(lr, new IntentFilter(LocationService.LOCATION_ACTION));
 
         // Starting the Resend Service // KoM 2013-01-04
         Log.d(TAG, "Starting the SMSSenderTimerService!");
@@ -174,7 +166,8 @@ public class MainActivity extends Activity {
 					// stop service
 					if(!(Boolean)bundle.get("TIMER_RUNNING_BOOL")){
 						context.stopService(new Intent(context, MotionDetectionService.class));
-						Log.d(TAG, "Service stopped!");
+						context.unregisterReceiver(MotionDetectionStatusReceiver.this);
+						Log.d(TAG, "Broadcast receiver unregistered, service stopped!");
 						runLocationService();
 					}
 				}
@@ -198,8 +191,11 @@ public class MainActivity extends Activity {
         ((TextView) findViewById(R.id.labelTopLeft)).setText(R.string.supervision_running);
         ((Button) findViewById(R.id.buttonToggleSupervision)).setText(R.string.stop_supervision);
 		Log.d(TAG, "Starting motion service!");
-//		MotionDetectionStatusReceiver br = new MotionDetectionStatusReceiver();
-//		registerReceiver(br, new IntentFilter(MotionDetectionService.MOTION_DETECTION_ACTION));
+		 
+		// Register MotionDetectionReceiver
+		MotionDetectionStatusReceiver br = new MotionDetectionStatusReceiver();
+		registerReceiver(br, new IntentFilter(MotionDetectionService.MOTION_DETECTION_ACTION));
+		
 		Intent i = new Intent(this, MotionDetectionService.class);
 		i.putExtra("MODE", dayMode); // Day or Night Mode
 		startService(i);
@@ -231,7 +227,10 @@ public class MainActivity extends Activity {
 	
 	private void runLocationService() {		
 		Log.d(TAG, "Getting Position...");
-	
+		// Register LocationReceiver
+		LocationReceiver lr = new LocationReceiver();
+		registerReceiver(lr, new IntentFilter(LocationService.LOCATION_ACTION));
+		
 		startService(new Intent(this, LocationService.class));
 	}
 	// Receiver des Location Services
@@ -260,6 +259,7 @@ public class MainActivity extends Activity {
                             handleEmergencySMS(phoneNumbers.get(0));
 
 							context.stopService(new Intent(context, LocationService.class));
+							context.unregisterReceiver(LocationReceiver.this);
 							Log.d(TAG, "Broadcast receiver unregistered, service stopped! Accuracy: " +mAcc);
 						}
 					}
