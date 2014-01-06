@@ -47,7 +47,7 @@ public class KontaktManageDialogFragment extends DialogFragment {
                 	
                	      else
                	      {
-               	    	Toast.makeText(getActivity(), "drittes item ausgewählt", Toast.LENGTH_SHORT).show();
+               	    	Toast.makeText(getActivity(), "Funktionier leider noch nicht!!", Toast.LENGTH_SHORT).show();
                	    	  
                	      }
                 		

@@ -69,18 +69,19 @@ public class KontaktManuellHinzu extends Activity {
 		return super.onOptionsItemSelected(item);
 	}
 
-
-
-
+	
+	
+	/**
+	 * Methode zum Speichern von Kontakten. If-Statements stellen sicher, dass nicht mehr als 5 Kontakte eingegeben werden
+	 * und der User beide Felder asufüllen muss 
+	 * @author Mario Aloise
+	 */	
+	
 	public void speichern (View view){
 		Log.d(TAG, "Speichern Methode");
 		KontaktDBHelper mDbHelper = new KontaktDBHelper(this);
 		SQLiteDatabase db = mDbHelper.getWritableDatabase();
-
-		//------------------------------------------!!!!QUICK & DIRTY!!!!-----------------------------------------------------//
-		//mDbHelper.onCreate(db);  // Die Methode wird sonst nicht gestartet! // 2013-12-29 WiR
-		//------------------------------------------!!!!QUICK & DIRTY!!!!-----------------------------------------------------//
-
+	
 		EditText t_name = (EditText)findViewById(R.id.name);
 		EditText t_telnummer = (EditText)findViewById(R.id.telnummer);
 		String name = t_name.getText().toString();
@@ -136,6 +137,14 @@ public class KontaktManuellHinzu extends Activity {
 		}
 	}
 
+	
+	/**
+	 * Durch klicken auf den Button 'Abbrechen' wird diese Methode aufgerufen, die den Inhalt der Textfelder löscht 
+	 * und den User zur 'AddContact Activity zurückbringt.
+	 * @author Mario Aloise
+	 */	
+	
+	
 	public void abbrechen (View view){
 
 		EditText t_name_clear = (EditText)findViewById(R.id.name);
@@ -147,8 +156,6 @@ public class KontaktManuellHinzu extends Activity {
 		startActivity(intent);
 
 		}
-	
-	
 	
 	
 		
