@@ -19,7 +19,7 @@ import android.util.Log;
 
 public class SMSSenderTimerService extends Service {
     Handler handler = new Handler();
-    int interval = 60 * 1000;
+    int interval = 30 * 1000;
     int counter = 0;
     Context context = this;
 
@@ -29,6 +29,7 @@ public class SMSSenderTimerService extends Service {
             Log.d("Helper", "Checking if SMS necessary");
             Helper.checkAndResendSMS(counter, context);
             counter++;
+            handler.postDelayed(this, interval);
         }
     };
 
