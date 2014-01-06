@@ -287,14 +287,19 @@ public class MainActivity extends Activity {
      * @param View view the View from which this function is called
      */
 	public void onEmergencyButtonClicked(View view) {
-        String phoneNumber = new KontaktDBHelper(MainActivity.this).getAllContactsNumbers().get(0);
-        SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
-        String emergencyHandlingPref = sharedPref.getString("pref_direktruf_aktion", "SMS");
-        if (emergencyHandlingPref.equals("CALL")) {
-            Helper.call(phoneNumber, MainActivity.this);
+        ArrayList<String> phoneNumbers = new KontaktDBHelper(MainActivity.this).getAllContactsNumbers();
+        if (phoneNumbers.size() > 0) {
+            SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+            String emergencyHandlingPref = sharedPref.getString("pref_direktruf_aktion", "SMS");
+            if (emergencyHandlingPref.equals("CALL")) {
+                Helper.call(phoneNumbers.get(0), MainActivity.this);
+            }
+            else {
+                runLocationService();
+            }
         }
         else {
-            runLocationService();
+            Toast.makeText(this, "KEIN KONTAKT ERFASST -> KEINE SMS GESENDET!", Toast.LENGTH_SHORT).show();
         }
 	}
 

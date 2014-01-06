@@ -3,6 +3,7 @@ package ch.ffhs.esa.bewegungsmelder.tasks;
 import android.content.Context;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.widget.Toast;
 import ch.ffhs.esa.bewegungsmelder.helpers.Helper;
 import ch.ffhs.esa.bewegungsmelder.helpers.KontaktDBHelper;
 
@@ -26,8 +27,13 @@ public class ResendSMSTask extends AsyncTask<Integer, Integer, Integer> {
     protected Integer doInBackground(Integer... params) {
         Log.d("ResendSMSTask", "Running async sms sending..");
         ArrayList<String> phoneNumbers = new KontaktDBHelper(context).getAllContactsNumbers();
-        String currentPhoneNumber = phoneNumbers.get(params[0] % phoneNumbers.size());
-        Helper.sendEmergencySMS(currentPhoneNumber, context);
+        if (phoneNumbers.size() > 0) {
+            String currentPhoneNumber = phoneNumbers.get(params[0] % phoneNumbers.size());
+            Helper.sendEmergencySMS(currentPhoneNumber, context);
+        }
+        else {
+            Toast.makeText(context, "KEIN KONTAKT ERFASST -> KEINE SMS GESENDET!", Toast.LENGTH_SHORT).show();
+        }
         return 1;
     }
 }
