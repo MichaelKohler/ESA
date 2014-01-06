@@ -11,6 +11,13 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+
+/**
+ * AdapterKlasse für Kontaktliste 
+  * @author Mario Aloise
+ */
+
+
 public class KontaktAdapter extends ArrayAdapter<Kontakt> {
 
 	private Activity activity;
@@ -18,6 +25,12 @@ public class KontaktAdapter extends ArrayAdapter<Kontakt> {
 	private int row;
 	private Kontakt objBean;
 
+
+	/**
+	 * Konstruktor für KontaktAdapter Objekt 
+	  * @author Mario Aloise
+	 */
+	
 	public KontaktAdapter(Activity act, int row, List<Kontakt> items) {
 		super(act, row, items);
 
@@ -27,6 +40,11 @@ public class KontaktAdapter extends ArrayAdapter<Kontakt> {
 
 	}
 
+	/**
+	 * Diese Methode gibt den View mit viewholder für Kontaktname und Kontaktnummer zurück 
+	  * @author Mario Aloise
+	 */
+	
 	@Override
 	public View getView(final int position, View convertView, ViewGroup parent) {
 		View view = convertView;
