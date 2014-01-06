@@ -42,13 +42,13 @@ public class MainActivity extends Activity {
 	private float longitude = 0;
 	private float accuracy = 0;
 	private boolean dayMode = true;
+    private SMSReceiver smsReceiver = new SMSReceiver();
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		Log.d(TAG, "Method: onCreate");
         // Starting the SMS Receiver // KoM 2013-12-23
         Log.d(TAG, "Registering SMS Receiver!");
-        SMSReceiver smsReceiver = new SMSReceiver();
         registerReceiver(smsReceiver, new IntentFilter("android.provider.Telephony.SMS_RECEIVED"));
 
         // Starting the Server Service // KoM 2013-12-23
@@ -76,6 +76,7 @@ public class MainActivity extends Activity {
         MainActivity.this.stopService(new Intent(MainActivity.this, MotionDetectionService.class));
         MainActivity.this.stopService(new Intent(MainActivity.this, ServerService.class));
         MainActivity.this.stopService(new Intent(MainActivity.this, SMSSenderTimerService.class));
+        unregisterReceiver(smsReceiver);
         super.onDestroy();
     }
 
@@ -208,7 +209,7 @@ public class MainActivity extends Activity {
 		stopService(new Intent(this, MotionDetectionService.class));
 		motionServiceRunning = false;
 		TextView textViewTimeLeft = (TextView) findViewById(R.id.textViewTimeLeft); 
-		textViewTimeLeft.setText("-"); 
+		textViewTimeLeft.setText("-");
 	}
 	
 	/* ----------------------- End of Timer Service / WiR 2013-12-16 ------------ */
