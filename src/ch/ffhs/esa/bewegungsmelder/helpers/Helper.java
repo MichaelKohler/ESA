@@ -98,8 +98,8 @@ public class Helper {
      * @return whether an emergency is ongoing or not
      */
     public static boolean isEmergencyOngoing(Context aContext) {
-        return PreferenceManager.getDefaultSharedPreferences(aContext)
-                .getBoolean("pref_emergencyongoing", false);
+        SharedPreferences prefs = aContext.getSharedPreferences("ch.ffhs.esa.bewegungsmelder_preferences", aContext.MODE_MULTI_PROCESS);
+        return prefs.getBoolean("pref_emergencyongoing", false);
     }
 
     /**
@@ -111,8 +111,8 @@ public class Helper {
      *
      */
     public static boolean isEmergencyConfirmed(Context aContext) {
-        return PreferenceManager.getDefaultSharedPreferences(aContext)
-                .getBoolean("pref_emergencyconfirmed", false);
+        SharedPreferences prefs = aContext.getSharedPreferences("ch.ffhs.esa.bewegungsmelder_preferences", aContext.MODE_MULTI_PROCESS);
+        return prefs.getBoolean("pref_emergencyconfirmed", false);
     }
 
     /**
@@ -123,7 +123,7 @@ public class Helper {
      * @param aContext context
      */
     public static void setEmergencyMessage(String aMessage, Context aContext) {
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(aContext);
+        SharedPreferences prefs = aContext.getSharedPreferences("ch.ffhs.esa.bewegungsmelder_preferences", aContext.MODE_MULTI_PROCESS);
         SharedPreferences.Editor editor = prefs.edit();
         editor.putString("pref_emergencymessage", aMessage);
         editor.commit();
@@ -138,8 +138,8 @@ public class Helper {
      * @return emergency message
      */
     public static String getEmergencyMessage(Context aContext) {
-        return PreferenceManager.getDefaultSharedPreferences(aContext)
-                .getString("pref_emergencymessage", "");
+        SharedPreferences prefs = aContext.getSharedPreferences("ch.ffhs.esa.bewegungsmelder_preferences", aContext.MODE_MULTI_PROCESS);
+        return prefs.getString("pref_emergencymessage", "");
     }
 
     /**
@@ -150,7 +150,7 @@ public class Helper {
      * @param aContext context
      */
     public static void setEmergencyOngoing(boolean aOngoing, Context aContext) {
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(aContext);
+        SharedPreferences prefs = aContext.getSharedPreferences("ch.ffhs.esa.bewegungsmelder_preferences", aContext.MODE_MULTI_PROCESS);
         SharedPreferences.Editor editor = prefs.edit();
         editor.putBoolean("pref_emergencyongoing", aOngoing);
         editor.commit();
@@ -164,7 +164,7 @@ public class Helper {
      * @param aContext context
      */
     public static void setEmergencyConfirmed(boolean aConfirmed, Context aContext) {
-        SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(aContext);
+        SharedPreferences prefs = aContext.getSharedPreferences("ch.ffhs.esa.bewegungsmelder_preferences", aContext.MODE_MULTI_PROCESS);
         SharedPreferences.Editor editor = prefs.edit();
         editor.putBoolean("pref_emergencyconfirmed", aConfirmed);
         editor.commit();
