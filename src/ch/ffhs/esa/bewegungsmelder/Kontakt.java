@@ -1,5 +1,13 @@
 package ch.ffhs.esa.bewegungsmelder;
 
+
+/**
+ * Diese Klasse definiert das 'Kontakt' Objekt smat setter und getter Methoden, das in verschiedenen anderen Klassen 
+ * benutzt wird.
+ * @author Mario Aloise
+ */
+
+
 public class Kontakt {
 	private String name;
 	private String phoneNo;
