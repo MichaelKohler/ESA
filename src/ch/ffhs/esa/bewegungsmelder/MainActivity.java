@@ -299,7 +299,7 @@ public class MainActivity extends Activity {
             acc = "Position ungenau!!!";
         };
 
-        String emergencyMessage = "Notruf! " + acc + " Position: https://maps.google.com/maps?q=" + Float.toString(latitude) +","+ Float.toString(longitude) + ".. Bitte mit einer SMS mit \"OK\" (ohne Anfuehrungszeichen) als Text bestaetigen.";
+        String emergencyMessage = "Notruf! " + acc + " Position: https://maps.google.com/maps?q=" + Float.toString(latitude) +","+ Float.toString(longitude) + ".. Bitte mit einer SMS mit OK als Text bestaetigen.";
         Helper.setEmergencyMessage(emergencyMessage, this); // save emergencyMessage for later
         Helper.setEmergencyOngoing(true, this);
         Helper.setEmergencyConfirmed(false, this);
