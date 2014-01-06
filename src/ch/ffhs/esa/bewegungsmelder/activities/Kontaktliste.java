@@ -105,7 +105,7 @@ Kontakt bean = (Kontakt) listview.getItemAtPosition(position);
 
 	db.close();
 	
-	Toast.makeText(this, "Kontakt: " + ausgabe_name + " Telefonnummer: " + ausgabe_tel  + " wurde hinzugef�gt", Toast.LENGTH_SHORT).show();
+	Toast.makeText(this, "Kontakt: " + ausgabe_name + " Telefonnummer: " + ausgabe_tel  + " wurde hinzugefuegt", Toast.LENGTH_SHORT).show();
 	
 	Intent intent = new Intent(this, AddContact.class);
 	startActivity(intent);
@@ -114,8 +114,8 @@ Kontakt bean = (Kontakt) listview.getItemAtPosition(position);
 		
 		
 else {
-			
-			Toast.makeText(this, "Sie haben bereits 5 Kontakte eingef�gt- bitte zuerst Kontakt l�schen" , Toast.LENGTH_SHORT).show();	
+
+			Toast.makeText(this, "Sie haben bereits 5 Kontakte eingefuegt- bitte zuerst Kontakt loeschen" , Toast.LENGTH_SHORT).show();
 			
 			Intent intent = new Intent(this, AddContact.class);
 			startActivity(intent);
