@@ -1,5 +1,7 @@
-// Author: Mario Aloise (MAS-Student)
-
+	/**
+	 * Die KontaktDBHelper Klasse ist eine Hilfsklasse mit Methoden fürs Erstellen und Warten der DB.
+	  * @author Mario Aloise
+	 */
 package ch.ffhs.esa.bewegungsmelder;
 
 import android.content.Context;
@@ -40,7 +42,7 @@ public class KontaktDBHelper extends SQLiteOpenHelper {
 
     public void onCreate(SQLiteDatabase db) {
     	Log.d(TAG, "Table creation executed!");
-    	//db.execSQL(SQL_DELETE_ENTRIES); // Benoetigt um falsche DB zu lï¿½schen :-)
+    	
         db.execSQL(SQL_CREATE_ENTRIES);
     }
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
