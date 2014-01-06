@@ -64,6 +64,10 @@ listView.setAdapter(objAdapter);
 
 }
 
+/**
+ * Durch diese Methode wird ein, vom User gewählter Kontakt in die DB geschrieben. If-statement sorgt dafür, dass höchstens 5 Kontakte hinzugefügt werden können.
+  * @author Mario Aloise
+ */
 
 @Override
 public void onItemClick(AdapterView<?> listview, View v, int position,
